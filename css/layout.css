@@ -1,0 +1,158 @@
+/* ── SAFE AREA SUPPORT ── */
+@supports (padding-top: env(safe-area-inset-top, 59px)) {
+  :root {
+    --sat: max(44px, env(safe-area-inset-top, 59px));
+    --sab: max(20px, env(safe-area-inset-bottom));
+  }
+}
+@supports (padding-top: max(44px, env(safe-area-inset-top, 59px))) {
+  :root { --sat: max(59px, env(safe-area-inset-top, 59px)); }
+}
+@supports (padding-top: env(safe-area-inset-top)) {
+  :root { --sat: max(59px, env(safe-area-inset-top)); }
+}
+
+/* iPhone 14/15 Pro Dynamic Island */
+@media (min-width: 390px) and (min-height: 844px) {
+  :root { --sat: max(59px, env(safe-area-inset-top, 59px)); }
+}
+/* iPhone 12/13 notch */
+@media (device-width: 390px) and (device-height: 844px) {
+  :root { --sat: max(47px, env(safe-area-inset-top, 59px)); }
+}
+/* iPhone SE — no notch */
+@media (device-width: 375px) and (device-height: 667px) {
+  :root { --sat: 20px; }
+}
+
+/* ── APP SHELL ── */
+#app { position: fixed; inset: 0; overflow: hidden; }
+#bg  { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+
+/* ── LOADER ── */
+#loader { position: fixed; inset: 0; z-index: 900; background: #000; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; transition: opacity .6s ease; }
+#loader.out { opacity: 0; pointer-events: none; }
+.lring { width: 88px; height: 88px; position: relative; }
+#lcan  { position: absolute; inset: 0; }
+.lring-anim { position: absolute; inset: -5px; border-radius: 50%; border: 1px solid rgba(255,255,255,.06); animation: lrspin 10s linear infinite; }
+@keyframes lrspin { to { transform: rotate(360deg); } }
+.lscan { font-size: .58rem; font-family: monospace; opacity: .3; letter-spacing: .07em; text-align: center; min-height: 12px; transition: opacity .2s; }
+.ldots { display: flex; gap: 5px; }
+.ldot  { width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,.22); animation: ldb 1.2s ease infinite; }
+.ldot:nth-child(2) { animation-delay: .18s; }
+.ldot:nth-child(3) { animation-delay: .36s; }
+@keyframes ldb { 0%,100% { opacity: .22; transform: scale(1); } 50% { opacity: 1; transform: scale(1.4); } }
+
+/* ── WELCOME (multi-step) ── */
+#welcome { position: fixed; inset: 0; z-index: 800; background: #000; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 28px; transition: opacity .5s ease; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+#welcome.out { opacity: 0; pointer-events: none; }
+.wstep { display: none; flex-direction: column; align-items: center; width: 100%; max-width: 320px; text-align: center; animation: wfadeup .45s ease; }
+.wstep.active { display: flex; }
+@keyframes wfadeup { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+.wprog { display: flex; gap: 6px; margin-bottom: 28px; }
+.wprogdot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,.15); transition: all .3s; }
+.wprogdot.on { background: #fff; transform: scale(1.3); }
+
+/* ── SCREENS ── */
+.screen { position: absolute; inset: 0; overflow-y: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch; z-index: 10; opacity: 0; pointer-events: none; transition: opacity .22s cubic-bezier(.4,0,.2,1), transform .22s cubic-bezier(.4,0,.2,1); padding-top: var(--sat); padding-bottom: calc(var(--sab) + 76px); will-change: opacity; transform: translateY(4px); scroll-behavior: smooth; }
+.screen.active { opacity: 1; pointer-events: all; transform: translateY(0); }
+.screen.active > *                { animation: slideUpFresh .3s ease backwards; }
+.screen.active > *:nth-child(1)  { animation-delay: 0s; }
+.screen.active > *:nth-child(2)  { animation-delay: .04s; }
+.screen.active > *:nth-child(3)  { animation-delay: .08s; }
+.screen.active > *:nth-child(4)  { animation-delay: .12s; }
+#game-screen { padding-bottom: 0; display: flex; flex-direction: column; }
+
+/* ── NAV ── */
+#nav { position: fixed; bottom: 0; left: 0; right: 0; z-index: 100; padding-bottom: var(--sab); background: rgba(10,10,15,.92) !important; backdrop-filter: blur(40px) saturate(2); -webkit-backdrop-filter: blur(40px) saturate(2); border-top: 1px solid rgba(255,255,255,.08) !important; display: flex; align-items: stretch; padding-top: 5px; transition: transform .3s ease; }
+#nav.hide { transform: translateY(110%); }
+.ni  { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 6px 0 3px; cursor: pointer; opacity: .3; user-select: none; -webkit-user-select: none; flex: 1; transition: opacity .16s; position: relative; min-height: 44px; -webkit-user-select: none; }
+.ni.on { opacity: 1; }
+.nic { font-size: 1.25rem; transition: transform .32s cubic-bezier(.34,1.56,.64,1); display: block; }
+.ni.on .nic { filter: drop-shadow(0 0 8px var(--acc)); transform: scale(1.3) translateY(-2px); }
+.ni.on .nil { color: var(--acc); }
+.ni.on::after { content: ''; position: absolute; bottom: 2px; left: 50%; transform: translateX(-50%); width: 4px; height: 4px; border-radius: 50%; background: var(--acc); box-shadow: 0 0 6px var(--acc); }
+.nil { font-size: .52rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+
+/* ── PASS ── */
+#pass { position: fixed; inset: 0; z-index: 500; background: #000; display: none; flex-direction: column; align-items: center; justify-content: center; padding: 32px; }
+#pass.on { display: flex; }
+.pass-priv { position: absolute; top: 0; left: 0; right: 0; height: 40%; background: linear-gradient(to bottom, rgba(0,0,0,.9), transparent); pointer-events: none; }
+
+/* ── TENSION BANNER ── */
+#tension-bar { position: fixed; top: var(--sat); left: 0; right: 0; z-index: 200; display: none; align-items: center; justify-content: center; padding: 5px; font-size: .62rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; animation: tbpulse 1.5s ease infinite; }
+@keyframes tbpulse { 0%,100% { opacity: .8; } 50% { opacity: 1; } }
+
+/* ── ORIENTATION BUTTON ── */
+#orient-btn { position: fixed; bottom: calc(var(--sab) + 80px); right: 14px; width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,.08); border: 1px solid var(--border); display: none; align-items: center; justify-content: center; font-size: .9rem; cursor: pointer; z-index: 150; transition: all .2s; }
+#orient-btn.show  { display: flex; }
+#orient-btn:active { transform: scale(.88); }
+
+/* ── SCREEN SIZE HELPER ── */
+#screen-size-info { display: none; }
+
+/* ── RESPONSIVE: iPad & Large Screens ── */
+@media (min-width: 768px) {
+  #app     { max-width: 480px; margin: 0 auto; left: 50%; transform: translateX(-50%); box-shadow: 0 0 80px rgba(0,0,0,.8); }
+  #bg      { max-width: 100vw; }
+  .screen  { padding-bottom: calc(var(--sab) + 80px); }
+}
+@media (min-width: 1024px) {
+  #app { max-width: 520px; }
+}
+
+/* ── DEVICE-SPECIFIC LAYOUTS ── */
+body[data-device="ipad"] #app  { max-width: 600px; margin: 0 auto; left: 50%; transform: translateX(-50%); }
+body[data-device="mac"]  #app  { max-width: 680px; margin: 0 auto; left: 50%; transform: translateX(-50%); }
+body[data-device="mac"]  .btn  { font-size: 1rem; }
+
+/* ── LANDSCAPE: phone ── */
+@media (orientation: landscape) and (max-height: 500px) {
+  :root  { --sat: 0px; --sab: 0px; }
+  #nav   { padding-top: 2px; padding-bottom: 2px; }
+  .ni    { padding: 4px 0 2px; }
+  .screen { padding-bottom: calc(var(--sab) + 52px); }
+}
+
+/* ── iPad portrait ── */
+@media (min-width: 768px) and (orientation: portrait) {
+  #app { max-width: 540px; }
+}
+
+/* ── iPad landscape — side-by-side ── */
+@media (min-width: 768px) and (orientation: landscape) {
+  #app  { max-width: 100vw !important; left: 0 !important; transform: none !important; }
+  body[data-device="ipad"] #app { max-width: 100vw; left: 0; transform: none; }
+  .screen { display: grid; grid-template-columns: 260px 1fr; gap: 0; padding-top: 0; }
+  #nav { width: 260px; height: 100vh; flex-direction: column; position: fixed; left: 0; top: 0; bottom: auto; border-right: 1px solid var(--border); border-top: none; padding-bottom: 0; padding-top: 20px; }
+  .ni  { flex-direction: row; gap: 10px; padding: 12px 18px; border-radius: 10px; margin: 2px 8px; justify-content: flex-start; }
+  .nil { font-size: .82rem; }
+}
+
+/* ── Mac/Desktop ── */
+@media (min-width: 1024px) {
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background:
+      radial-gradient(ellipse at 30% 30%, rgba(199,125,255,.12), transparent 60%),
+      radial-gradient(ellipse at 70% 70%, rgba(255,45,120,.1), transparent 60%);
+    pointer-events: none; z-index: -1;
+  }
+  #app {
+    max-width: 430px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    border-radius: 0 !important;
+    box-shadow: 0 0 0 1px rgba(255,255,255,.08), 0 0 100px rgba(199,125,255,.08) !important;
+  }
+  #bg { display: none !important; }
+  #nav { flex-direction: column; height: auto; left: calc(50% + 230px); top: 50%; transform: translateY(-50%); width: 52px; border-radius: 26px; border: 1px solid var(--border); background: rgba(0,0,0,.92); padding: 8px 0; gap: 0; }
+  .ni  { flex-direction: column; padding: 10px 0; margin: 2px 0; }
+  .nil { font-size: .5rem; }
+}
+
+/* ── iPhone SE / small phones ── */
+@media (max-width: 375px) {
+  .screen { padding-bottom: calc(var(--sab) + 76px); }
+}

@@ -9,6 +9,8 @@
 <meta name="theme-color" content="#000">
 <title>PrismOS</title>
 <link rel="manifest" href="manifest.json">
+<link rel="icon" href="public/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="public/favicon.svg">
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/layout.css">
 <link rel="stylesheet" href="css/components.css">
@@ -297,7 +299,7 @@
   <div class="ghdr" style="gap:8px">
     <button onclick="GL.exitGame()" style="min-width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0" title="Back (Esc)">←</button>
     <div id="gtitle" style="font-size:.9rem;font-weight:700;letter-spacing:-.01em;flex:1;text-align:center"></div>
-    <div style="display:flex;gap:5px;align-items:center">
+    <div id="gright" style="display:flex;gap:5px;align-items:center">
       <button id="ghint-btn" onclick="GL.showHint()" style="width:30px;height:30px;border-radius:50%;background:rgba(255,214,10,.12);border:1px solid rgba(255,214,10,.25);display:none;align-items:center;justify-content:center;font-size:.8rem" title="Hint">💡</button>
       <button onclick="GL.showGameSettings()" style="width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;font-size:.8rem" title="Settings">⚙️</button>
     </div>

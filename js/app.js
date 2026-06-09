@@ -73,7 +73,7 @@ pct:function(xp){var l=this.lvl(xp),i=l-1,c=this.tbl[i]||0,n=this.tbl[i+1]||c+10
 nxt:function(xp){var l=this.lvl(xp),i=l-1;return(this.tbl[i+1]||99999)-xp;}};
 
 // ═══ ACHIEVEMENTS ════════════════════════════════════════════════════
-var Ach={all:[{id:'g1',i:'🎮',n:'First Launch',d:'Play your first game',xp:50},{id:'w1',i:'🏆',n:'Winner',d:'Win your first game',xp:100},{id:'w10',i:'👑',n:'Champion',d:'Win 10 games',xp:250},{id:'bet',i:'🗡️',n:'Betrayer',d:'First betrayal',xp:75},{id:'s3',i:'🔥',n:'On Fire',d:'3-game win streak',xp:150},{id:'s5',i:'💥',n:'Unstoppable',d:'5-game win streak',xp:300},{id:'blf',i:'🃏',n:'Master Bluffer',d:'Fool 5 players',xp:200},{id:'r200',i:'⚡',n:'Lightning',d:'Sub 200ms reflex',xp:200},{id:'r150',i:'🌩️',n:'Thunder',d:'Sub 150ms reflex',xp:400},{id:'m10',i:'🧠',n:'Sharp Mind',d:'Memory level 10',xp:200},{id:'p25',i:'🎯',n:'Devoted',d:'Play 25 games',xp:300},{id:'p50',i:'🌟',n:'Veteran',d:'Play 50 games',xp:500},{id:'all',i:'🎰',n:'Explorer',d:'Try all 24 games',xp:750},{id:'owl',i:'🌙',n:'Night Owl',d:'Play after midnight',xp:100},{id:'daily5',i:'📅',n:'Daily Grinder',d:'Complete 5 daily challenges',xp:350},{id:'surv10',i:'🛡️',n:'Survivor',d:'Survive 10 rounds in any survival game',xp:180}],
+var Ach={all:[{id:'g1',i:'🎮',n:'First Launch',d:'Play your first game',xp:50},{id:'w1',i:'🏆',n:'Winner',d:'Win your first game',xp:100},{id:'w10',i:'👑',n:'Champion',d:'Win 10 games',xp:250},{id:'bet',i:'🗡️',n:'Betrayer',d:'First betrayal',xp:75},{id:'s3',i:'🔥',n:'On Fire',d:'3-game win streak',xp:150},{id:'s5',i:'💥',n:'Unstoppable',d:'5-game win streak',xp:300},{id:'blf',i:'🃏',n:'Master Bluffer',d:'Fool 5 players',xp:200},{id:'r200',i:'⚡',n:'Lightning',d:'Sub 200ms reflex',xp:200},{id:'r150',i:'🌩️',n:'Thunder',d:'Sub 150ms reflex',xp:400},{id:'m10',i:'🧠',n:'Sharp Mind',d:'Memory level 10',xp:200},{id:'p25',i:'🎯',n:'Devoted',d:'Play 25 games',xp:300},{id:'p50',i:'🌟',n:'Veteran',d:'Play 50 games',xp:500},{id:'all',i:'🎰',n:'Explorer',d:'Try every game',xp:750},{id:'owl',i:'🌙',n:'Night Owl',d:'Play after midnight',xp:100},{id:'daily5',i:'📅',n:'Daily Grinder',d:'Complete 5 daily challenges',xp:350},{id:'surv10',i:'🛡️',n:'Survivor',d:'Survive 10 rounds in any survival game',xp:180}],
 unlock:function(id){if(S.ach.includes(id))return;var a=this.all.find(function(x){return x.id===id;});if(!a)return;S.ach.push(id);toast('🏆 '+a.n+'! +'+a.xp+'XP');XP.add(a.xp);Save.save();},
 check:function(){var p=S.prof;if(p.games>=1)this.unlock('g1');if(p.wins>=1)this.unlock('w1');if(p.wins>=10)this.unlock('w10');if(p.betrayals>=1)this.unlock('bet');if(p.best>=3)this.unlock('s3');if(p.best>=5)this.unlock('s5');if(p.games>=25)this.unlock('p25');if(p.games>=50)this.unlock('p50');if(new Date().getHours()<5)this.unlock('owl');}};
 
@@ -144,7 +144,7 @@ xpMult:function(){return this.has('elite')?3:1;},
 hasChaos:function(){return this.has('chaos');},
 has:function(id){return this.active.some(function(m){return m.id===id;});},
 apply:function(){if(this.has('silent'))toast('🤫 SILENT MODE — No talking!');if(this.has('corrupt')){setInterval(function(){if(Math.random()<0.1){var el=document.getElementById('gbody');if(el){el.style.filter='hue-rotate(25deg)';setTimeout(function(){el.style.filter='';},80);}}},2000);}},
-showPicker:function(cb){var self=this;var sel=this.active.map(function(m){return m.id;});Modal.open('<div><div style="font-size:1.05rem;font-weight:800;margin-bottom:3px">⚙️ Mutators</div><div style="font-size:.76rem;opacity:.38;margin-bottom:14px">Choose up to 3 game modifiers</div>'+this.all.map(function(m){var on=sel.includes(m.id);return'<div class="pchip" style="cursor:pointer;background:'+(on?m.col+'22':'rgba(255,255,255,.04)')+';border-color:'+(on?m.col+'55':'var(--border)');}).join('')+'<div style="display:flex;flex-direction:column;gap:7px">'+this.all.map(function(m){var on=sel.includes(m.id);return'<div class="pchip" style="cursor:pointer;background:'+(on?m.col+'22':'rgba(255,255,255,.04)')+';border-color:'+(on?m.col+'55':'var(--border)')+'" onclick="window._mut(\''+m.id+'\')"><div style="font-size:1.3rem">'+m.icon+'</div><div style="flex:1"><div style="font-weight:700;font-size:.84rem">'+m.name+'</div><div style="font-size:.68rem;opacity:.38">'+m.desc+'</div></div>'+(on?'<div style="color:'+m.col+';font-weight:800;font-size:.8rem">ON</div>':'<div style="opacity:.25;font-size:.8rem">off</div>')+'</div>';}).join('')+'</div><div style="margin-top:12px"><div style="font-size:.68rem;opacity:.35;margin-bottom:7px;text-transform:uppercase;letter-spacing:.1em">Saved Presets</div>'+
+showPicker:function(cb){var self=this;var sel=this.active.map(function(m){return m.id;});Modal.open('<div><div style="font-size:1.05rem;font-weight:800;margin-bottom:3px">⚙️ Mutators</div><div style="font-size:.76rem;opacity:.38;margin-bottom:14px">Choose up to 3 game modifiers</div><div style="display:flex;flex-direction:column;gap:7px">'+this.all.map(function(m){var on=sel.includes(m.id);return'<div class="pchip" style="cursor:pointer;background:'+(on?m.col+'22':'rgba(255,255,255,.04)')+';border-color:'+(on?m.col+'55':'var(--border)')+'" onclick="window._mut(\''+m.id+'\')"><div style="font-size:1.3rem">'+m.icon+'</div><div style="flex:1"><div style="font-weight:700;font-size:.84rem">'+m.name+'</div><div style="font-size:.68rem;opacity:.38">'+m.desc+'</div></div>'+(on?'<div style="color:'+m.col+';font-weight:800;font-size:.8rem">ON</div>':'<div style="opacity:.25;font-size:.8rem">off</div>')+'</div>';}).join('')+'</div><div style="margin-top:12px"><div style="font-size:.68rem;opacity:.35;margin-bottom:7px;text-transform:uppercase;letter-spacing:.1em">Saved Presets</div>'+
 (this.presets.length?this.presets.map(function(pr,i){return'<div style="display:flex;align-items:center;gap:8px;padding:9px 11px;background:rgba(255,255,255,.04);border-radius:10px;margin-bottom:6px;cursor:pointer" onclick="window._loadpreset('+i+')"><div style="flex:1"><div style="font-size:.82rem;font-weight:700">'+pr.name+'</div><div style="font-size:.68rem;opacity:.35">'+pr.ids.join(', ')+'</div></div><div style="font-size:.72rem;opacity:.4">Load</div></div>';}).join(''):'<div style="opacity:.28;font-size:.78rem;text-align:center;padding:8px">No saved presets</div>')+
 '</div><div style="display:flex;gap:8px;margin-top:12px"><button class="btn bg" style="flex:1" onclick="window._savepreset()">💾 Save Preset</button><button class="btn bw" style="flex:1" onclick="window._mutdone()">Apply →</button></div></div>');
 window._mut=function(id){var idx=sel.indexOf(id);if(idx>-1)sel.splice(idx,1);else{if(sel.length>=3){toast('Max 3 mutators');return;}sel.push(id);}self.active=self.all.filter(function(m){return sel.includes(m.id);});Modal.close();setTimeout(function(){self.showPicker(cb);},260);Snd.click();};
@@ -182,7 +182,7 @@ analyze:function(p){var w=p.wins||0,b=p.betrayals||0,g=Math.max(1,p.games||1),bl
 getTitle:function(p){var l=XP.lvl(p.xp||0),w=p.wins||0,b=p.betrayals||0;if(l>=10&&w>50)return'👻 Ghost Operative';if(b>20)return'🗡️ Master Betrayer';if(w>30)return'👑 Elite Strategist';if(l>=7)return'🔥 Phantom Agent';if(l>=5)return'⚡ Veteran';if(p.bluff>10)return'🎭 Shadow Bluffer';if(w>10)return'🏆 Rising Champion';return'🔰 Field Operative';}};
 
 // ═══ GAME REGISTRY & BASE ════════════════════════════════════════════
-var Reg={list:[],add:function(g){this.list.push(g);},get:function(id){return this.list.find(function(g){return g.id===id;});},mp:function(){return this.list.filter(function(g){return g.mp;});},solo:function(){return this.list.filter(function(g){return!g.mp;});},byCat:function(c){if(c==='all')return this.list;if(c==='multiplayer')return this.mp();if(c==='solo')return this.solo();return this.list.filter(function(g){return g.cat===c||g.type===c;});}};
+var Reg={list:[],add:function(g){this.list.push(g);},get:function(id){return this.list.find(function(g){return g.id===id;});},mp:function(){return this.list.filter(function(g){return g.mp;});},solo:function(){return this.list.filter(function(g){return!g.mp;});},byCat:function(c){if(c==='all')return this.list;if(c==='multiplayer')return this.mp();if(c==='solo')return this.solo();return this.list.filter(function(g){return g.cat===c||g.type===c;});},board:function(){var ids=['chess','draughts','ttt','c4','ludo','snl'];return this.list.filter(function(g){return g.type==='board'||ids.indexOf(g.id)>-1;});}};
 function Game(cfg){Object.assign(this,cfg);this.players=[];this.gs={};this.t0=null;}
 Game.prototype.setup=function(pl){this.players=pl;this.t0=Date.now();};
 Game.prototype.shuf=function(a){return[].concat(a).sort(function(){return Math.random()-.5;});};
@@ -193,7 +193,7 @@ Game.prototype.done=function(winner){
   var tried=JSON.parse(localStorage.getItem('po5t')||'[]');
   tried.push(this.id);tried=[...new Set(tried)];
   localStorage.setItem('po5t',JSON.stringify(tried));
-  if(tried.length>=24)Ach.unlock('all');
+  if(tried.length>=Reg.list.length)Ach.unlock('all');
   S.prof.hist.unshift({g:this.title,i:this.icon,w:winner,d:dur,dt:new Date().toLocaleDateString(),c:this.col});
   if(S.prof.hist.length>30)S.prof.hist=S.prof.hist.slice(0,30);
   var lp=this.players.find(function(p){return p.local;});
@@ -3923,7 +3923,7 @@ function celebrate() {
           dot.style.transform = 'translateY(-' + (100+Math.random()*200) + 'px)';
           dot.style.opacity = '0';
         }, 20);
-        setTimeout// Nav.go patched in v7400);
+        setTimeout(function() { if (dot.parentNode) dot.parentNode.removeChild(dot); }, 1300);
       }, idx * 60);
     })(i);
   }
@@ -5536,17 +5536,7 @@ OrientMgr.init();
     },
     registerSW: function(){
       if (!('serviceWorker' in navigator)) return;
-      var swCode = [
-        "const CACHE='prismos-shell-v1';",
-        "self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(['./'])));self.skipWaiting();});",
-        "self.addEventListener('activate',e=>{e.waitUntil((async()=>{const ks=await caches.keys();await Promise.all(ks.filter(k=>k!==CACHE).map(k=>caches.delete(k)));await self.clients.claim();})());});",
-        "self.addEventListener('fetch',e=>{const r=e.request;if(r.method!=='GET')return;e.respondWith((async()=>{const c=await caches.match(r,{ignoreSearch:true});if(c)return c;try{const n=await fetch(r);const cc=await caches.open(CACHE);if(r.url.startsWith(self.location.origin))cc.put(r,n.clone());return n;}catch(err){return caches.match('./');}})());});"
-      ].join('');
-      try{
-        var blob = new Blob([swCode], {type:'text/javascript'});
-        var url = URL.createObjectURL(blob);
-        navigator.serviceWorker.register(url).catch(function(){});
-      }catch(e){}
+      navigator.serviceWorker.register('./sw.js').catch(function(){});
     }
   };
 
@@ -5568,7 +5558,6 @@ OrientMgr.init();
   });
 
   // Boot
-  PWA.addManifest();
   PWA.bindInstall();
   PWA.registerSW();
   Perf.init();

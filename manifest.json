@@ -1,7 +1,7 @@
 {
   "name": "PrismOS",
   "short_name": "PrismOS",
-  "description": "30 offline games. Pass & Play. Fully offline gaming platform.",
+  "description": "38 offline games. Pass & Play. Fully offline gaming platform.",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#000000",

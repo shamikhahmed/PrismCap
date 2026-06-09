@@ -1,6 +1,6 @@
 # PrismOS 🎮
 
-**30 offline games. Pass & Play. Fully offline gaming platform.**
+**38 offline games. Pass & Play. Fully offline gaming platform.**
 
 🔗 **Live:** https://shamikhahmed.github.io/PrismOS
 📱 **Optimized for iPhone** — install as PWA for best experience
@@ -13,7 +13,7 @@ PrismOS is a fully offline, installable gaming platform built as a single-page P
 
 ---
 
-## Games (30+)
+## Games (38)
 
 ### 🎭 Social Deception
 - **Shadow Protocol** — Hidden roles, suspicion, betrayal

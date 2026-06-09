@@ -48,7 +48,9 @@ PrismOS is a fully offline, installable gaming platform built as a single-page P
 
 ## Features
 
-- **Pass & Play** — Single device, multiple players, private role reveals
+- **Pass & Play** — Single device, 1–10+ players with quick presets (Solo, Duo, Party, Full)
+- **Bot / AI Players** — Board games (Chess, Draughts, Tic-Tac-Toe, Connect Four, Ludo, Snakes & Ladders, Blitz Duel) plus bot-fill for social games
+- **Eco / Low Power Mode** — On by default for snappier performance on all devices
 - **Drama Engine** — Tracks tension, trust, and paranoia across the session
 - **Director Engine** — Adaptive difficulty and pacing
 - **XP & Ranks** — 10 ranks from Rookie to Legend
@@ -63,18 +65,69 @@ PrismOS is a fully offline, installable gaming platform built as a single-page P
 
 ---
 
+## Performance
+
+PrismOS defaults to **Eco / Low Power** mode for a snappier feel everywhere:
+
+| Setting | Default | Why |
+|---------|---------|-----|
+| Background canvas | Off | Saves GPU on every screen |
+| Background music | Off | Saves CPU + battery |
+| Eco mode | On | Reduces animations and effects |
+| Perf HUD | Hidden | Only visible with `?debug=1` |
+
+Toggle **Eco / Low Power**, **Background Effects**, and **Music** in Profile → Settings.
+
+---
+
+## Multiplayer Setup
+
+When launching a multiplayer game:
+
+1. Use **+/−** or quick presets (**Solo**, **Duo**, **Party 4/6**, **Full 10**, **Max**)
+2. Add humans, individual bots, or **Fill Bots** to reach your target count
+3. Board games also offer **Solo**, **vs Bot**, and **Pass & Play** modes
+
+Supported player ranges are shown per game (e.g. Shadow Protocol: 3–10 players).
+
+---
+
 ## Tech
 
 | Layer | Tech |
 |-------|------|
 | Frontend | Vanilla HTML5, CSS3, JavaScript (ES5/6) |
 | Storage | localStorage |
-| PWA | Service Worker, Web App Manifest |
+| PWA | Service Worker (`sw.js` at repo root), Web App Manifest |
 | Audio | Web Audio API (synthesized, no files) |
 | Haptics | Vibration API |
 | Build | None — zero build step |
 
 ---
+
+## Install on iPhone
+
+1. Open the live URL in **Safari**
+2. **Share → Add to Home Screen**
+3. Launch from home screen for full-screen PWA mode
+
+## iPhone test checklist
+
+- [ ] Device selection completes (iPhone model → safe areas correct)
+- [ ] Welcome/onboarding flow finishes
+- [ ] At least 3 games launch and complete a round
+- [ ] Pass & Play player handoff works (private role reveal)
+- [ ] Music toggle and haptics respond
+- [ ] App works offline after first load
+- [ ] Dynamic Island / notch: no UI clipped
+
+## Documentation
+
+| Resource | Path |
+|----------|------|
+| User guide | [docs/GUIDE.md](docs/GUIDE.md) |
+| Presentation | [docs/PRESENTATION.md](docs/PRESENTATION.md) |
+| Landing page | [landing.html](landing.html) |
 
 ## Running Locally
 
@@ -85,6 +138,8 @@ npx serve .
 # or
 python3 -m http.server 8080
 ```
+
+**Debug perf HUD:** append `?debug=1` to the URL.
 
 ---
 

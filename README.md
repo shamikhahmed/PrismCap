@@ -7,9 +7,9 @@
 
 ---
 
-## What is PrismOS?
+## What is PrismCap?
 
-PrismOS is a fully offline, installable gaming platform built as a single-page PWA. No downloads, no accounts, no internet required after first load. Designed for Pass & Play on a single device — hand it around the table and play.
+PrismCap is a fully offline, installable gaming platform built as a single-page PWA. No downloads, no accounts, no internet required after first load. Designed for Pass & Play on a single device — hand it around the table and play.
 
 ---
 
@@ -67,7 +67,7 @@ PrismOS is a fully offline, installable gaming platform built as a single-page P
 
 ## Performance
 
-PrismOS defaults to **Eco / Low Power** mode for a snappier feel everywhere:
+PrismCap defaults to **Eco / Low Power** mode for a snappier feel everywhere:
 
 | Setting | Default | Why |
 |---------|---------|-----|

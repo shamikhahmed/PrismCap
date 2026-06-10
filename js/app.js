@@ -643,7 +643,7 @@ _selAv:function(a,el){this._av=a;document.querySelectorAll('#wavs div').forEach(
 setStyle:function(s,el){this._style=s;document.querySelectorAll('#wstyles .pchip').forEach(function(e){e.classList.remove('on');});if(el)el.classList.add('on');S.prof.style=s;Hap.l();},
 _goStep:function(n){document.querySelectorAll('.wstep').forEach(function(s){s.classList.remove('active');});var el=document.getElementById('ws'+n);if(el)el.classList.add('active');this._step=n;var dots=document.querySelectorAll('.wprogdot');dots.forEach(function(d,i){d.className='wprogdot'+(i<n?' on':'');});Snd.click();},
 next:function(){if(this._step===1){var nm=(document.getElementById('wname').value||'').trim();if(!nm){toast('Enter your name!');return;}S.prof.name=nm;}if(this._step===4)return;if(this._step===3){this._scan();return;}this._goStep(this._step+1);},
-_scan:function(){var self=this;this._goStep(4);var msgs=['Analyzing playstyle...','Building operator profile...','Calibrating betrayal index...','Computing trust matrix...','⚡ Profile ready!'];var bar=document.getElementById('wscan-bar');var msg=document.getElementById('wscan-msg');var icon=document.getElementById('wscan-icon');var result=document.getElementById('wscan-result');var prs=Persona.types[{deception:'deceptive',strategy:'strategic',reflex:'aggressive',chaos:'chaotic'}[self._style||'chaos']||'survivor'];var i=0;var iv=setInterval(function(){if(msg)msg.textContent=msgs[i]||'';if(bar)bar.style.width=((i+1)/msgs.length*100)+'%';i++;if(i>=msgs.length){clearInterval(iv);if(icon)icon.textContent=prs?prs.icon:'🔰';if(result){result.style.opacity='1';result.innerHTML='<div style="font-size:1.25rem;font-weight:800;margin-bottom:4px">'+(prs?prs.label:'Operative')+'</div><div style="opacity:.42;font-size:.78rem;margin-bottom:16px">Starting rank: Rookie</div><button class="btn bw bf" style="max-width:240px" onclick="W.finish()">Enter PrismOS →</button>';}Hap.ok();}},450);},
+_scan:function(){var self=this;this._goStep(4);var msgs=['Analyzing playstyle...','Building operator profile...','Calibrating betrayal index...','Computing trust matrix...','⚡ Profile ready!'];var bar=document.getElementById('wscan-bar');var msg=document.getElementById('wscan-msg');var icon=document.getElementById('wscan-icon');var result=document.getElementById('wscan-result');var prs=Persona.types[{deception:'deceptive',strategy:'strategic',reflex:'aggressive',chaos:'chaotic'}[self._style||'chaos']||'survivor'];var i=0;var iv=setInterval(function(){if(msg)msg.textContent=msgs[i]||'';if(bar)bar.style.width=((i+1)/msgs.length*100)+'%';i++;if(i>=msgs.length){clearInterval(iv);if(icon)icon.textContent=prs?prs.icon:'🔰';if(result){result.style.opacity='1';result.innerHTML='<div style="font-size:1.25rem;font-weight:800;margin-bottom:4px">'+(prs?prs.label:'Operative')+'</div><div style="opacity:.42;font-size:.78rem;margin-bottom:16px">Starting rank: Rookie</div><button class="btn bw bf" style="max-width:240px" onclick="W.finish()">Enter PrismCap →</button>';}Hap.ok();}},450);},
 finish:function(){S.prof.av=this._av;localStorage.setItem('po5s','1');Save.save();var w=document.getElementById('welcome');if(w){w.style.opacity='0';w.style.transition='opacity .45s ease';setTimeout(function(){w.classList.add('out');},450);}UI.home();UI.prof();Snd.ok();Hap.ok();toast('Welcome, '+S.prof.name+'!');}};
 
 // ═══ LOGO ANIMATION ══════════════════════════════════════════════════
@@ -690,8 +690,8 @@ window.addEventListener('beforeinstallprompt',function(e){
   // Show install button in profile
   var btn=document.createElement('button');
   btn.className='btn bg bf';btn.style.marginBottom='10px';
-  btn.textContent='📱 Install PrismOS';
-  btn.onclick=function(){if(_deferredInstall){_deferredInstall.prompt();_deferredInstall.userChoice.then(function(r){if(r.outcome==='accepted')toast('✅ PrismOS installed!');_deferredInstall=null;});}};
+  btn.textContent='📱 Install PrismCap';
+  btn.onclick=function(){if(_deferredInstall){_deferredInstall.prompt();_deferredInstall.userChoice.then(function(r){if(r.outcome==='accepted')toast('✅ PrismCap installed!');_deferredInstall=null;});}};
   var prof=document.getElementById('profile-screen');
   if(prof){var last=prof.querySelector('[onclick="GL.resetData()"]');if(last&&last.parentNode)last.parentNode.insertBefore(btn,last);}
 });
@@ -732,7 +732,7 @@ function buildRecommended(){
 
 // ── SCORE SHARING (copy to clipboard) ────────────────────────────────
 function shareScore(game,score,extra){
-  var txt='PrismOS | '+game+': '+score+(extra?' | '+extra:'')+' | Rank: '+XP.rank(XP.lvl(S.prof.xp))+' (Lv'+XP.lvl(S.prof.xp)+')';
+  var txt='PrismCap | '+game+': '+score+(extra?' | '+extra:'')+' | Rank: '+XP.rank(XP.lvl(S.prof.xp))+' (Lv'+XP.lvl(S.prof.xp)+')';
   if(navigator.clipboard){navigator.clipboard.writeText(txt).then(function(){toast('📋 Score copied!');});}
   else{toast(txt,4000);}
 }
@@ -2526,7 +2526,7 @@ window.addEventListener('popstate', function(e) {
 });
 // Push a state so back button works
 if (window.history && window.history.pushState) {
-  window.history.pushState({page:'prism'}, 'PrismOS', '');
+  window.history.pushState({page:'prism'}, 'PrismCap', '');
 }
 
 // ── CSP META for cleaner browser behavior ─────────────────────────
@@ -2535,8 +2535,8 @@ if (window.history && window.history.pushState) {
 // ── BETTER ERROR BOUNDARY ─────────────────────────────────────────
 window.addEventListener('error', function(e) {
   // Only show if it's our code, not browser extensions
-  if (e.filename && e.filename.includes('PrismOS')) {
-    console.error('PrismOS Error:', e.message, 'at line', e.lineno);
+  if (e.filename && e.filename.includes('PrismCap')) {
+    console.error('PrismCap Error:', e.message, 'at line', e.lineno);
     // Graceful recovery - go home
     if (S && S.cur === 'game') {
       toast('⚠️ Something went wrong — returning home');
@@ -2555,12 +2555,12 @@ window.addEventListener('beforeinstallprompt', function(e) {
     var btn = document.createElement('div');
     btn.id = '_install-btn';
     btn.style.cssText = 'margin:0 15px 12px;padding:12px 15px;background:rgba(100,210,255,.08);border:1px solid rgba(100,210,255,.2);border-radius:14px;cursor:pointer;display:flex;align-items:center;gap:10px';
-    btn.innerHTML = '<span style="font-size:1.5rem">📱</span><div style="flex:1"><div style="font-weight:700;font-size:.86rem">Install PrismOS</div><div style="font-size:.7rem;opacity:.4;margin-top:1px">Add to home screen for best experience</div></div><div style="font-size:.72rem;color:var(--cyan);font-weight:700">Install</div>';
+    btn.innerHTML = '<span style="font-size:1.5rem">📱</span><div style="flex:1"><div style="font-weight:700;font-size:.86rem">Install PrismCap</div><div style="font-size:.7rem;opacity:.4;margin-top:1px">Add to home screen for best experience</div></div><div style="font-size:.72rem;color:var(--cyan);font-weight:700">Install</div>';
     btn.onclick = function() {
       if (window._installEvt) {
         window._installEvt.prompt();
         window._installEvt.userChoice.then(function(r) {
-          if (r.outcome === 'accepted') { toast('✅ PrismOS installed!'); btn.remove(); }
+          if (r.outcome === 'accepted') { toast('✅ PrismCap installed!'); btn.remove(); }
         });
       }
     };
@@ -3046,7 +3046,7 @@ W._scan = function() {
         result.innerHTML='<div style="font-size:1.2rem;font-weight:800;margin-bottom:4px">'+(prs?prs.label:'Operative')+'</div>' +
           (suggestedTheme?'<div style="font-size:.78rem;color:#FFB6C1;margin-bottom:10px">✨ Pink theme pre-selected for you!</div>':'') +
           '<div style="opacity:.38;font-size:.75rem;margin-bottom:16px">Starting rank: Rookie</div>' +
-          '<button class="btn bw bf" style="max-width:240px" onclick="W.finish()">Enter PrismOS! 🎮 →</button>';
+          '<button class="btn bw bf" style="max-width:240px" onclick="W.finish()">Enter PrismCap! 🎮 →</button>';
       }
       // Pre-apply suggested theme
       if(suggestedTheme){Theme.apply(suggestedTheme);}
@@ -3362,7 +3362,7 @@ window.addEventListener('load', function() {
 
   // Back button via history API
   if(window.history&&window.history.pushState){
-    window.history.pushState({page:'prism'},'PrismOS','');
+    window.history.pushState({page:'prism'},'PrismCap','');
     window.addEventListener('popstate',function(){
       if(S.cur==='game')GL.exitGame();
       else if(document.getElementById('ov')&&document.getElementById('ov').className==='open')Modal.close();
@@ -3760,7 +3760,7 @@ window.addEventListener('load', function() {
 
   // History API for browser back button
   if(window.history&&window.history.pushState){
-    window.history.pushState({p:'prism'},'PrismOS','');
+    window.history.pushState({p:'prism'},'PrismCap','');
     window.addEventListener('popstate',function(){
       if(S.cur==='game')GL.exitGame();
       else if(document.getElementById('ov')&&document.getElementById('ov').className==='open')Modal.close();
@@ -5619,8 +5619,8 @@ OrientMgr.init();
     addManifest: function(){
       try{
         var m = {
-          name: 'PrismOS',
-          short_name: 'PrismOS',
+          name: 'PrismCap',
+          short_name: 'PrismCap',
           start_url: './',
           display: 'standalone',
           background_color: '#000000',
@@ -5652,7 +5652,7 @@ OrientMgr.init();
       }, { passive:false });
       window.addEventListener('appinstalled', function(){
         self.showInstallUI(false);
-        toast('PrismOS installed');
+        toast('PrismCap installed');
       });
     },
     showInstallUI: function(show){

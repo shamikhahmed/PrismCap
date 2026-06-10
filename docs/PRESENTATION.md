@@ -1,4 +1,4 @@
-# PrismOS — Product Presentation
+# PrismCap — Product Presentation
 
 **Interactive deck:** [presentation.html](../presentation.html) (24 slides) · **Scroll pitch:** [pitch.html](../pitch.html)
 
@@ -6,7 +6,7 @@
 
 ## Slide 1 — Title
 
-# PrismOS ✨
+# PrismCap ✨
 ### 38 Offline Games · Pass & Play
 
 *Solo to 10+ players · AI bots · Eco performance · Zero servers*

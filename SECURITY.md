@@ -1,4 +1,4 @@
-# PrismOS — Security Notes
+# PrismCap — Security Notes
 
 ## Local-only data
 
@@ -8,7 +8,7 @@
 
 ## Network surface
 
-- PrismOS is **fully offline** after first load. No API calls during gameplay.
+- PrismCap is **fully offline** after first load. No API calls during gameplay.
 - QR transfer features exchange data locally between devices you control — verify recipients before sharing.
 
 ## Child safety
@@ -18,9 +18,9 @@
 
 ## PWA / supply chain
 
-- Static assets served from GitHub Pages; verify `sw.js` cache version (`prismos-shell-v4`) when updating.
+- Static assets served from GitHub Pages; verify `sw.js` cache version (`PrismCap-shell-v4`) when updating.
 - Do not commit `.env` or API keys to the repository.
 
 ## Reporting
 
-Open a private security issue on the [PrismOS GitHub repo](https://github.com/shamikhahmed/PrismCap) for vulnerabilities.
+Open a private security issue on the [PrismCap GitHub repo](https://github.com/shamikhahmed/PrismCap) for vulnerabilities.

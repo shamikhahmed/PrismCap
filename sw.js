@@ -1,4 +1,4 @@
-const CACHE = 'prismos-shell-v4';
+const CACHE = 'prismcap-v23';
 const ASSETS = [
   './',
   './index.html',

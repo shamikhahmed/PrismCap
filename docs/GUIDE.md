@@ -1,6 +1,6 @@
-# PrismOS — User Guide
+# PrismCap — User Guide
 
-PrismOS is a **38-game offline gaming platform** built for Pass & Play on a single device. No accounts, no downloads — install once and play anywhere.
+PrismCap is a **38-game offline gaming platform** built for Pass & Play on a single device. No accounts, no downloads — install once and play anywhere.
 
 **Live app:** https://shamikhahmed.github.io/PrismCap
 
@@ -8,7 +8,7 @@ PrismOS is a **38-game offline gaming platform** built for Pass & Play on a sing
 
 ## Getting started
 
-1. Open PrismOS in Safari (iPhone) or any modern browser.
+1. Open PrismCap in Safari (iPhone) or any modern browser.
 2. **Select your device** — iPhone model, iPad, or Mac/Browser. Safe areas adjust automatically.
 3. Complete the welcome flow: name, age, gender theme preference.
 4. Browse the game library and tap any game to play.
@@ -90,7 +90,7 @@ Access from the profile tab:
 
 ## Offline play
 
-After first load, PrismOS works **fully offline**:
+After first load, PrismCap works **fully offline**:
 
 - Service worker caches all game assets
 - No internet required for any game session
@@ -118,4 +118,4 @@ After first load, PrismOS works **fully offline**:
 
 ---
 
-*PrismOS © 2026 Shamikh Ahmed*
+*PrismCap © 2026 Shamikh Ahmed*

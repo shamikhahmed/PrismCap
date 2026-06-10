@@ -1,7 +1,7 @@
 // @ts-check
 import { test, expect } from '@playwright/test';
 
-test.describe('PrismOS smoke', () => {
+test.describe('PrismCap smoke', () => {
   test('loads shell without fatal errors', async ({ page }) => {
     const errors = [];
     page.on('pageerror', e => errors.push(e.message));

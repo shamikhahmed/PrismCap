@@ -1,8 +1,8 @@
-# PrismOS — iOS Info.plist notes
+# PrismCap — iOS Info.plist notes
 
 After `npm run cap:init`, edit `ios/App/App/Info.plist`:
 
-- `CFBundleDisplayName`: PrismOS
+- `CFBundleDisplayName`: PrismCap
 - `NSPhotoLibraryUsageDescription`: Not required for this app.
 - `ITSAppUsesNonExemptEncryption`: false (standard HTTPS only)
 

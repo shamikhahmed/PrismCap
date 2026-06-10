@@ -1,13 +1,18 @@
-const CACHE = 'prismos-shell-v3';
+const CACHE = 'prismos-shell-v4';
 const ASSETS = [
   './',
   './index.html',
+  './landing.html',
+  './presentation.html',
+  './pitch.html',
   './manifest.json',
   './js/app.js',
   './css/base.css',
   './css/layout.css',
   './css/components.css',
   './public/favicon.svg',
+  './icon-192.png',
+  './icon-512.png',
 ];
 
 self.addEventListener('install', (event) => {

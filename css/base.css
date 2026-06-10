@@ -111,3 +111,9 @@ body.t-horror #app::after {
   94% { filter: hue-rotate(-10deg); transform: translate(-2px,0); }
   95% { filter: none; transform: none; }
 }
+
+@media (prefers-reduced-motion: no-preference) {
+  #toast, .toast { animation: os-rise .3s cubic-bezier(.22,1,.36,1); }
+  #boot-scan .scan-line { transition: opacity .25s ease; }
+  @keyframes os-rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+}

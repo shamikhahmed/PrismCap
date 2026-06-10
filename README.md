@@ -37,7 +37,7 @@ PrismOS is a fully offline, installable gaming platform built as a single-page P
 
 ### 🎲 Party & Chaos
 - **Chaos Cards** — Random chaos rules every round
-- **Hot Potato** — Pass before it explodes
+- **Hot Device** — Pass before it explodes
 - **Truth Bomb** — Answer or face consequences
 
 ### 🏆 Competitive

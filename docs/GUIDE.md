@@ -41,7 +41,7 @@ Reflex Ladder, Quick Tap, Rhythm Pulse
 AI Survival, Infinite Maze, Memory Matrix, Decode Signal, Pressure
 
 ### Party & Chaos
-Chaos Cards, Hot Potato, Truth Bomb
+Chaos Cards, Hot Device, Truth Bomb
 
 ### Competitive
 Snake (multiplayer twist), Tournament Mode (4-player bracket)

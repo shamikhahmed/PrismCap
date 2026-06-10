@@ -2,7 +2,7 @@
 
 PrismOS is a **38-game offline gaming platform** built for Pass & Play on a single device. No accounts, no downloads — install once and play anywhere.
 
-**Live app:** https://shamikhahmed.github.io/PrismOS
+**Live app:** https://shamikhahmed.github.io/PrismCap
 
 ---
 

@@ -11,7 +11,7 @@
 
 *Solo to 10+ players · AI bots · Eco performance · Zero servers*
 
-**Live:** shamikhahmed.github.io/PrismOS
+**Live:** shamikhahmed.github.io/PrismCap
 
 ---
 
@@ -270,7 +270,7 @@ No app store · No account · No subscription · No ads
 | Mutators | 7 |
 | Dependencies | 0 |
 
-📱 Safari → shamikhahmed.github.io/PrismOS → Add to Home Screen
+📱 Safari → shamikhahmed.github.io/PrismCap → Add to Home Screen
 
 🎮 Pick a game. Hand the phone. Play.
 

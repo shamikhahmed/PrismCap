@@ -6,4 +6,4 @@ After `npm run cap:init`, edit `ios/App/App/Info.plist`:
 - `NSPhotoLibraryUsageDescription`: Not required for this app.
 - `ITSAppUsesNonExemptEncryption`: false (standard HTTPS only)
 
-Privacy policy URL: https://shamikhahmed.github.io/PrismOS/privacy.html
+Privacy policy URL: https://shamikhahmed.github.io/PrismCap/privacy.html

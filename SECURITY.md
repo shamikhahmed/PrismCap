@@ -23,4 +23,4 @@
 
 ## Reporting
 
-Open a private security issue on the [PrismOS GitHub repo](https://github.com/shamikhahmed/PrismOS) for vulnerabilities.
+Open a private security issue on the [PrismOS GitHub repo](https://github.com/shamikhahmed/PrismCap) for vulnerabilities.

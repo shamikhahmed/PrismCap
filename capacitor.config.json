@@ -1,0 +1,12 @@
+{
+  "appId": "com.shamikhahmed.prismos",
+  "appName": "PrismOS",
+  "webDir": ".",
+  "server": {
+    "androidScheme": "https"
+  },
+  "ios": {
+    "contentInset": "automatic",
+    "scrollEnabled": true
+  }
+}

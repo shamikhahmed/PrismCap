@@ -153,4 +153,4 @@ Karachi, Pakistan
 
 ---
 
-*Built with Claude Code.*
+*Built by Shamikh Ahmed — offline party games OS.*

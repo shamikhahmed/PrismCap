@@ -1,6 +1,6 @@
 {
   "appId": "com.shamikhahmed.prismos",
-  "appName": "PrismOS",
+  "appName": "PrismCap",
   "webDir": ".",
   "server": {
     "androidScheme": "https"

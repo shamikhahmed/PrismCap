@@ -1,6 +1,6 @@
-# PrismOS 🎮
+# PrismCap 🎮
 
-**38 offline games. Pass & Play. Fully offline gaming platform.**
+**38 offline games. Pass & Play. Fully offline gaming platform — by Capricorn Systems.**
 
 🔗 **Live:** https://shamikhahmed.github.io/PrismOS
 📱 **Optimized for iPhone** — install as PWA for best experience

@@ -7,7 +7,8 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#000">
-<title>PrismOS</title>
+<meta name="author" content="Capricorn Systems">
+<title>PrismCap</title>
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="public/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="icon-512.png">
@@ -29,7 +30,7 @@
 <!-- DEVICE SELECTION (2-step: family then model) -->
 <div id="device-sel" style="position:fixed;inset:0;z-index:1000;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;overflow-y:auto;-webkit-overflow-scrolling:touch">
   <canvas id="dcan" width="72" height="72" style="margin-bottom:14px;flex-shrink:0"></canvas>
-  <div style="font-size:1.75rem;font-weight:800;letter-spacing:-.04em;margin-bottom:3px">✨ PrismOS</div>
+  <div style="font-size:1.75rem;font-weight:800;letter-spacing:-.04em;margin-bottom:3px">✨ PrismCap</div>
   <div style="font-size:.7rem;opacity:.28;margin-bottom:22px;letter-spacing:.14em;text-transform:uppercase">Select your device</div>
   <div id="ds-step1" style="width:100%;max-width:300px">
     <div style="font-size:.58rem;opacity:.28;text-transform:uppercase;letter-spacing:.12em;margin-bottom:9px;text-align:center">What device are you using?</div>
@@ -52,7 +53,7 @@
 <!-- LOADER -->
 <div id="loader">
   <div class="lring"><canvas id="lcan" width="88" height="88"></canvas><div class="lring-anim"></div></div>
-  <div style="text-align:center"><div style="font-size:1.72rem;font-weight:800;letter-spacing:-.04em">Prism<span style="opacity:.2">OS</span></div><div style="font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;opacity:.25;margin-top:1px">Gaming Platform</div></div>
+  <div style="text-align:center"><div style="font-size:1.72rem;font-weight:800;letter-spacing:-.04em">Prism<span style="opacity:.2">Cap</span></div><div style="font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;opacity:.25;margin-top:1px">Gaming Platform</div></div>
   <div class="ldots"><span class="ldot"></span><span class="ldot"></span><span class="ldot"></span></div>
   <div class="lscan" id="lscan"></div>
 </div>
@@ -66,7 +67,7 @@
     <!-- Step 1: Name -->
     <div class="wstep active" id="ws1">
       <canvas id="wcan" width="100" height="100" style="margin-bottom:20px"></canvas>
-      <div style="font-size:2rem;font-weight:800;letter-spacing:-.04em;margin-bottom:5px">✨ PrismOS</div>
+      <div style="font-size:2rem;font-weight:800;letter-spacing:-.04em;margin-bottom:5px">✨ PrismCap</div>
       <div style="font-size:.84rem;opacity:.38;line-height:1.55;margin-bottom:24px">38 games. Fully offline. Always fun! 🎮</div>
       <input id="wname" placeholder="What's your name?" style="width:100%;padding:14px 18px;border-radius:14px;border:1px solid rgba(255,255,255,.13);background:rgba(255,255,255,.07);font-size:.95rem;font-weight:600;color:#fff;text-align:center;margin-bottom:13px" autocorrect="off">
       <button class="btn bw bf blg" onclick="W.next()">Continue →</button>

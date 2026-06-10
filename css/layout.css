@@ -64,15 +64,15 @@
 #game-screen { padding-bottom: 0; display: flex; flex-direction: column; }
 
 /* ── NAV ── */
-#nav { position: fixed; bottom: 0; left: 0; right: 0; z-index: 100; padding-bottom: var(--sab); background: rgba(10,10,15,.92) !important; backdrop-filter: blur(40px) saturate(2); -webkit-backdrop-filter: blur(40px) saturate(2); border-top: 1px solid rgba(255,255,255,.08) !important; display: flex; align-items: stretch; padding-top: 5px; transition: transform .3s ease; }
+#nav { position: fixed; bottom: 0; left: 0; right: 0; z-index: 100; padding-bottom: var(--sab); background: linear-gradient(180deg, rgba(26,10,43,.72), rgba(16,8,34,.94)) !important; backdrop-filter: blur(44px) saturate(2.1); -webkit-backdrop-filter: blur(44px) saturate(2.1); border-top: 1px solid rgba(214,167,255,.26) !important; box-shadow: 0 -14px 32px rgba(16,7,38,.52), inset 0 1px 0 rgba(255,255,255,.09); display: flex; align-items: stretch; padding-top: 6px; transition: transform .3s ease; }
 #nav.hide { transform: translateY(110%); }
-.ni  { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 6px 0 3px; cursor: pointer; opacity: .3; user-select: none; -webkit-user-select: none; flex: 1; transition: opacity .16s; position: relative; min-height: 44px; -webkit-user-select: none; }
+.ni  { display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 6px 0 4px; cursor: pointer; opacity: .46; user-select: none; -webkit-user-select: none; flex: 1; transition: opacity .16s, transform .2s ease; position: relative; min-height: 44px; -webkit-user-select: none; }
 .ni.on { opacity: 1; }
-.nic { font-size: 1.25rem; transition: transform .32s cubic-bezier(.34,1.56,.64,1); display: block; }
-.ni.on .nic { filter: drop-shadow(0 0 8px var(--acc)); transform: scale(1.3) translateY(-2px); }
+.nic { font-size: 1.25rem; transition: transform .32s cubic-bezier(.34,1.56,.64,1), filter .24s ease; display: block; }
+.ni.on .nic { filter: drop-shadow(0 0 10px var(--acc2)) drop-shadow(0 0 16px var(--acc)); transform: scale(1.28) translateY(-3px); }
 .ni.on .nil { color: var(--acc); }
-.ni.on::after { content: ''; position: absolute; bottom: 2px; left: 50%; transform: translateX(-50%); width: 4px; height: 4px; border-radius: 50%; background: var(--acc); box-shadow: 0 0 6px var(--acc); }
-.nil { font-size: .52rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.ni.on::after { content: ''; position: absolute; bottom: 2px; left: 50%; transform: translateX(-50%); width: 18px; height: 3px; border-radius: 999px; background: linear-gradient(90deg, var(--acc), var(--acc2)); box-shadow: 0 0 14px var(--glow); }
+.nil { font-size: .52rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; font-family: 'Audiowide', 'Space Grotesk', sans-serif; }
 
 /* ── PASS ── */
 #pass { position: fixed; inset: 0; z-index: 500; background: #000; display: none; flex-direction: column; align-items: center; justify-content: center; padding: 32px; }

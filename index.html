@@ -13,9 +13,13 @@
 <link rel="apple-touch-icon" href="icon-512.png">
 <link rel="apple-touch-icon" sizes="192x192" href="icon-192.png">
 <link rel="apple-touch-icon" sizes="512x512" href="icon-512.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/layout.css">
 <link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/identity.css">
 </head>
 <body>
 <div id="app">
@@ -209,11 +213,11 @@
   <!-- Stat Grid -->
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px;padding:0 15px;margin-bottom:12px">
     <div class="stile"><div class="sv" id="dtg">0</div><div class="sl">Games</div></div>
-    <div class="stile"><div class="sv" id="dtw" style="color:var(--green)">0</div><div class="sl">Wins</div></div>
-    <div class="stile"><div class="sv" id="dts" style="color:var(--amber)">0</div><div class="sl">Best Streak</div></div>
+    <div class="stile"><div class="sv sv--green" id="dtw">0</div><div class="sl">Wins</div></div>
+    <div class="stile"><div class="sv sv--amber" id="dts">0</div><div class="sl">Best Streak</div></div>
     <div class="stile"><div class="sv" id="dtt">0m</div><div class="sl">Play Time</div></div>
-    <div class="stile"><div class="sv" id="dtr" style="color:var(--cyan)">—</div><div class="sl">Best Reflex</div></div>
-    <div class="stile"><div class="sv" id="dtb" style="color:var(--red)">0</div><div class="sl">Betrayals</div></div>
+    <div class="stile"><div class="sv sv--cyan" id="dtr">—</div><div class="sl">Best Reflex</div></div>
+    <div class="stile"><div class="sv sv--red" id="dtb">0</div><div class="sl">Betrayals</div></div>
   </div>
   <!-- Charts -->
   <div style="padding:0 15px;margin-bottom:14px">

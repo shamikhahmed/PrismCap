@@ -6,9 +6,9 @@ input,select,textarea{border:none;background:none;color:inherit;font:inherit;out
 
 /* ── ROOT VARIABLES ── */
 :root {
-  /* Safe area insets */
-  --sat: env(safe-area-inset-top, 59px);
-  --sab: env(safe-area-inset-bottom, 34px);
+  /* Safe area insets — device picker overrides per model */
+  --sat: env(safe-area-inset-top, 0px);
+  --sab: env(safe-area-inset-bottom, 0px);
   --sal: env(safe-area-inset-left, 0px);
   --sar: env(safe-area-inset-right, 0px);
 

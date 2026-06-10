@@ -640,7 +640,7 @@ resetData:function(){Modal.open('<div style="text-align:center"><div style="font
 var W={_step:1,_av:'😎',_style:'',
 init:function(){var avs=['😎','🦊','🐺','🦁','🐯','🦅','🐲','👾','🤖','💀'];var c=document.getElementById('wavs');if(!c)return;c.innerHTML=avs.map(function(a){return'<div onclick="W._selAv(\''+a+'\',this)" style="width:40px;height:40px;border-radius:10px;background:rgba(255,255,255,.07);border:2px solid '+(a===this._av?'#fff':'transparent')+';display:flex;align-items:center;justify-content:center;font-size:1.25rem;cursor:pointer">'+a+'</div>';},this).join('');},
 _selAv:function(a,el){this._av=a;document.querySelectorAll('#wavs div').forEach(function(e){e.style.borderColor='transparent';});el.style.borderColor='#fff';Hap.l();},
-setStyle:function(s,el){this._style=s;document.querySelectorAll('#wstyles .pchip').forEach(function(e){e.style.borderColor='var(--border)';e.style.background='rgba(255,255,255,.04)';});el.style.borderColor='rgba(255,255,255,.35)';el.style.background='rgba(255,255,255,.09)';S.prof.style=s;Hap.l();},
+setStyle:function(s,el){this._style=s;document.querySelectorAll('#wstyles .pchip').forEach(function(e){e.classList.remove('on');});if(el)el.classList.add('on');S.prof.style=s;Hap.l();},
 _goStep:function(n){document.querySelectorAll('.wstep').forEach(function(s){s.classList.remove('active');});var el=document.getElementById('ws'+n);if(el)el.classList.add('active');this._step=n;var dots=document.querySelectorAll('.wprogdot');dots.forEach(function(d,i){d.className='wprogdot'+(i<n?' on':'');});Snd.click();},
 next:function(){if(this._step===1){var nm=(document.getElementById('wname').value||'').trim();if(!nm){toast('Enter your name!');return;}S.prof.name=nm;}if(this._step===4)return;if(this._step===3){this._scan();return;}this._goStep(this._step+1);},
 _scan:function(){var self=this;this._goStep(4);var msgs=['Analyzing playstyle...','Building operator profile...','Calibrating betrayal index...','Computing trust matrix...','⚡ Profile ready!'];var bar=document.getElementById('wscan-bar');var msg=document.getElementById('wscan-msg');var icon=document.getElementById('wscan-icon');var result=document.getElementById('wscan-result');var prs=Persona.types[{deception:'deceptive',strategy:'strategic',reflex:'aggressive',chaos:'chaotic'}[self._style||'chaos']||'survivor'];var i=0;var iv=setInterval(function(){if(msg)msg.textContent=msgs[i]||'';if(bar)bar.style.width=((i+1)/msgs.length*100)+'%';i++;if(i>=msgs.length){clearInterval(iv);if(icon)icon.textContent=prs?prs.icon:'🔰';if(result){result.style.opacity='1';result.innerHTML='<div style="font-size:1.25rem;font-weight:800;margin-bottom:4px">'+(prs?prs.label:'Operative')+'</div><div style="opacity:.42;font-size:.78rem;margin-bottom:16px">Starting rank: Rookie</div><button class="btn bw bf" style="max-width:240px" onclick="W.finish()">Enter PrismOS →</button>';}Hap.ok();}},450);},
@@ -1681,7 +1681,7 @@ document.addEventListener('DOMContentLoaded', function() {
       animLogo('wcan'); W.init();
     } else {
       var w = document.getElementById('welcome');
-      if (w) w.classList.add('out');
+      if (w) { w.classList.add('out'); w.classList.remove('ready'); }
     }
 
     if (Suspend.has()) {
@@ -2911,24 +2911,24 @@ ChessGame.render = function() {
 
 // ── EXPANDED THEME SYSTEM with Girly + Colorful themes ───────────
 Theme.list = [
-  {id:'',        nm:'Minimal ⬛',    i:'⬛', bg:['#000','#111'], acc:'#fff'},
-  {id:'t-pink',  nm:'Cotton Candy 🩷',i:'🩷', bg:['#1a0012','#2d0020'], acc:'#FF69B4', girl:true},
-  {id:'t-purple',nm:'Lavender 💜',   i:'💜', bg:['#0d0018','#1a002e'], acc:'#BF5AF2', girl:true},
-  {id:'t-rose',  nm:'Rose Gold 🌹',  i:'🌹', bg:['#1a0808','#2d1515'], acc:'#FFB6C1', girl:true},
-  {id:'t-uni',   nm:'Unicorn 🦄',    i:'🦄', bg:['#0d0020','#001a0d'], acc:'#FF85D3', girl:true},
-  {id:'t-cyber', nm:'Cyberpunk 🟢',  i:'🟢', bg:['#001a0e','#003320'], acc:'#00FF88', req:'theme_cyber'},
-  {id:'t-neon',  nm:'Neon 🟣',       i:'🟣', bg:['#0d001a','#1a0033'], acc:'#FF00FF'},
-  {id:'t-term',  nm:'Terminal 💻',   i:'💻', bg:['#000500','#001400'], acc:'#00FF00'},
-  {id:'t-horror',nm:'Horror 🔴',     i:'🔴', bg:['#050000','#200000'], acc:'#FF0000', req:'theme_horror'},
-  {id:'t-space', nm:'Deep Space 🔵', i:'🔵', bg:['#00000d','#00001a'], acc:'#4488FF'},
-  {id:'t-gold',  nm:'Gold 🟡',       i:'🟡', bg:['#0a0800','#1a1400'], acc:'#FFD700', req:'theme_gold'},
-  {id:'t-synth', nm:'Synthwave 🩷',  i:'🩷', bg:['#0d0010','#1a0020'], acc:'#FF6EC7', req:'theme_synth'},
-  {id:'t-mid',   nm:'Midnight 🔮',   i:'🔮', bg:['#05050f','#0a0a1e'], acc:'#8888FF'},
-  {id:'t-red',   nm:'Red Alert 🚨',  i:'🚨', bg:['#0f0000','#1f0000'], acc:'#FF2D55'},
-  {id:'t-galaxy',nm:'Galaxy 🌌',     i:'🌌', bg:['#000010','#00002a'], acc:'#7B68EE'},
-  {id:'t-sunset',nm:'Sunset 🌅',     i:'🌅', bg:['#1a0800','#2a1000'], acc:'#FF8C00', girl:true},
-  {id:'t-mint',  nm:'Mint 🌿',       i:'🌿', bg:['#001a10','#002a18'], acc:'#98FF98', girl:true},
-  {id:'t-glitch',nm:'⚡ GLITCH',     i:'👾', bg:['#000','#001a1a'], acc:'#00FFFF', req:'theme_glitch', legendary:true}
+  {id:'',        nm:'Minimal',       i:'⬛', bg:['#000','#111'], acc:'#fff'},
+  {id:'t-pink',  nm:'Cotton Candy',  i:'🩷', bg:['#1a0012','#2d0020'], acc:'#FF69B4', girl:true},
+  {id:'t-purple',nm:'Lavender',      i:'💜', bg:['#0d0018','#1a002e'], acc:'#BF5AF2', girl:true},
+  {id:'t-rose',  nm:'Rose Gold',     i:'🌹', bg:['#1a0808','#2d1515'], acc:'#FFB6C1', girl:true},
+  {id:'t-uni',   nm:'Unicorn',       i:'🦄', bg:['#0d0020','#001a0d'], acc:'#FF85D3', girl:true},
+  {id:'t-cyber', nm:'Cyberpunk',     i:'🟢', bg:['#001a0e','#003320'], acc:'#00FF88', req:'theme_cyber'},
+  {id:'t-neon',  nm:'Neon',          i:'🟣', bg:['#0d001a','#1a0033'], acc:'#FF00FF'},
+  {id:'t-term',  nm:'Terminal',      i:'💻', bg:['#000500','#001400'], acc:'#00FF00'},
+  {id:'t-horror',nm:'Horror',        i:'🔴', bg:['#050000','#200000'], acc:'#FF0000', req:'theme_horror'},
+  {id:'t-space', nm:'Deep Space',    i:'🔵', bg:['#00000d','#00001a'], acc:'#4488FF'},
+  {id:'t-gold',  nm:'Gold',          i:'🟡', bg:['#0a0800','#1a1400'], acc:'#FFD700', req:'theme_gold'},
+  {id:'t-synth', nm:'Synthwave',     i:'🩷', bg:['#0d0010','#1a0020'], acc:'#FF6EC7', req:'theme_synth'},
+  {id:'t-mid',   nm:'Midnight',      i:'🔮', bg:['#05050f','#0a0a1e'], acc:'#8888FF'},
+  {id:'t-red',   nm:'Red Alert',     i:'🚨', bg:['#0f0000','#1f0000'], acc:'#FF2D55'},
+  {id:'t-galaxy',nm:'Galaxy',        i:'🌌', bg:['#000010','#00002a'], acc:'#7B68EE'},
+  {id:'t-sunset',nm:'Sunset',        i:'🌅', bg:['#1a0800','#2a1000'], acc:'#FF8C00', girl:true},
+  {id:'t-mint',  nm:'Mint',          i:'🌿', bg:['#001a10','#002a18'], acc:'#98FF98', girl:true},
+  {id:'t-glitch',nm:'GLITCH',        i:'👾', bg:['#000','#001a1a'], acc:'#00FFFF', req:'theme_glitch', legendary:true}
 ];
 
 // Add theme CSS for new themes
@@ -2961,12 +2961,12 @@ Theme.build = function(el) {
     d.style.background = 'linear-gradient(135deg,' + th.bg[0] + ',' + th.bg[1] + ')';
     d.style.opacity = locked ? '0.38' : '1';
     var isRecommended = (gender==='girl'||gender==='other') && th.girl;
-    d.innerHTML = '<div style="height:100%;display:flex;flex-direction:column;justify-content:space-between;padding:8px">' +
-      '<div style="display:flex;justify-content:space-between;align-items:flex-start">' +
-        '<div style="font-size:1.1rem">' + (locked?'🔒':th.i) + '</div>' +
-        (isRecommended?'<div style="font-size:.48rem;background:rgba(255,182,193,.3);border-radius:4px;padding:1px 5px;color:#FFB6C1;font-weight:700">✨ For You</div>':'') +
+    d.innerHTML = '<div style="height:100%;display:flex;flex-direction:column;justify-content:space-between;padding:8px 9px">' +
+      '<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:4px">' +
+        '<div class="ttile-icon">' + (locked?'🔒':th.i) + '</div>' +
+        (isRecommended?'<div style="font-size:.48rem;background:rgba(255,182,193,.3);border-radius:4px;padding:1px 5px;color:#FFB6C1;font-weight:700;white-space:nowrap">✨</div>':'') +
       '</div>' +
-      '<div style="font-size:.56rem;font-weight:700;line-height:1.2">' + (th.legendary?'★ ':'') + th.nm + '</div>' +
+      '<div class="ttile-name">' + (th.legendary?'★ ':'') + th.nm + '</div>' +
       '</div>';
     d.onclick = function() {
       if (locked) { toast('🔒 Unlock via XP'); return; }
@@ -2982,10 +2982,8 @@ Theme.build = function(el) {
 // ── GENDER-AWARE WELCOME COMPLETION ──────────────────────────────
 W.setGender = function(g, el) {
   S.prof.gender = g;
-  document.querySelectorAll('#ws2 .pchip').forEach(function(e){
-    e.style.borderColor='var(--border)';e.style.background='rgba(255,255,255,.04)';
-  });
-  el.style.borderColor='rgba(255,255,255,.35)';el.style.background='rgba(255,255,255,.09)';
+  document.querySelectorAll('#ws2 .pchip').forEach(function(e){ e.classList.remove('on'); });
+  if (el) el.classList.add('on');
   Hap.l();
 };
 
@@ -4155,63 +4153,89 @@ DevSel._backToFamily = function() {
   document.getElementById('ds-step1').style.display = 'flex';
 };
 
-DevSel.pickModel = function(modelId) {
+DevSel._familyFor = function(modelId) {
+  if (modelId === 'mac' || modelId === 'macbook') return 'mac';
+  if (DeviceDB.ipad.some(function(x) { return x.id === modelId; })) return 'ipad';
+  return 'iphone';
+};
+
+DevSel._normalizeSaved = function(saved) {
+  if (!saved) return null;
+  if (saved === 'macbook') return 'mac';
+  if (saved === 'mac' || saved === 'iphone' || saved === 'ipad') return saved;
+  var all = DeviceDB.iphone.concat(DeviceDB.ipad).concat(DeviceDB.mac);
+  if (all.some(function(m) { return m.id === saved; })) return saved;
+  return null;
+};
+
+DevSel._revealWelcome = function() {
+  if (localStorage.getItem('po5s')) return;
+  var w = document.getElementById('welcome');
+  if (!w) return;
+  w.classList.remove('out');
+  w.classList.add('ready');
+  w.style.display = 'flex';
+  w.style.opacity = '1';
+  w.style.pointerEvents = 'auto';
+};
+
+DevSel.pickModel = function(modelId, silent) {
+  if (modelId === 'macbook') modelId = 'mac';
   var all = DeviceDB.iphone.concat(DeviceDB.ipad).concat(DeviceDB.mac);
   var m = all.find(function(x) { return x.id === modelId; });
-  if (!m) return;
-  // Apply safe areas
+  if (!m) {
+    if (modelId === 'iphone') m = DeviceDB.iphone[0];
+    else if (modelId === 'ipad') m = DeviceDB.ipad[0];
+    else if (modelId === 'mac') m = DeviceDB.mac[0];
+    if (!m) return;
+    modelId = m.id;
+  }
   document.documentElement.style.setProperty('--sat', m.sat + 'px');
   document.documentElement.style.setProperty('--sab', m.sab + 'px');
   document.body.setAttribute('data-model', modelId);
+  var family = DevSel._familyFor(modelId);
+  document.body.setAttribute('data-device', family);
+  DevSel.device = family;
+  DevSel._applyLayout(family);
   if (m.di) document.body.classList.add('has-di');
   else document.body.classList.remove('has-di');
-  // iPad orient button
-  var isIpad = DeviceDB.ipad.some(function(x) { return x.id === modelId; });
   var ob = document.getElementById('orient-btn');
-  if (ob) ob.className = isIpad ? 'show' : '';
-  // Save
+  if (ob) ob.className = family === 'ipad' ? 'show' : '';
   localStorage.setItem(DevSel._k, modelId);
   S.cfg.device = modelId;
   Save.save();
-  this._hide();
-  Hap.ok(); Snd.ok();
-  toast('✅ Optimized for ' + m.l);
-};
-
-// Override DevSel.init for 2-step
-DevSel.init = function() {
-  // Runtime DI detection
-  var probe = document.createElement('div');
-  probe.style.cssText = 'position:fixed;top:env(safe-area-inset-top,0px);width:1px;height:1px;opacity:0;pointer-events:none';
-  document.body.appendChild(probe);
-  setTimeout(function() {
-    var realSat = parseInt(window.getComputedStyle(probe).top) || 0;
-    document.body.removeChild(probe);
-    if (realSat >= 44) {
-      document.documentElement.style.setProperty('--sat', Math.max(realSat, 59) + 'px');
-    }
-  }, 150);
-
-  var saved = localStorage.getItem(this._k) || S.cfg.device;
-  var all = DeviceDB.iphone.concat(DeviceDB.ipad).concat(DeviceDB.mac);
-  if (saved && all.some(function(m) { return m.id === saved; })) {
-    DevSel.pickModel(saved);
-    // Don't show picker — apply silently
+  if (!silent) {
+    DevSel._hide();
+    Hap.ok(); Snd.ok();
+    toast('✅ Optimized for ' + m.l);
+  } else {
     var el = document.getElementById('device-sel');
     if (el) el.style.display = 'none';
+  }
+  DevSel._revealWelcome();
+};
+
+DevSel.init = function() {
+  var saved = DevSel._normalizeSaved(localStorage.getItem(this._k) || S.cfg.device);
+  if (saved === 'mac' || saved === 'iphone' || saved === 'ipad') {
+    DevSel.pickModel(saved, true);
     return;
   }
-  // Show picker, pre-select family tab based on UA
+  if (saved) {
+    DevSel.pickModel(saved, true);
+    return;
+  }
+
   var ua = navigator.userAgent;
   var el = document.getElementById('device-sel');
-  if (el) { el.style.display = 'flex'; animLogo('dcan'); }
+  if (el) { el.style.display = 'flex'; el.style.opacity = '1'; animLogo('dcan'); }
+
+  var isDesktopMac = window.innerWidth >= 1024 && /Macintosh/.test(ua) && !/iPhone|iPad/.test(ua);
   setTimeout(function() {
-    if (/iPad/.test(ua) || (window.innerWidth >= 768 && /Macintosh/.test(ua) && 'ontouchend' in document)) {
-      DevSel._showModels('ipad');
-    } else if (/iPhone/.test(ua)) {
-      DevSel._showModels('iphone');
-    }
-  }, 200);
+    if (isDesktopMac) DevSel._showModels('mac');
+    else if (/iPad/.test(ua) || (window.innerWidth >= 768 && /Macintosh/.test(ua) && 'ontouchend' in document)) DevSel._showModels('ipad');
+    else if (/iPhone/.test(ua)) DevSel._showModels('iphone');
+  }, 120);
 };
 
 // ── 3. BACKGROUND MUSIC (Web Audio, no files) ────────────────────

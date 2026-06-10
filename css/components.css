@@ -64,7 +64,9 @@
 .vopt:active { transform: scale(.97) !important; }
 
 /* ── PREDICTION CHIP ── */
-.pchip { display: flex; align-items: center; gap: 9px; padding: 11px 13px; background: rgba(255,255,255,.05) !important; border: 1px solid rgba(255,255,255,.1) !important; border-radius: 16px !important; margin-bottom: 8px; transition: all .15s !important; }
+.pchip { display: flex; align-items: center; gap: 9px; padding: 11px 13px; background: rgba(255,255,255,.05) !important; border: 1px solid rgba(255,255,255,.1) !important; border-radius: 16px !important; margin-bottom: 8px; transition: all .15s !important; cursor: pointer; user-select: none; -webkit-user-select: none; touch-action: manipulation; pointer-events: auto; min-height: 48px; }
+.pchip.on { border-color: rgba(196,108,255,.65) !important; background: rgba(196,108,255,.16) !important; box-shadow: 0 0 18px rgba(196,108,255,.22) !important; }
+.pchip:active { transform: scale(.98); }
 .pinp  { flex: 1; font-size: .9rem; font-weight: 600; }
 .pinp::placeholder { color: rgba(255,255,255,.16); }
 
@@ -77,9 +79,13 @@
 #ach-popup.show { transform: translateY(0) !important; }
 
 /* ── THEME TILES ── */
-.ttile { aspect-ratio: 3/2; border-radius: 16px !important; overflow: hidden; cursor: pointer; border: 2px solid transparent; transition: transform .2s cubic-bezier(.34,1.56,.64,1), border-color .15s !important; box-shadow: 0 4px 16px rgba(0,0,0,.4) !important; }
+#tgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.ttile { aspect-ratio: 4/3; min-height: 72px; border-radius: 14px !important; overflow: hidden; cursor: pointer; border: 2px solid transparent; transition: transform .2s cubic-bezier(.34,1.56,.64,1), border-color .15s !important; box-shadow: 0 4px 16px rgba(0,0,0,.4) !important; pointer-events: auto; touch-action: manipulation; }
+.ttile .ttile-icon { font-size: 1.35rem; line-height: 1; }
+.ttile .ttile-name { font-size: .62rem; font-weight: 700; line-height: 1.2; font-family: 'Space Grotesk', system-ui, sans-serif; letter-spacing: 0; text-transform: none; opacity: .95; }
 .ttile.act  { border-color: #fff !important; box-shadow: 0 0 20px rgba(255,255,255,.3), 0 4px 16px rgba(0,0,0,.4) !important; }
-.ttile:active { transform: scale(.88) !important; }
+.ttile:active { transform: scale(.94) !important; }
+.ttile.locked-tile { cursor: not-allowed; }
 
 /* ── SETTINGS ── */
 .srow { display: flex; align-items: center; justify-content: space-between; padding: 13px 15px; border-bottom: 1px solid rgba(255,255,255,.05); }

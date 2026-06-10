@@ -1,53 +1,6 @@
-/* PrismOS — Neon Party Arcade */
-:root {
-  --acc: #e040ff;
-  --acc2: #ff2d78;
-  --glow: rgba(224, 64, 255, 0.45);
-  --glow2: rgba(255, 45, 120, 0.4);
-}
-
-body, html {
-  font-family: 'Space Grotesk', system-ui, sans-serif !important;
-}
-
-body {
-  background:
-    radial-gradient(circle at 15% 20%, rgba(224, 64, 255, 0.2), transparent 42%),
-    radial-gradient(circle at 85% 75%, rgba(255, 45, 120, 0.16), transparent 45%),
-    radial-gradient(circle at 50% 100%, rgba(0, 229, 255, 0.08), transparent 40%),
-    #0a0018 !important;
-}
-
-#nav {
-  background: rgba(10, 0, 24, 0.92) !important;
-  border-top: 1px solid rgba(224, 64, 255, 0.35) !important;
-  box-shadow: 0 -8px 32px rgba(224, 64, 255, 0.15) !important;
-}
-
-.feat, .mcard, .lcard, .stile, .glass, .modal {
-  border-radius: 22px !important;
-  border-color: rgba(224, 64, 255, 0.22) !important;
-}
+/* PrismOS — light identity overlay (layout/components own structure) */
 
 .sv, h1, h2, #gtitle, .feat-title {
-  font-family: 'Audiowide', 'Space Grotesk', sans-serif !important;
-  letter-spacing: 0.04em !important;
-}
-
-.bw, .ba, .btn-p, .pill.on {
-  border-radius: 99px !important;
-  box-shadow: 0 0 24px var(--glow) !important;
-}
-
-.nb.on, .nav-tab.active {
-  text-shadow: 0 0 12px var(--glow);
-}
-
-@keyframes prismPulse {
-  0%, 100% { box-shadow: 0 0 20px rgba(224, 64, 255, 0.3); }
-  50% { box-shadow: 0 0 36px rgba(255, 45, 120, 0.45); }
-}
-
-.feat.act, .ttile.act {
-  animation: prismPulse 3s ease-in-out infinite;
+  font-family: 'Audiowide', 'Space Grotesk', sans-serif;
+  letter-spacing: 0.03em;
 }

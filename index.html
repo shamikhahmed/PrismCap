@@ -138,8 +138,8 @@
 
 <!-- HOME -->
 <div class="screen active" id="home-screen">
-  <div class="screen-header" style="padding:11px 15px 6px;display:flex;align-items:center;justify-content:space-between">
-    <div><div style="font-size:1.25rem;font-weight:800;letter-spacing:-.03em">Prism<span style="opacity:.2">OS</span></div><div id="home-greeting" style="font-size:.6rem;opacity:.25;margin-top:1px">Good evening</div></div>
+  <div class="screen-header" style="display:flex;align-items:center;justify-content:space-between">
+    <div><div style="font-size:1.25rem;font-weight:800;letter-spacing:-.03em">Prism<span style="opacity:.2">Cap</span></div><div id="home-greeting" style="font-size:.6rem;opacity:.25;margin-top:1px">Good evening</div></div>
     <div style="display:flex;gap:8px;align-items:center">
       <div style="display:flex;align-items:center;gap:5px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.09);border-radius:100px;padding:4px 10px;cursor:pointer" onclick="Nav.go('profile')">
         <span id="hlvl" style="font-size:.68rem;font-weight:800;color:var(--amber)">LV1</span>
@@ -177,7 +177,7 @@
 
 <!-- LIBRARY -->
 <div class="screen" id="library-screen">
-  <div style="padding:calc(var(--sat) + 7px) 15px 9px">
+  <div class="screen-header" style="padding-bottom:9px">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
       <div style="font-size:1.25rem;font-weight:800;letter-spacing:-.02em">🎮 Games</div>
       <div style="font-size:.73rem;opacity:.28" id="lib-count">38 games</div>
@@ -201,7 +201,7 @@
 
 <!-- DASHBOARD -->
 <div class="screen" id="dashboard-screen">
-  <div style="padding:calc(var(--sat) + 7px) 15px 14px"><div style="font-size:1.25rem;font-weight:800;letter-spacing:-.02em">Intelligence</div><div style="font-size:.78rem;opacity:.3;margin-top:2px">Your gaming analytics</div></div>
+  <div class="screen-header"><div style="font-size:1.25rem;font-weight:800;letter-spacing:-.02em">Intelligence</div><div style="font-size:.78rem;opacity:.3;margin-top:2px">Your gaming analytics</div></div>
   <!-- XP Card -->
   <div style="margin:0 15px 14px"><div class="glass" style="padding:15px">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
@@ -245,7 +245,7 @@
 
 <!-- ARCADE (5th tab) -->
 <div class="screen" id="arcade-screen">
-  <div style="padding:calc(var(--sat) + 7px) 15px 14px"><div style="font-size:1.25rem;font-weight:800;letter-spacing:-.02em">Arcade</div><div style="font-size:.78rem;opacity:.3;margin-top:2px">Modes, daily, custom games</div></div>
+  <div class="screen-header"><div style="font-size:1.25rem;font-weight:800;letter-spacing:-.02em">Arcade</div><div style="font-size:.78rem;opacity:.3;margin-top:2px">Modes, daily, custom games</div></div>
   <!-- Daily Challenge -->
   <div style="padding:0 15px;margin-bottom:16px">
     <div class="sec" style="margin-bottom:9px">🎯 Daily Challenge</div>
@@ -270,7 +270,7 @@
 
 <!-- PROFILE -->
 <div class="screen" id="profile-screen">
-  <div style="display:flex;flex-direction:column;align-items:center;padding:calc(var(--sat) + 7px) 15px 18px;text-align:center">
+  <div class="screen-header" style="display:flex;flex-direction:column;align-items:center;text-align:center;padding-bottom:18px">
     <div id="pav2" style="width:88px;height:88px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2.7rem;margin-bottom:12px;border:1px solid var(--border);background:rgba(255,255,255,.05)">👤</div>
     <div id="pnm2" style="font-size:1.65rem;font-weight:800;letter-spacing:-.03em">Player</div>
     <div id="prk2" style="font-size:.73rem;opacity:.3;margin-top:3px">Rookie · Level 1</div>

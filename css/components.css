@@ -161,12 +161,15 @@
 
 /* ── RESPONSIVE COMPONENT OVERRIDES ── */
 @media (min-width: 768px) {
-  .lgrid  { grid-template-columns: 1fr 1fr 1fr; }
+  .lgrid  { grid-template-columns: 1fr 1fr; gap: 12px; }
   .feat   { height: 230px; }
   .mcard  { height: 125px; width: 170px; }
   .stile .sv { font-size: 2.1rem; }
   .btn    { padding: 14px 26px; font-size: .95rem; }
   .blg    { padding: 17px 34px; font-size: 1rem; }
+}
+@media (min-width: 1024px) {
+  .lgrid  { grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
 }
 body[data-device="ipad"] .lgrid { grid-template-columns: 1fr 1fr 1fr; }
 body[data-device="ipad"] .mcard { width: 180px; height: 120px; }

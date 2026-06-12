@@ -151,3 +151,19 @@ body.large-tap .pchip { min-height: 48px; }
 body.large-tap .tog { min-width: 52px; min-height: 30px; }
 body.large-tap #gbody button,
 body.large-tap #gbody [onclick] { min-height: 48px; min-width: 48px; }
+
+/* Color-blind friendly palette (deuteranopia-safe) */
+body.color-blind {
+  --red: #E69F00;
+  --orange: #D55E00;
+  --amber: #F0E442;
+  --green: #009E73;
+  --cyan: #56B4E9;
+  --violet: #CC79A7;
+  --pink: #CC79A7;
+  --acc: #0072B2;
+  --acc2: #009E73;
+}
+body.color-blind #app { filter: contrast(1.05) saturate(0.85); }
+body.color-blind .lcard,
+body.color-blind .mcard { border-width: 2px; }

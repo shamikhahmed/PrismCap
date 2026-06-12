@@ -1,7 +1,7 @@
 
 'use strict';
 // ═══ STATE ═══════════════════════════════════════════════════════════
-var S={cur:'home',game:null,passCb:null,feat:null,cfg:{sfx:true,haptic:true,bg:false,save:true,theme:'',music:false,lowPower:true,perfMode:'eco'},prof:{name:'Player',av:'👤',xp:0,lvl:1,games:0,wins:0,losses:0,streak:0,best:0,bluff:0,betrayals:0,reflex:null,time:0,hist:[],style:''},ach:[]};
+var S={cur:'home',game:null,passCb:null,feat:null,cfg:{sfx:true,haptic:true,bg:false,save:true,theme:'',music:false,lowPower:true,perfMode:'eco',largeTap:false},prof:{name:'Player',av:'👤',xp:0,lvl:1,games:0,wins:0,losses:0,streak:0,best:0,bluff:0,betrayals:0,reflex:null,time:0,hist:[],style:''},ach:[]};
 var BOT_BOARD_GAMES=['chess','draughts','ttt','c4','blitz','ludo','snl'];
 var BOT_FILL_GAMES=['shadow','spy','hot','split','sv','chaos','impfreq','trust','word','meld','deadrop','heist','chain','bgrid','lsig','dungeon'];
 var Save={k:'po5',save:function(){try{localStorage.setItem(this.k,JSON.stringify({p:S.prof,c:S.cfg,a:S.ach}));}catch(e){}},load:function(){try{var d=JSON.parse(localStorage.getItem(this.k)||'null');if(d){if(d.p)Object.assign(S.prof,d.p);if(d.c)Object.assign(S.cfg,d.c);if(d.a)S.ach=d.a;}}catch(e){}},reset:function(){localStorage.clear();location.reload();}};
@@ -54,7 +54,13 @@ function start(){if(running||!x||!S.cfg.bg||S.cfg.lowPower)return;if(c)c.style.d
 function stop(){running=false;if(rafId){cancelAnimationFrame(rafId);rafId=0;}if(c)c.style.display='none';}
 function loop(){if(!running||!x)return;x.clearRect(0,0,W,H);if(S.cfg.bg&&!S.cfg.lowPower){var eco=S.cfg.perfMode==='eco';if(!eco){x.strokeStyle='rgba(255,255,255,0.008)';x.lineWidth=1;var gs=72;for(var i=0;i<=W;i+=gs){x.beginPath();x.moveTo(i,0);x.lineTo(i,H);x.stroke();}for(var j=0;j<=H;j+=gs){x.beginPath();x.moveTo(0,j);x.lineTo(W,j);x.stroke();}}var spd=eco?0.008:0.012;pts.forEach(function(p){p.p+=spd;p.x=(p.x+p.vx+1)%1;p.y=(p.y+p.vy+1)%1;x.globalAlpha=Math.sin(p.p)*.08+.08;x.fillStyle=p.c;x.beginPath();x.arc(p.x*W,p.y*H,p.s,0,Math.PI*2);x.fill();});x.globalAlpha=1;}rafId=requestAnimationFrame(loop);}
 return{init:init,start:start,stop:stop,_seed:_seed};})();
-var PrismPerf={isDebug:function(){return/[?&]debug=1(?:&|$)/.test(location.search);},apply:function(){if(!S||!S.cfg)return;var eco=!!S.cfg.lowPower||S.cfg.perfMode==='eco';document.body.classList.toggle('eco-mode',eco);document.body.classList.toggle('low-power',!!S.cfg.lowPower);if(S.cfg.bg&&!S.cfg.lowPower){if(window.BG&&BG.start)BG.start();}else{if(window.BG&&BG.stop)BG.stop();}}};
+var PrismPerf={isDebug:function(){return/[?&]debug=1(?:&|$)/.test(location.search);},apply:function(){if(!S||!S.cfg)return;var eco=!!S.cfg.lowPower||S.cfg.perfMode==='eco';document.body.classList.toggle('eco-mode',eco);document.body.classList.toggle('low-power',!!S.cfg.lowPower);document.body.classList.toggle('large-tap',!!S.cfg.largeTap);if(S.cfg.bg&&!S.cfg.lowPower){if(window.BG&&BG.start)BG.start();}else{if(window.BG&&BG.stop)BG.stop();}}};
+
+// ═══ PLAY TRACKER (local most-played insights) ═══════════════════════
+var PlayTracker={_k:'po5_plays',
+record:function(id){if(!id)return;try{var d=JSON.parse(localStorage.getItem(this._k)||'{}');d[id]=(d[id]||0)+1;localStorage.setItem(this._k,JSON.stringify(d));}catch(e){}},
+top:function(n){try{var d=JSON.parse(localStorage.getItem(this._k)||'{}');return Object.keys(d).sort(function(a,b){return d[b]-d[a];}).slice(0,n||3).map(function(id){return{id:id,count:d[id]};});}catch(e){return[];}},
+html:function(){var rows=this.top(3);if(!rows.length)return'';return'<div style="margin:0 15px 10px;padding:13px 15px;background:rgba(191,90,242,.07);border:1.5px solid rgba(191,90,242,.2);border-radius:15px"><div style="font-size:.58rem;opacity:.35;text-transform:uppercase;letter-spacing:.09em;margin-bottom:8px">🔥 Most Played</div>'+rows.map(function(r,i){var g=typeof Reg!=='undefined'?Reg.get(r.id):null;if(!g)return'';return'<div style="display:flex;align-items:center;gap:10px;padding:7px 0'+(i<rows.length-1?';border-bottom:1px solid rgba(255,255,255,.06)':'')+'" onclick="GL.launch(\''+r.id+'\')"><div style="width:28px;text-align:center;font-size:1.1rem">'+g.icon+'</div><div style="flex:1"><div style="font-weight:700;font-size:.84rem">'+g.title+'</div><div style="font-size:.65rem;opacity:.38">'+r.count+' launch'+(r.count===1?'':'es')+'</div></div><div style="opacity:.25;font-size:.72rem">▶</div></div>';}).join('')+'</div>';}};
 
 // ═══ TOAST ═══════════════════════════════════════════════════════════
 var _tt=null;
@@ -532,6 +538,7 @@ home:function(){
     // Daily challenge
     var daily=Daily.getToday(),done=Daily.isDone();
     html+='<div style="margin:0 15px 10px;padding:13px 15px;background:'+(done?'rgba(48,209,88,.07)':'rgba(255,214,10,.07)')+';border:1.5px solid '+(done?'rgba(48,209,88,.22)':'rgba(255,214,10,.22)')+';border-radius:15px;cursor:pointer" onclick="GL.launch(\''+daily.game+'\')"><div style="display:flex;align-items:center;gap:10px"><div style="font-size:1.6rem">'+daily.icon+'</div><div style="flex:1"><div style="font-size:.58rem;opacity:.35;text-transform:uppercase;letter-spacing:.09em;margin-bottom:2px">Today\'s Challenge'+(done?' ✓':'')+'</div><div style="font-weight:700;font-size:.86rem">'+daily.title+'</div><div style="font-size:.68rem;opacity:.42;margin-top:1px">'+daily.desc+'</div></div><div style="font-size:.73rem;color:var(--amber);font-weight:700">+'+daily.xp+'XP</div></div></div>';
+    if(typeof PlayTracker!=='undefined')html+=PlayTracker.html();
     wa.innerHTML=html;
   }
   // Recent
@@ -550,6 +557,8 @@ dash:function(){
   set('dtg',p.games);set('dtw',p.wins);set('dts',p.best);
   set('dtt',p.time>=60?Math.floor(p.time/60)+'h':p.time+'m');
   set('dtr',p.reflex?p.reflex+'ms':'—');set('dtb',p.betrayals);
+  var mp=document.getElementById('most-played-dash');
+  if(mp&&typeof PlayTracker!=='undefined')mp.innerHTML=PlayTracker.html()||'<div style="opacity:.22;text-align:center;padding:14px;font-size:.8rem">Launch games to see your top picks</div>';
   // Win trend chart
   setTimeout(function(){
     var c=document.getElementById('wchart');if(!c)return;
@@ -609,7 +618,8 @@ prof:function(){
   // Themes
   Theme.build(document.getElementById('tgrid'));
   // Settings toggles
-  ['sfx','haptic','bg','save'].forEach(function(k){var id={sfx:'tsfx',haptic:'thap',bg:'tbg',save:'tsv'}[k];var el=document.getElementById(id);if(el)el.className='tog'+(S.cfg[k]?' on':'');});
+  ['sfx','haptic','bg','save','largeTap'].forEach(function(k){var id={sfx:'tsfx',haptic:'thap',bg:'tbg',save:'tsv',largeTap:'tlargetap'}[k];var el=document.getElementById(id);if(el)el.className='tog'+(S.cfg[k]?' on':'');});
+  if(typeof PrismPerf!=='undefined')PrismPerf.apply();
 }};
 
 // ═══ ARCADE SCREEN ═══════════════════════════════════════════════════
@@ -622,7 +632,7 @@ _vault:function(){var vl=this.$('vault-list');if(!vl)return;vl.innerHTML=Meta.un
 
 // ═══ GAME LAUNCHER ════════════════════════════════════════════════════
 var GL={
-launch:function(id){var game=Reg.get(id);if(!game){toast('Game not found');return;}Snd.click();Hap.m();if(game.mp)this._setup(game);else{var players=[{id:'p1',name:S.prof.name||'Player',av:S.prof.av||'🎮',col:'#64D2FF',local:true}];Cinematic.show(game,players,function(){GL._start(game,players);});}},
+launch:function(id){var game=Reg.get(id);if(!game){toast('Game not found');return;}if(typeof PlayTracker!=='undefined')PlayTracker.record(id);Snd.click();Hap.m();if(game.mp)this._setup(game);else{var players=[{id:'p1',name:S.prof.name||'Player',av:S.prof.av||'🎮',col:'#64D2FF',local:true}];Cinematic.show(game,players,function(){GL._start(game,players);});}},
 launchFeat:function(){if(S.feat)this.launch(S.feat.id);},
 _setup:function(game){var avs=['😎','🦊','🐺','🦁','🐯','🦅','🐲','👾','🤖','💀','🎭','🔥'],cols=['#FF2D55','#FF6B00','#BF5AF2','#00D4FF','#30D158','#FFD60A','#64D2FF','#FF375F'],self=this;var pc=Math.max(game.min,2);var players=Array.from({length:pc},function(_,i){return{id:'p'+(i+1),name:'Player '+(i+1),av:avs[i%avs.length],col:cols[i%cols.length],local:i===0};});var render=function(){Modal.open('<div><div style="font-size:1.05rem;font-weight:800;margin-bottom:2px">'+game.icon+' '+game.title+'</div><div style="font-size:.76rem;opacity:.38;margin-bottom:13px">'+game.desc+'</div><div style="font-size:.6rem;opacity:.32;letter-spacing:.09em;text-transform:uppercase;margin-bottom:7px">Players ('+pc+'/'+game.max+')</div><div id="_pl">'+players.map(function(p,i){return'<div class="pchip"><div style="width:30px;height:30px;border-radius:50%;background:'+p.col+'1c;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0">'+p.av+'</div><input class="pinp" placeholder="Player '+(i+1)+'" value="'+p.name+'" onchange="window._pn('+i+',this.value)" oninput="window._pn('+i+',this.value)">'+(i>0?'<div onclick="window._rp('+i+')" style="opacity:.22;cursor:pointer;padding:4px">✕</div>':'')+'</div>';}).join('')+'</div>'+(pc<game.max?'<button class="btn bg bf" style="margin-bottom:9px;margin-top:5px" onclick="window._ap()">+ Add Player</button>':'')+( Mutators.active.length?'<div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:9px">'+Mutators.active.map(function(m){return'<div style="background:'+m.col+'22;border:1px solid '+m.col+'44;border-radius:100px;padding:2px 8px;font-size:.62rem;font-weight:700">'+m.icon+' '+m.name+'</div>';}).join('')+'</div>':'')+'\x3cdiv style="display:flex;gap:7px">\x3cbutton class="btn bg" style="flex:0 0 auto;padding:11px 14px" onclick="window._smut()">⚙️\x3c/button>\x3cbutton class="btn bw" style="flex:1" onclick="window._sg()">▶ Start Game\x3c/button>\x3c/div>\x3c/div>');window._pn=function(i,v){players[i].name=v||'Player '+(i+1);};window._ap=function(){if(pc>=game.max)return;pc++;players.push({id:'p'+pc,name:'Player '+pc,av:avs[(pc-1)%avs.length],col:cols[(pc-1)%cols.length]});render();};window._rp=function(i){if(pc<=game.min){toast('Min '+game.min+' players');return;}players.splice(i,1);pc--;players.forEach(function(p,j){p.id='p'+(j+1);});render();};window._sg=function(){Modal.close();setTimeout(function(){Cinematic.show(game,players,function(){self._start(game,players);});},270);};window._smut=function(){Modal.close();setTimeout(function(){Mutators.showPicker(function(){render();});},270);};};render();},
 _start:function(game,players){S.game=game;game.setup(players);Mutators.apply();Nav.go('game');document.getElementById('gtitle').textContent=game.title;document.getElementById('gbody').style.setProperty('--acc',game.col);document.getElementById('gbody').style.setProperty('--glow',game.col+'3a');game.render();Snd.reveal();// Auto-checkpoint after 3s (not immediately)
@@ -1474,62 +1484,6 @@ Draughts.render = function() {
   };
 };
 
-// ── TIC-TAC-TOE (quick game) ──────────────────────────────────────
-var TicTacToe = new Game({id:'ttt',title:'Tic-Tac-Toe',icon:'⭕',type:'strategy',cat:'multiplayer',col:'#30D158',mp:true,min:2,max:2,desc:'Classic X & O. First to three in a row wins.'});
-TicTacToe.setup = function(pl) {
-  Game.prototype.setup.call(this, pl.slice(0,2));
-  this.gs = {board:Array(9).fill(null),turn:0,wins:0,losses:0,draws:0,players:pl.slice(0,2),streak:[0,0]};
-};
-TicTacToe._check = function(b) {
-  var lines=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
-  for(var i=0;i<lines.length;i++){var l=lines[i];if(b[l[0]]&&b[l[0]]===b[l[1]]&&b[l[0]]===b[l[2]])return{winner:b[l[0]],line:l};}
-  if(b.every(function(c){return c;}))return{draw:true};
-  return null;
-};
-TicTacToe.render = function() {
-  var gs = this.gs, self = this;
-  var marks = ['X','O'], colors = ['#FF2D55','#00D4FF'];
-  var curMark = marks[gs.turn], curColor = colors[gs.turn], curPlayer = gs.players[gs.turn];
-  var result = this._check(gs.board);
-
-  var cells = gs.board.map(function(c,i) {
-    var cidx = c==='X'?0:c==='O'?1:null;
-    return '<div onclick="window._tt('+i+')" style="display:flex;align-items:center;justify-content:center;height:88px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:13px;cursor:pointer;font-size:2.4rem;font-weight:900;color:'+(cidx!==null?colors[cidx]:'transparent')+';transition:all .15s">'+(c||'·')+'</div>';
-  }).join('');
-
-  document.getElementById('gbody').innerHTML =
-    '<div style="padding:8px 0">' +
-    '<div style="display:flex;justify-content:space-between;margin-bottom:12px">' +
-      gs.players.map(function(p,i){return '<div style="text-align:center;padding:9px 16px;background:'+(gs.turn===i?'rgba(255,255,255,.09)':'rgba(255,255,255,.03)')+';border:1px solid '+(gs.turn===i?'rgba(255,255,255,.2)':'var(--border)')+';border-radius:12px;flex:1;margin:'+(i===0?'0 5px 0 0':'0 0 0 5px')+'"><div style="font-size:1.1rem">'+p.av+'</div><div style="font-size:.78rem;font-weight:700;margin-top:2px">'+p.name+'</div><div style="font-size:1.5rem;color:'+colors[i]+';font-weight:900">'+marks[i]+'</div></div>';}).join('') +
-    '</div>' +
-    '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px">' + cells + '</div>' +
-    (result ?
-      '<div style="text-align:center;padding:14px;background:rgba(255,255,255,.05);border-radius:13px">' +
-        (result.draw ? '<div style="font-size:1.1rem;font-weight:700">It\'s a Draw!</div>' : '<div style="font-size:1.1rem;font-weight:700;color:'+curColor+'">'+curPlayer.name+' Wins! '+curMark+'</div>') +
-        '<div style="display:flex;gap:8px;margin-top:12px;justify-content:center"><button class="btn bw" onclick="window._ttreset()">Play Again</button><button class="btn bg" onclick="GL.exitGame()">Exit</button></div>' +
-      '</div>'
-      : '<div style="text-align:center;opacity:.38;font-size:.8rem">' + curPlayer.av + ' ' + curPlayer.name + ' — play <span style="color:'+curColor+';font-weight:700">'+curMark+'</span></div>'
-    ) +
-    '</div>';
-
-  window._tt = function(i) {
-    if (gs.board[i] || self._check(gs.board)) return;
-    gs.board[i] = marks[gs.turn];
-    Snd.click(); Hap.l();
-    var result2 = self._check(gs.board);
-    if (result2) {
-      if (!result2.draw) { self.done(gs.players[gs.turn].name); Snd.ok(); Hap.ok(); }
-      else { self.done(null); }
-    } else { gs.turn = 1 - gs.turn; }
-    Nav.go('game'); self.render();
-  };
-  window._ttreset = function() {
-    gs.board = Array(9).fill(null);
-    gs.turn = 1 - gs.turn; // alternate who goes first
-    Nav.go('game'); self.render();
-  };
-};
-
 // ── CONNECT FOUR ──────────────────────────────────────────────────
 var ConnectFour = new Game({id:'c4',title:'Connect Four',icon:'🔴',type:'strategy',cat:'multiplayer',col:'#FFD60A',mp:true,min:2,max:2,desc:'Drop pieces. First to connect 4 wins.'});
 ConnectFour.setup = function(pl) {
@@ -1613,12 +1567,17 @@ document.addEventListener('DOMContentLoaded', function() {
   Save.load(); Memory.load(); Meta.load();
   Mutators.loadPresets(); Tutorial._load();
 
+  // Modular games (js/games/*.js) register via PRISM_GAME_FACTORIES
+  (window.PRISM_GAME_FACTORIES || []).forEach(function(factory) {
+    try { var g = factory(); if (g) Reg.add(g); } catch (e) { console.warn('Game factory failed', e); }
+  });
+  if (typeof window._patchTTTBot === 'function') window._patchTTTBot();
   // Register core multiplayer + solo games (38 total with v5 + board)
   [ShadowProtocol,HotDevice,SplitTruth,SilentVote,ChaosCards,TruthBomb,Dungeon,
    SpyHunt,LastSignal,ChainReaction,BetrayalGrid,NeonReflex,MemoryMatrix,
    SignalDecode,QuickTap,PatternShift,GhostMode,AISurvival,CyberTiles,
    RhythmPulse,InfiniteMaze,ImposterFreq,TrustFall,ReflexLadder,NeonSnake,
-   TheHeist,PressureCooker,ChessGame,Draughts,TicTacToe,ConnectFour
+   TheHeist,PressureCooker,ChessGame,Draughts,ConnectFour
   ].forEach(function(g){ Reg.add(g); });
 
   Snd.init(); BG.init(); Theme.apply(S.cfg.theme||'');
@@ -2818,37 +2777,40 @@ var Bot = {
   }
 };
 
-// Enhance TicTacToe with bot support
-TicTacToe._botTurn = function() {
-  var gs = this.gs, self = this;
-  var marks = ['X','O'];
-  var curMark = marks[gs.turn];
-  var oppMark = marks[1-gs.turn];
-  var curPlayer = gs.players[gs.turn];
-  if (!curPlayer.isBot) return;
-  setTimeout(function() {
-    if (self._check(gs.board)) return; // game already over
-    var move = Bot.tttMove(gs.board, curMark, oppMark);
-    if (move === undefined || move === null) return;
-    gs.board[move] = curMark;
-    Snd.click(); Hap.l();
-    var result = self._check(gs.board);
-    if (result) {
-      if (!result.draw) { self.done(curPlayer.name); Snd.ok(); Hap.ok(); }
-      else { self.done(null); }
-    } else { gs.turn = 1-gs.turn; }
-    Nav.go('game'); self.render();
-  }, 600);
-};
-
-// Override TTT render to trigger bot
-var _origTTTRender = TicTacToe.render.bind(TicTacToe);
-TicTacToe.render = function() {
-  _origTTTRender();
-  var gs = this.gs;
-  if (gs && !this._check(gs.board) && gs.players && gs.players[gs.turn] && gs.players[gs.turn].isBot) {
-    this._botTurn();
-  }
+// Enhance TicTacToe with bot support (game lives in js/games/example-game.js)
+window._patchTTTBot = function() {
+  var TicTacToe = Reg.get('ttt');
+  if (!TicTacToe || TicTacToe._botPatched) return;
+  TicTacToe._botPatched = true;
+  TicTacToe._botTurn = function() {
+    var gs = this.gs, self = this;
+    var marks = ['X','O'];
+    var curMark = marks[gs.turn];
+    var oppMark = marks[1-gs.turn];
+    var curPlayer = gs.players[gs.turn];
+    if (!curPlayer.isBot) return;
+    setTimeout(function() {
+      if (self._check(gs.board)) return;
+      var move = Bot.tttMove(gs.board, curMark, oppMark);
+      if (move === undefined || move === null) return;
+      gs.board[move] = curMark;
+      Snd.click(); Hap.l();
+      var result = self._check(gs.board);
+      if (result) {
+        if (!result.draw) { self.done(curPlayer.name); Snd.ok(); Hap.ok(); }
+        else { self.done(null); }
+      } else { gs.turn = 1-gs.turn; }
+      Nav.go('game'); self.render();
+    }, 600);
+  };
+  var _origTTTRender = TicTacToe.render.bind(TicTacToe);
+  TicTacToe.render = function() {
+    _origTTTRender();
+    var gs = this.gs;
+    if (gs && !this._check(gs.board) && gs.players && gs.players[gs.turn] && gs.players[gs.turn].isBot) {
+      this._botTurn();
+    }
+  };
 };
 
 // Enhance ConnectFour with bot
@@ -4064,6 +4026,10 @@ GL.togSet = function(key, el) {
   Snd.click();
   if (key === 'notif') {
     toast(S.cfg.notif ? '🔔 Notifications ON' : '🔕 Notifications OFF');
+  }
+  if (key === 'largeTap' && typeof PrismPerf !== 'undefined') {
+    PrismPerf.apply();
+    toast(S.cfg.largeTap ? '👆 Larger tap targets ON' : '👆 Larger tap targets OFF');
   }
 };
 

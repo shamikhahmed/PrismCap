@@ -139,3 +139,15 @@ body.t-horror #app::after {
   #boot-scan .scan-line { transition: opacity .25s ease; }
   @keyframes os-rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 }
+
+/* Accessibility — larger tap targets (global setting) */
+body.large-tap .btn { min-height: 48px; padding-top: 12px; padding-bottom: 12px; }
+body.large-tap .ni { min-height: 52px; padding-top: 8px; padding-bottom: 8px; }
+body.large-tap .mcard,
+body.large-tap .lcard,
+body.large-tap .pill,
+body.large-tap .vopt,
+body.large-tap .pchip { min-height: 48px; }
+body.large-tap .tog { min-width: 52px; min-height: 30px; }
+body.large-tap #gbody button,
+body.large-tap #gbody [onclick] { min-height: 48px; min-width: 48px; }

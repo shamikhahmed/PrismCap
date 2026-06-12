@@ -65,6 +65,7 @@ var Modal={_cb:null,open:function(html,cb){var ov=document.getElementById('ov'),
 
 // ═══ NAVIGATION ══════════════════════════════════════════════════════
 var Nav={go:function(scr){var prev=S.cur;if(prev===scr&&scr!=='game')return;document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('active');});document.querySelectorAll('.ni').forEach(function(n){n.classList.remove('on');});var el=document.getElementById(scr+'-screen');if(el)el.classList.add('active');var ni=document.querySelector('.ni[data-s="'+scr+'"]');if(ni)ni.classList.add('on');S.cur=scr;var nav=document.getElementById('nav');if(nav)nav.className=scr==='game'?'hide':'';if(scr==='dashboard'){UI.dash();}if(scr==='profile'){UI.prof();}if(scr==='home'){UI.home();}if(scr==='arcade'){Arcade.build();}if(scr==='game'&&S.game){var gr=document.getElementById('gright');if(gr)gr.innerHTML='<div style="display:flex;gap:6px;align-items:center"><button onclick="QRSync.showTransfer(S.game)" style="font-size:.68rem;opacity:.38;cursor:pointer;background:none;border:none;color:#fff;padding:3px" title="Transfer">📡</button><button onclick="if(S.game){Suspend.save(S.game,S.game.gs,{});GL.exitGame();}" style="font-size:.68rem;opacity:.38;cursor:pointer;background:none;border:none;color:#fff;padding:3px" title="Suspend">💾</button><span style="opacity:.32;font-size:.73rem">'+(S.game.mp?'👥 '+S.game.players.length:'🎮')+'</span></div>';}Snd.click();Hap.l();}};
+window.Nav = Nav;
 
 // ═══ PASS & PLAY ═════════════════════════════════════════════════════
 var PP={show:function(name,av,role,secret,cb){var ps=document.getElementById('pass');document.getElementById('pav').textContent=av;document.getElementById('pnm').textContent=name;document.getElementById('prl').textContent=role||'Your turn';document.getElementById('pass-c').style.display='flex';document.getElementById('pass-rv').style.display='none';var btn=document.querySelector('#pass-c button');if(btn)btn.style.display='block';ps.className='on';S.passCb={secret:secret,cb:cb};Snd.pass();Hap.m();},
@@ -4216,6 +4217,10 @@ DevSel.pickModel = function(modelId, silent) {
 };
 
 DevSel.init = function() {
+  if (/[?&]e2e=1(?:&|$)/.test(location.search)) {
+    DevSel.pickModel('macbook', true);
+    return;
+  }
   var saved = DevSel._normalizeSaved(localStorage.getItem(this._k) || S.cfg.device);
   if (saved === 'mac' || saved === 'iphone' || saved === 'ipad') {
     DevSel.pickModel(saved, true);

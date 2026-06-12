@@ -101,7 +101,7 @@ Supported player ranges are shown per game (e.g. Shadow Protocol: 3–10 players
 | PWA | Service Worker (`sw.js` at repo root), Web App Manifest |
 | Audio | Web Audio API (synthesized, no files) |
 | Haptics | Vibration API |
-| Build | None — zero build step |
+| Build | Static serve (primary) — `python3 -m http.server 8767`; optional `npm run build` via Vite for preview |
 
 ---
 

@@ -1,7 +1,10 @@
 /* Desktop browsers — no phantom notch padding */
 @media (min-width: 1024px) and (hover: hover) and (pointer: fine) {
   :root { --sat: 0px; --sab: 12px; }
+  .screen-header { padding-top: 11px; }
 }
+
+body[data-device="mac"] .screen-header { padding-top: 11px; }
 
 /* ── SAFE AREA SUPPORT (touch devices) ── */
 @supports (padding-top: env(safe-area-inset-top, 0px)) {

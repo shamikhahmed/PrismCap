@@ -547,7 +547,7 @@ home:function(){
   // Recent
   var rc=document.getElementById('recent');
   if(rc){
-    if(!p.hist.length)rc.innerHTML='<div style="opacity:.22;text-align:center;padding:16px;font-size:.84rem">No games yet — pick one above!</div>';
+    if(!p.hist.length)rc.innerHTML='<div style="text-align:center;padding:18px 12px"><div style="font-size:1.6rem;margin-bottom:8px">🎮</div><div style="font-size:.84rem;opacity:.45;margin-bottom:12px;line-height:1.45">No games yet — pick your first adventure!</div><button class="btn bw bf" style="max-width:220px;margin:0 auto" onclick="Nav.go(\'library\')">Browse games →</button></div>';
     else rc.innerHTML=p.hist.slice(0,3).map(function(h){var g=Reg.list.find(function(gm){return gm.title===h.g;});return'<div style="display:flex;align-items:center;gap:9px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.05);cursor:pointer" onclick="GL.launch(\''+(g?g.id:'')+'\')"><div style="width:30px;height:30px;border-radius:8px;background:'+h.c+'1c;display:flex;align-items:center;justify-content:center;font-size:1rem">'+h.i+'</div><div style="flex:1"><div style="font-weight:700;font-size:.84rem">'+h.g+'</div><div style="font-size:.68rem;opacity:.3">'+h.dt+(h.w?' · '+h.w:' · no winner')+'</div></div><div style="opacity:.25;font-size:.72rem">▶</div></div>';}).join('');
   }
 },
@@ -561,7 +561,7 @@ dash:function(){
   set('dtt',p.time>=60?Math.floor(p.time/60)+'h':p.time+'m');
   set('dtr',p.reflex?p.reflex+'ms':'—');set('dtb',p.betrayals);
   var mp=document.getElementById('most-played-dash');
-  if(mp&&typeof PlayTracker!=='undefined')mp.innerHTML=PlayTracker.html()||'<div style="opacity:.22;text-align:center;padding:14px;font-size:.8rem">Launch games to see your top picks</div>';
+  if(mp&&typeof PlayTracker!=='undefined')mp.innerHTML=PlayTracker.html()||'<div style="text-align:center;padding:16px"><div style="font-size:1.4rem;margin-bottom:6px">📊</div><div style="font-size:.8rem;opacity:.45;margin-bottom:10px">Launch games to see your top picks</div><button class="btn bg bf" style="max-width:200px;margin:0 auto" onclick="Nav.go(\'library\')">Pick a game →</button></div>';
   // Win trend chart
   setTimeout(function(){
     var c=document.getElementById('wchart');if(!c)return;
@@ -3012,13 +3012,62 @@ W._scan = function() {
         result.innerHTML='<div style="font-size:1.2rem;font-weight:800;margin-bottom:4px">'+(prs?prs.label:'Operative')+'</div>' +
           (suggestedTheme?'<div style="font-size:.78rem;color:#FFB6C1;margin-bottom:10px">✨ Pink theme pre-selected for you!</div>':'') +
           '<div style="opacity:.38;font-size:.75rem;margin-bottom:16px">Starting rank: Rookie</div>' +
-          '<button class="btn bw bf" style="max-width:240px" onclick="W.finish()">Enter PrismCap! 🎮 →</button>';
+          '<button class="btn bw bf" style="max-width:240px" onclick="W.showGamePicker()">Pick your first game →</button>';
       }
       // Pre-apply suggested theme
       if(suggestedTheme){Theme.apply(suggestedTheme);}
       Hap.ok();
     }
   },400);
+};
+
+W.suggestGames = function() {
+  var style = S.prof.style || this._style || 'chaos';
+  var typeMap = {
+    deception: ['deduction', 'bluffing'],
+    strategy: ['strategy'],
+    reflex: ['reflex'],
+    chaos: ['party', 'survival'],
+    party: ['party'],
+    creative: ['puzzle', 'memory']
+  };
+  var types = typeMap[style] || ['party'];
+  var picks = Reg.list.filter(function(g) { return types.indexOf(g.type) >= 0; });
+  if (picks.length < 3) {
+    var seen = {};
+    picks.forEach(function(g) { seen[g.id] = 1; });
+    Reg.list.forEach(function(g) {
+      if (!seen[g.id] && picks.length < 6) { picks.push(g); seen[g.id] = 1; }
+    });
+  }
+  return picks.slice(0, 6);
+};
+
+W.renderGamePicker = function() {
+  var grid = document.getElementById('wgame-grid');
+  if (!grid) return;
+  var games = this.suggestGames();
+  grid.innerHTML = games.map(function(g) {
+    return '<div class="lcard" style="background:' + g.col + '12;border:1px solid ' + g.col + '28;cursor:pointer;padding:10px" onclick="W.pickFirstGame(\'' + g.id + '\')">' +
+      '<div style="font-size:1.5rem;margin-bottom:4px">' + g.icon + '</div>' +
+      '<div style="font-size:.78rem;font-weight:800;line-height:1.2">' + g.title + '</div>' +
+      '<div style="font-size:.5rem;opacity:.4;margin-top:2px;text-transform:uppercase;letter-spacing:.06em">' + g.type + '</div></div>';
+  }).join('');
+};
+
+W.showGamePicker = function() {
+  this.renderGamePicker();
+  this._goStep(6);
+};
+
+W.pickFirstGame = function(id) {
+  this.finish();
+  setTimeout(function() { if (typeof GL !== 'undefined' && GL.launch) GL.launch(id); }, 480);
+};
+
+W.skipGamePicker = function() {
+  this.finish();
+  setTimeout(function() { Nav.go('library'); }, 300);
 };
 
 // ── GAME SEARCH ──────────────────────────────────────────────────
@@ -5652,7 +5701,7 @@ OrientMgr.init();
     },
     registerSW: function(){
       if (!('serviceWorker' in navigator)) return;
-      navigator.serviceWorker.register('./sw.js?v=4').catch(function(){});
+      navigator.serviceWorker.register('./sw.js?v=35').catch(function(){});
     }
   };
 

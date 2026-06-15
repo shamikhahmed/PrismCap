@@ -1,5 +1,8 @@
 # Changelog — PrismCap
 
+## 4.1.3 (2026-06-15)
+- Restore pre–Capricorn identity home-screen icons; service worker cache bump.
+
 ## 4.1.2 (2026-06-15)
 - Welcome **game picker** step — style-matched first-game cards with one-tap launch.
 - Actionable empty states on Home recent list and Stats most-played widget.

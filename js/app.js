@@ -1657,7 +1657,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (Suspend.has()) {
       setTimeout(function() {
         var snap = Suspend.load();
-        if (snap) toast('💾 ' + snap.title + ' suspended — Resume in ⚙️ settings', 4000);
+        if (snap) toast('💾 ' + snap.title + ' suspended — tap Resume on Home', 4000);
       }, 2200);
     }
 
@@ -5730,7 +5730,7 @@ OrientMgr.init();
     },
     registerSW: function(){
       if (!('serviceWorker' in navigator)) return;
-      navigator.serviceWorker.register('./sw.js?v=38').catch(function(){});
+      navigator.serviceWorker.register('./sw.js?v=39').catch(function(){});
     }
   };
 

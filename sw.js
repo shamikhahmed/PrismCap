@@ -1,4 +1,4 @@
-const CACHE = 'prismcap-v38';
+const CACHE = 'prismcap-v39';
 const ASSETS = [
   './css/capricorn-core.css',
   './',
@@ -12,6 +12,7 @@ const ASSETS = [
   './css/base.css',
   './css/layout.css',
   './css/components.css',
+  './css/identity.css',
   './public/favicon.svg',
   './icon-192.png',
   './icon-512.png',

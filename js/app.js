@@ -3439,6 +3439,7 @@ W.init=function(){
     if (typeof buildRecommended === 'function') setTimeout(buildRecommended, 200);
     // Records update
     if (typeof Records !== 'undefined' && typeof Records.load === 'function') Records.load();
+    if (typeof Rec !== 'undefined' && typeof Rec.render === 'function') Rec.render();
   };
 })();
 
@@ -5420,6 +5421,7 @@ OrientMgr.init();
       rank: 'Rookie',
       streak: 0,
       lastDaily: '',
+      lastClaimDate: '',
       dailyClaimed: false,
       sessions: 0,
       playTimeMs: 0,
@@ -5445,11 +5447,19 @@ OrientMgr.init();
     _today: function(){ return new Date().toISOString().slice(0,10); },
     _rollDay: function(){
       var t = this._today();
-      if (this.data.lastDaily !== t) {
-        if (this.data.lastDaily) this.data.streak += 1;
-        this.data.lastDaily = t;
-        this.data.dailyClaimed = false;
+      if (this.data.lastDaily === t) return;
+      var prev = this.data.lastDaily;
+      if (prev) {
+        if (!this.data.dailyClaimed) this.data.streak = 0;
+        else {
+          var prevD = new Date(prev + 'T12:00:00');
+          var todayD = new Date(t + 'T12:00:00');
+          var gap = Math.round((todayD - prevD) / 86400000);
+          if (gap > 1) this.data.streak = 0;
+        }
       }
+      this.data.lastDaily = t;
+      this.data.dailyClaimed = false;
     },
     _syncRank: function(){
       var r = this.ranks[0].name;
@@ -5484,9 +5494,16 @@ OrientMgr.init();
     },
     claimDaily: function(){
       this._rollDay();
+      var t = this._today();
       if (this.data.dailyClaimed) { toast('Daily reward already claimed'); return; }
+      var y = new Date();
+      y.setDate(y.getDate() - 1);
+      var yStr = y.toISOString().slice(0,10);
+      if (this.data.lastClaimDate === yStr) this.data.streak = (this.data.streak || 0) + 1;
+      else if (this.data.lastClaimDate !== t) this.data.streak = Math.max(1, this.data.streak || 1);
       this.data.dailyClaimed = true;
-      var reward = 40 + Math.min(120, this.data.streak * 5);
+      this.data.lastClaimDate = t;
+      var reward = 40 + Math.min(120, Math.max(0, this.data.streak - 1) * 5);
       this.addXP(reward, 'Daily Reward');
       this.save();
       if (window.Snd && Snd.ok) Snd.ok();
@@ -5550,7 +5567,7 @@ OrientMgr.init();
       host.innerHTML =
         '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">' +
           '<div class="sec">Smart Hub</div>' +
-          '<button class="btn bg bsm" style="padding:6px 10px" onclick="window.__claimDaily()">🎁 Daily</button>' +
+          '<button class="btn bg bsm" style="padding:6px 10px;'+(Prog.data.dailyClaimed?'opacity:.45':'')+'" onclick="window.__claimDaily()">'+(Prog.data.dailyClaimed?'✓ Daily':'🎁 Daily')+'</button>' +
         '</div>' +
         '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px">' +
           '<div style="padding:10px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08)">' +
@@ -5704,7 +5721,7 @@ OrientMgr.init();
     },
     registerSW: function(){
       if (!('serviceWorker' in navigator)) return;
-      navigator.serviceWorker.register('./sw.js?v=35').catch(function(){});
+      navigator.serviceWorker.register('./sw.js?v=37').catch(function(){});
     }
   };
 
@@ -5729,11 +5746,9 @@ OrientMgr.init();
   PWA.bindInstall();
   PWA.registerSW();
   Perf.init();
+  Prog.data.sessions = (Prog.data.sessions || 0) + 1;
+  Prog.save();
   Rec.render();
-  setInterval(function(){
-    Prog.data.sessions += 1;
-    Prog.save();
-  }, 60000);
 })();
 
 

@@ -219,6 +219,10 @@ Game.prototype.done=function(winner){
   if(soloScore!=null)Leaderboard.record(this.id,this.title,soloScore);
   Ach.check();Meta.check(S.prof);
   Daily.checkComplete(this.id);
+  if (typeof Prog !== 'undefined') {
+    Prog.markPlayed(this.id);
+    Prog.addXP(12, 'Round complete');
+  }
   Drama.tick('win');Announcer.win(winner||'Nobody');
   Save.save();
 };
@@ -658,7 +662,7 @@ setStyle:function(s,el){this._style=s;document.querySelectorAll('#wstyles .pchip
 _goStep:function(n){document.querySelectorAll('.wstep').forEach(function(s){s.classList.remove('active');});var el=document.getElementById('ws'+n);if(el)el.classList.add('active');this._step=n;var dots=document.querySelectorAll('.wprogdot');dots.forEach(function(d,i){d.className='wprogdot'+(i<n?' on':'');});Snd.click();},
 next:function(){if(this._step===1){var nm=(document.getElementById('wname').value||'').trim();if(!nm){toast('Enter your name!');return;}S.prof.name=nm;}if(this._step===4)return;if(this._step===3){this._scan();return;}this._goStep(this._step+1);},
 _scan:function(){var self=this;this._goStep(4);var msgs=['Analyzing playstyle...','Building operator profile...','Calibrating betrayal index...','Computing trust matrix...','⚡ Profile ready!'];var bar=document.getElementById('wscan-bar');var msg=document.getElementById('wscan-msg');var icon=document.getElementById('wscan-icon');var result=document.getElementById('wscan-result');var prs=Persona.types[{deception:'deceptive',strategy:'strategic',reflex:'aggressive',chaos:'chaotic'}[self._style||'chaos']||'survivor'];var i=0;var iv=setInterval(function(){if(msg)msg.textContent=msgs[i]||'';if(bar)bar.style.width=((i+1)/msgs.length*100)+'%';i++;if(i>=msgs.length){clearInterval(iv);if(icon)icon.textContent=prs?prs.icon:'🔰';if(result){result.style.opacity='1';result.innerHTML='<div style="font-size:1.25rem;font-weight:800;margin-bottom:4px">'+(prs?prs.label:'Operative')+'</div><div style="opacity:.42;font-size:.78rem;margin-bottom:16px">Starting rank: Rookie</div><button class="btn bw bf" style="max-width:240px" onclick="W.finish()">Enter PrismCap →</button>';}Hap.ok();}},450);},
-finish:function(){S.prof.av=this._av;localStorage.setItem('po5s','1');Save.save();var w=document.getElementById('welcome');if(w){w.style.opacity='0';w.style.transition='opacity .45s ease';setTimeout(function(){w.classList.add('out');},450);}UI.home();UI.prof();Snd.ok();Hap.ok();toast('Welcome, '+S.prof.name+'!');}};
+finish:function(){S.prof.av=this._av;localStorage.setItem('po5s','1');Save.save();var w=document.getElementById('welcome');if(w){w.style.opacity='0';w.style.transition='opacity .45s ease';setTimeout(function(){w.classList.add('out');},450);}UI.home();UI.prof();Snd.ok();Hap.ok();toast('Welcome, '+S.prof.name+'!');setTimeout(function(){if(!S.prof.games){var ch=Daily.getToday();Modal.open('<div style="text-align:center;padding:4px 0"><div style="font-size:2.2rem;margin-bottom:10px">'+ch.icon+'</div><div style="font-weight:800;font-size:1.02rem;margin-bottom:6px">Your first mission</div><div style="font-size:.8rem;opacity:.45;margin-bottom:18px;line-height:1.55">'+ch.title+' — '+ch.desc+'<br><span style="color:var(--amber);font-weight:700">+'+ch.xp+' XP</span> when you complete it</div><button class="btn bw bf" onclick="Modal.close();GL.launch(\''+ch.game+'\')">▶ Play now</button><button class="btn bg bf" style="margin-top:8px" onclick="Modal.close();Nav.go(\'library\')">Browse all games</button></div>');}else if(typeof Prog!=='undefined'&&!Prog.data.dailyClaimed){toast('🎁 Daily reward waiting on Home');}},1100);}};
 
 // ═══ LOGO ANIMATION ══════════════════════════════════════════════════
 function animLogo(id){var c=document.getElementById(id);if(!c)return;var x=c.getContext('2d'),a=0,W=c.width,H=c.height;var cols=['#FF2D55','#FF6B00','#BF5AF2','#00D4FF','#30D158','#FFD60A'];(function draw(){x.clearRect(0,0,W,H);x.save();x.translate(W/2,H/2);x.rotate(a);for(var i=0;i<6;i++){x.save();x.rotate(Math.PI*2/6*i);x.fillStyle=cols[i];x.globalAlpha=0.85;x.beginPath();x.moveTo(0,0);x.lineTo(W*.38,-W*.12);x.lineTo(W*.38,W*.12);x.closePath();x.fill();x.restore();}x.fillStyle='#fff';x.globalAlpha=1;x.beginPath();x.arc(0,0,W*.095,0,Math.PI*2);x.fill();x.restore();a+=0.026;requestAnimationFrame(draw);})();}
@@ -5588,6 +5592,11 @@ OrientMgr.init();
           }).join('') : '<div style="font-size:.75rem;opacity:.35">No recent games yet.</div>') +
         '</div>' +
         '<div style="font-size:.62rem;opacity:.45;margin-bottom:4px;text-transform:uppercase;letter-spacing:.08em">Recommended</div>' +
+        (function(){
+          var next = (Meta.unlockables || []).find(function(u){ return !Meta.isUnlocked(u.id); });
+          var hint = next ? '<div style="font-size:.72rem;opacity:.38;margin-bottom:8px;line-height:1.45">Next unlock: <strong style="opacity:.85">'+next.icon+' '+next.name+'</strong> · '+Meta.getProgress(next.id)+'%</div>' : '';
+          return hint;
+        })() +
         '<div style="display:flex;gap:7px;overflow-x:auto">' +
           recs.map(function(g){
             var star = Rec.isFav(g.id) ? '★' : '☆';
@@ -5721,7 +5730,7 @@ OrientMgr.init();
     },
     registerSW: function(){
       if (!('serviceWorker' in navigator)) return;
-      navigator.serviceWorker.register('./sw.js?v=37').catch(function(){});
+      navigator.serviceWorker.register('./sw.js?v=38').catch(function(){});
     }
   };
 

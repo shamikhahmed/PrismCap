@@ -1,4 +1,4 @@
-const CACHE = 'prismcap-v39';
+const CACHE = 'prismcap-v40';
 const ASSETS = [
   './css/capricorn-core.css',
   './',
@@ -16,6 +16,17 @@ const ASSETS = [
   './public/favicon.svg',
   './icon-192.png',
   './icon-512.png',
+  './js/capricorn-motion.js',
+  './js/capricorn-scene.js',
+  './js/capricorn-premium-nav.js',
+  './js/capricorn-cinematic.js',
+  './js/capricorn-deck.js',
+  './js/capricorn-deck-pro.js',
+  './js/capricorn-pitch.js',
+  './js/vendor/gsap.min.js',
+  './js/vendor/ScrollTrigger.min.js',
+  './privacy.html',
+  './changelog.html',
 ];
 
 self.addEventListener('install', (event) => {

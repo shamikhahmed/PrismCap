@@ -365,8 +365,9 @@
   <script src="js/capricorn-cinematic.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    if (window.CapPremiumNav) CapPremiumNav.init({ item: '.ni' });
-  });
+      if (window.CapPremiumNav) CapPremiumNav.init();
+      if (window.CapCinematic) CapCinematic.init({ scene: false });
+    });
 </script>
 </body>
 </html>

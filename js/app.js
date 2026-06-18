@@ -1603,8 +1603,8 @@ document.addEventListener('DOMContentLoaded', function() {
       var ov = document.getElementById('ov');
       if (ov && ov.className === 'open') { Modal.close(); e.preventDefault(); }
     }
-    // Tab cycling
-    if (e.key === 'Tab' && S.cur !== 'game') {
+    // Tab cycling (Alt+Arrow — do not hijack Tab; breaks keyboard focus)
+    if (e.altKey && e.key === 'ArrowRight' && S.cur !== 'game') {
       var tabs=['home','library','arcade','dashboard','profile'];
       var ci = tabs.indexOf(S.cur);
       Nav.go(tabs[(ci+1)%tabs.length]);
@@ -3802,30 +3802,8 @@ window.addEventListener('load', function() {
 // Add notif toggle to S.cfg
 if (typeof S.cfg.notif === 'undefined') S.cfg.notif = true;
 
-// Patch toast to respect notif setting
-var _baseToast = window.toast;
-window.toast = function(msg, dur, dir) {
-  // Always show critical notifications (errors, wins)
-  var isCritical = msg && (msg.includes('❌')||msg.includes('Error')||msg.includes('Win'));
-  if (!S.cfg.notif && !isCritical) return;
-  _baseToast(msg, dur, dir);
-};
-
 // ── 2. NOTIFICATION TOGGLE IN SETTINGS HTML ──────────────────────
-// Inject into profile settings after load
-setTimeout(function() {
-  var settingsGlass = document.querySelector('#profile-screen .glass');
-  if (settingsGlass && !document.getElementById('_notif-row')) {
-    var row = document.createElement('div');
-    row.className = 'srow';
-    row.id = '_notif-row';
-    row.innerHTML = '<span style="font-size:.84rem;font-weight:600">🔔 In-app Notifications</span><div class="tog ' + (S.cfg.notif?'on':'') + '" id="tnotif" onclick="GL.togSet(\'notif\',this)"></div>';
-    // Insert before last child (Reset button area)
-    var rows = settingsGlass.querySelectorAll('.srow');
-    var lastRow = rows[rows.length-1];
-    settingsGlass.insertBefore(row, lastRow.nextSibling);
-  }
-}, 2000);
+// (toast + settings rows patched once below — see §14)
 
 // ── 3. SOLO + BOT LAUNCH for all games ───────────────────────────
 // Override GL.launch to give 3 options: Solo, vs Bot, Multiplayer
@@ -5197,7 +5175,7 @@ setTimeout(function() {
 
 // ── 14. NOTIFICATION TOGGLE IN SETTINGS ──────────────────────────
 setTimeout(function() {
-  var settingsGlass = document.querySelector('#profile-screen .glass');
+  var settingsGlass = _profileSettingsGlass();
   if (settingsGlass && !document.getElementById('_nrow')) {
     var row = document.createElement('div');
     row.className = 'srow'; row.id = '_nrow';
@@ -5268,12 +5246,23 @@ GL.togSet = function(key, el) {
   _baseTogSet(key, el);
 };
 
-// Override toast to respect notif setting
-var _baseToast = window.toast;
-window.toast = function(msg, dur, dir) {
-  if (!S.cfg.notif && !dir) return;
-  _baseToast(msg, dur, dir);
-};
+// Override toast to respect notif setting (closure — never reuse global _baseToast)
+(function () {
+  var baseToast = window.toast;
+  window.toast = function (msg, dur, dir) {
+    var isCritical = msg && (String(msg).includes('❌') || String(msg).includes('Error') || String(msg).includes('Win'));
+    if (!S.cfg.notif && !isCritical && !dir) return;
+    baseToast(msg, dur, dir);
+  };
+})();
+
+function _profileSettingsGlass() {
+  var panels = document.querySelectorAll('#profile-screen .glass');
+  for (var i = 0; i < panels.length; i++) {
+    if (panels[i].querySelector('.srow')) return panels[i];
+  }
+  return null;
+}
 
 // ── 16. ADDITIONAL CSS TWEAKS ─────────────────────────────────────
 (function() {

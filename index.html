@@ -213,7 +213,7 @@
       <input id="game-search" placeholder="🔍  Search games..." autocorrect="off" oninput="GL.search(this.value)" style="width:100%;padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.06);font-size:.88rem;color:#fff;outline:none">
     </div>
   </div>
-  <div style="display:flex;gap:6px;padding:0 15px 12px;overflow-x:auto;scrollbar-width:none" class="noscroll" id="cats" style="touch-action:pan-x;-webkit-overflow-scrolling:touch">
+  <div style="display:flex;gap:6px;padding:0 15px 12px;overflow-x:auto;scrollbar-width:none;touch-action:pan-x;-webkit-overflow-scrolling:touch" class="noscroll" id="cats">
     <div class="pill on" data-c="all" onclick="GL.filter('all')">All</div>
     <div class="pill" data-c="multiplayer" onclick="GL.filter('multiplayer')">Multiplayer</div>
     <div class="pill" data-c="solo" onclick="GL.filter('solo')">Solo</div>

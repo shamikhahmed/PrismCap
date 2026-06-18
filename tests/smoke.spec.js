@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('PrismCap smoke', () => {
   // Known init noise on e2e boot (DevSel welcome animation); Nav + most-played tests cover shell health.
-  test.skip('loads shell without fatal errors', async ({ page }) => {
+  test('loads shell without fatal errors', async ({ page }) => {
     const errors = [];
     page.on('pageerror', e => errors.push(e.message));
     await page.goto('/?e2e=1');

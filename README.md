@@ -154,3 +154,16 @@ Karachi, Pakistan
 ---
 
 *Built by Shamikh Ahmed — offline party games OS.*
+
+## Screen gallery
+
+```bash
+npm run gallery        # regenerate docs/screenshots/gallery/ (10 shots)
+npm run gallery:view   # then open http://127.0.0.1:8767/screen-gallery.html
+```
+
+## Verify
+
+```bash
+npm run verify   # Playwright suite — CI runs this on every push
+```

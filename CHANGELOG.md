@@ -1,5 +1,12 @@
 # Changelog — PrismCap
 
+## 4.3.0 (2026-07-11)
+- Cap Standard rollout: 10-shot screen gallery (5 shell screens x mobile/desktop, `npm run gallery`) + browsable `screen-gallery.html`. Game-screen shots deferred (needs live session).
+- CI: PrismCap CI workflow runs Playwright suite on every push; package-lock resynced.
+- `verify` / `gallery` / `gallery:view` npm scripts per Cap Standard contract.
+- SW cache prismcap-v41.
+
+
 ## 4.1.3 (2026-06-15)
 - Restore pre–Capricorn identity home-screen icons; service worker cache bump.
 

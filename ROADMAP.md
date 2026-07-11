@@ -9,10 +9,10 @@ Current shipped state. See `CHANGELOG.md` for how we got here.
 | Cap Standard item | Status |
 |---|---|
 | Docs pack | ✅ |
-| Screen gallery | ❌ |
+| Screen gallery | ✅ |
 | Version discipline | ✅ |
-| QA / e2e | 🟡 |
-| CI gate | ❌ |
+| QA / e2e | ✅ |
+| CI gate | ✅ |
 | PWA polish | ✅ |
 | Demo mode | ✅ |
 
@@ -22,6 +22,7 @@ Current shipped state. See `CHANGELOG.md` for how we got here.
 3. `verify` script per Cap Standard
 
 ## Later
+- Gallery: add game-screen shots (launch a game session in spec)
 - Game completion audit — verify all 38 playable end-to-end
 - Score history export
 

@@ -31,6 +31,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 <noscript><link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+<link rel="preload" href="css/base.css" as="style">
+<link rel="preload" href="css/components.css" as="style">
 <link rel="stylesheet" href="css/capricorn-core.css">
 <style>:root{--cap-accent:#c77dff}</style>
 <link rel="stylesheet" href="css/base.css">
@@ -39,6 +41,7 @@
 <link rel="stylesheet" href="css/identity.css">
 </head>
 <body data-cap-app="1">
+<a href="#app" class="cap-skip-link">Skip to content</a>
 <div class="cap-scroll-progress" aria-hidden="true"></div>
 <div class="cap-ambient" aria-hidden="true"></div>
 <canvas id="cap-scene" class="cap-scene-canvas cap-scene-canvas--subtle" aria-hidden="true"></canvas>
@@ -65,6 +68,7 @@
     <div id="ds-models" style="display:flex;flex-direction:column;gap:7px;max-height:55vh;overflow-y:auto;-webkit-overflow-scrolling:touch"></div>
   </div>
   <div style="margin-top:16px;font-size:.6rem;opacity:.15">Change anytime in Profile Settings</div>
+  <button onclick="DevSel.pickModel('ip16p',true)" style="margin-top:14px;background:none;border:none;color:rgba(255,255,255,.25);font-size:.68rem;cursor:pointer;padding:6px 12px;letter-spacing:.06em">Skip for now →</button>
 </div>
 
 <div id="tension-bar"></div>

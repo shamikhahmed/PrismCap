@@ -67,7 +67,7 @@ window.PRISM_GAME_FACTORIES.push(function() {
       (result ?
         '<div style="text-align:center;padding:14px;background:rgba(255,255,255,.05);border-radius:13px">' +
         (result.draw ? '<div style="font-size:1.1rem;font-weight:700">It\'s a Draw!</div>' : '<div style="font-size:1.1rem;font-weight:700;color:' + curColor + '">' + curPlayer.name + ' Wins! ' + curMark + '</div>') +
-        '<div style="display:flex;gap:8px;margin-top:12px;justify-content:center"><button class="btn bw" onclick="window._ttreset()">Play Again</button><button class="btn bg" onclick="GL.exitGame()">Exit</button></div>' +
+        '<div style="display:flex;gap:8px;margin-top:12px;justify-content:center"><button type="button" class="btn bw" onclick="window._ttreset()">Play Again</button><button type="button" class="btn bg" onclick="GL.exitGame()">Exit</button></div>' +
         '</div>'
         : '<div style="text-align:center;opacity:.38;font-size:.8rem">' + curPlayer.av + ' ' + curPlayer.name + ' — play <span style="color:' + curColor + ';font-weight:700">' + curMark + '</span></div>'
       ) +

@@ -13,14 +13,11 @@ nav{margin-bottom:28px;font-size:14px}
 nav a{margin-right:12px;color:#888}
 h1{font-size:1.75rem;margin:24px 0 12px;letter-spacing:-.02em}
 h2{font-size:1.15rem;margin:20px 0 8px;color:#a855f7}
-h3{font-size:1rem;margin:16px 0 6px}
 p,li{font-size:15px;color:#888;margin-bottom:10px}
 ul{margin:8px 0 16px 20px}
-code{background:rgba(255,255,255,.06);padding:2px 6px;border-radius:4px;font-size:.9em}
 footer{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font-size:13px;color:#888}
 </style>
-
-  <link rel="stylesheet" href="css/capricorn-core.css">
+<link rel="stylesheet" href="css/capricorn-core.css">
 </head>
 <body>
 <div class="cap-scroll-progress" aria-hidden="true"></div>
@@ -30,36 +27,42 @@ footer{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255,255,.0
   <a href="presentation.html">Presentation</a>
   <a href="pitch.html">Pitch</a>
 </nav>
-<article><h1>PrismCap — Privacy Policy</h1>
-<p><strong>Last updated:</strong> June 10, 2026</p>
-<p>PrismCap is an offline-first Progressive Web App. <strong>Your data stays on your device</strong> unless you explicitly export it.</p>
-<h2>What we collect</h2>
-<ul><li><strong>Nothing by default.</strong> No accounts, analytics SDKs, or third-party trackers ship in this app.</li>
-<li>Optional features (e.g. VaultCap LLM import) send data only when you enable them and supply your own API key at runtime.</li>
-<p></ul></p>
-<h2>Storage</h2>
-<ul><li>App state is stored in <strong>localStorage</strong> and/or <strong>IndexedDB</strong> in your browser.</li>
-<li>Uninstalling or clearing site data removes local copies.</li>
-<p></ul></p>
-<h2>Network</h2>
-<ul><li>Live price or proxy features may call endpoints you configure (e.g. LedgerCap PSX proxy).</li>
-<li>GitHub Pages serves static files only — no server-side access to your vault.</li>
-<p></ul></p>
-<h2>Children</h2>
-<ul><li>DeePonyCap is child-friendly; still, parents should supervise device sharing and exports.</li>
-<p></ul></p>
-<h2>Contact</h2>
-<p>Built by Capricorn Systems — issues via the PrismCap GitHub repository.</p>
+<article>
+  <h1>PrismCap — Privacy Policy</h1>
+  <p><strong>Last updated:</strong> July 19, 2026</p>
+  <p>PrismCap is an offline-first Progressive Web App. <strong>Your game data stays on your device</strong> unless you explicitly export or copy it.</p>
+  <h2>What we collect</h2>
+  <ul>
+    <li><strong>Nothing by default.</strong> No accounts, analytics SDKs, or third-party trackers ship in this app.</li>
+    <li>No login. No Capricorn cloud sync for saves.</li>
+  </ul>
+  <h2>Storage</h2>
+  <ul>
+    <li>Profile, XP, preferences, and recent-play data use <strong>localStorage</strong> in your browser.</li>
+    <li>Clearing site data or removing the PWA deletes local copies.</li>
+  </ul>
+  <h2>Network</h2>
+  <ul>
+    <li>Core play works <strong>fully offline</strong> after assets are cached by the service worker.</li>
+    <li>GitHub Pages serves static files only — Capricorn cannot read your local saves.</li>
+  </ul>
+  <h2>Children</h2>
+  <ul>
+    <li>Party / pass-and-play entertainment. Supervise younger players.</li>
+  </ul>
+  <h2>App Store nutrition (planned native wrap)</h2>
+  <ul>
+    <li><strong>Data Not Collected</strong> — local-only progress.</li>
+  </ul>
+  <h2>Contact</h2>
+  <p>Built by Capricorn Systems — issues via the <a href="https://github.com/shamikhahmed/PrismCap">PrismCap GitHub repository</a>.</p>
 </article>
-<footer>© 2026 Shamikh Ahmed · <a href="https://github.com/shamikhahmed/PrismCap">GitHub</a></footer>
-
-  <canvas id="cap-scene" class="cap-scene-canvas cap-scene-canvas--subtle" aria-hidden="true"></canvas>
-
-  <script src="js/vendor/gsap.min.js"></script>
-  <script src="js/vendor/ScrollTrigger.min.js"></script>
-  <script src="js/capricorn-scene.js"></script>
-  <script src="js/capricorn-motion.js"></script>
-  <script src="js/capricorn-cinematic.js"></script>
-  <script>document.addEventListener('DOMContentLoaded',function(){if(window.CapCinematic)CapCinematic.init({canvas:'#cap-scene'});});</script>
+<footer>© 2026 Capricorn Systems · <a href="https://github.com/shamikhahmed/PrismCap">GitHub</a></footer>
+<canvas id="cap-scene" class="cap-scene-canvas cap-scene-canvas--subtle" aria-hidden="true"></canvas>
+<script src="js/vendor/gsap.min.js"></script>
+<script src="js/vendor/ScrollTrigger.min.js"></script>
+<script src="js/capricorn-scene.js"></script>
+<script src="js/capricorn-cinematic.js"></script>
+<script src="js/capricorn-premium-nav.js"></script>
 </body>
 </html>

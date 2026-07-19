@@ -2,45 +2,52 @@
 
 ## Current state
 - **Shipped as PWA** on GitHub Pages (Add to Home Screen).
-- **Capacitor scaffold (planned):** wrap static build in `@capacitor/core` iOS shell.
+- Live: https://shamikhahmed.github.io/PrismCap/
+- Privacy URL: https://shamikhahmed.github.io/PrismCap/privacy.html
+- Version: see `VERSION.json` (store pack aligned with **4.3.8**).
 
-## Capacitor plan
-1. `npm init` + `@capacitor/cli` in repo root (webDir: `.`)
-2. `npx cap add ios` — copy `index.html` entry, icons from `icon-512.png`
-3. Configure `Info.plist`: `NSPhotoLibraryUsageDescription` if photos (DeePonyCap)
-4. Disable third-party cookies; keep localStorage/IndexedDB
+## Listing copy (draft)
 
-## TestFlight checklist
-- [ ] App icons 1024×1024 from `icon-512.png`
-- [ ] Privacy nutrition labels: **Data Not Collected** (local-only)
-- [ ] Screenshots: iPhone 6.7" + 6.1"
-- [ ] Review notes: offline PWA, no account required
-- [ ] Export compliance: no encryption beyond standard iOS APIs
+**Name:** PrismCap
 
-## Disclaimers (39 offline games)
-- Offline party games for entertainment; supervise younger players.
+**Subtitle (30):** 39 offline party games
 
-## Version
-See `VERSION.json` — current `4.0.0`.
+**Description:**
+PrismCap is a pass-and-play party game console that runs fully offline. Thirty-nine multiplayer and solo games on one device — no accounts, no ads, no cloud required. Smart Hub tracks XP and streaks on-device. Load `?demo=1` for investor demos.
 
-## Phase 4 scaffold (June 2026)
+**Keywords:** party games, pass and play, offline games, multiplayer phone, board games
 
-- [x] `capacitor.config.json` — appId configured
-- [x] `package.json` — `@capacitor/core`, `@capacitor/ios`, `@capacitor/cli`
-- [x] Scripts: `npm run cap:sync`, `npm run cap:ios`
-- [x] `icon-1024.png` for App Store Connect (from `icon-512.png` upscale or generate-icons)
-- [ ] `npx cap add ios` — run after Xcode installed (`npm run cap:init`)
-- [ ] TestFlight upload — requires Apple Developer account
+**Category:** Games / Family / Board
 
-### Xcode setup (when ready)
+**Age:** 12+ (party themes; parental discretion)
 
+**What's New:** Home layout fix for Mac; demo profile sync; Smart Hub LV/XP truth.
+
+## Privacy nutrition
+- **Data Not Collected** (local-only XP/profile in localStorage).
+
+## Screenshots
+Captured at `docs/store-screenshots/` (iPhone 6.7" class viewport):
+- `iphone67-home.png`
+- `iphone67-library.png`
+- `iphone67-arcade.png`
+- `iphone67-dashboard.png`
+- `iphone67-profile.png`
+- `iphone67-game-spy.png`
+- `mac-home.png` (diligence / web)
+
+## Capacitor / TestFlight
+1. `npm install` + `npm run cap:init` when Xcode ready
+2. Icons: `icon-1024.png` / maskable in `public/`
+3. Review notes: offline PWA; no account; demo via `?demo=1`
+4. Export compliance: no custom crypto beyond platform TLS for Pages fetch
+
+## Disclaimers
+- Offline party entertainment; supervise younger players.
+- Rules-based Smart Hub — **not** an LLM coach.
+
+## QA gate (before store upload)
 ```bash
-npm install
-npm run cap:init    # cap add ios + sync (first time)
-npm run cap:ios     # open Xcode
+npx playwright test
 ```
-
-**You do NOT need Swift Playgrounds** — use **Xcode.app** from the Mac App Store for Capacitor iOS builds.
-
-### Privacy policy URL
-Use hosted: `https://shamikhahmed.github.io/<AppName>/privacy.html`
+Expect home integrity + play-smoke green.

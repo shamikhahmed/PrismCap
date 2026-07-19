@@ -7,7 +7,7 @@
 39 offline Pass & Play games PWA (former PrismOS merged in).
 
 ## Facts
-**Version:** 4.3.7
+**Version:** 4.3.8
 **Live:** https://shamikhahmed.github.io/PrismCap
 **Repo:** https://github.com/shamikhahmed/PrismCap
 **Stack:** Vanilla JS PWA. Game registry pattern (`js/games/`). Playwright tests.
@@ -21,7 +21,7 @@ npm run gallery               # shell screens (CAPTURE_GALLERY=1)
 ```
 
 ## Architecture
-- `js/app.js` — shell, toasts, settings, keyboard tab cycling, SW register `?v=437`
+- `js/app.js` — shell, toasts, settings, keyboard tab cycling, SW register `?v=438`
 - `js/games/` — one module per game (example-game.js is the template)
 - `js/cap-demo-mode.js`, `js/cap-desktop-nav.js` — added 2026-07-11
 - `public/` — Capricorn OS brand icons (also mirrored to root for PWA)

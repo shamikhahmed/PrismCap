@@ -1,23 +1,26 @@
 # PrismCap — Privacy Policy
 
-**Last updated:** June 10, 2026
+**Last updated:** July 19, 2026
 
-PrismCap is an offline-first Progressive Web App. **Your data stays on your device** unless you explicitly export it.
+PrismCap is an offline-first Progressive Web App. **Your game data stays on your device** unless you explicitly export or copy it.
 
 ## What we collect
 - **Nothing by default.** No accounts, analytics SDKs, or third-party trackers ship in this app.
-- Optional features (e.g. VaultCap LLM import) send data only when you enable them and supply your own API key at runtime.
+- No login. No Capricorn cloud sync for saves.
 
 ## Storage
-- App state is stored in **localStorage** and/or **IndexedDB** in your browser.
-- Uninstalling or clearing site data removes local copies.
+- Profile, XP, preferences, and recent-play data use **localStorage** in your browser.
+- Clearing site data or uninstalling the PWA removes local copies.
 
 ## Network
-- Live price or proxy features may call endpoints you configure (e.g. LedgerCap PSX proxy).
-- GitHub Pages serves static files only — no server-side access to your vault.
+- Core play works **fully offline** after the app and assets are cached.
+- GitHub Pages serves static files only — Capricorn cannot read your local saves.
 
 ## Children
-- DeePonyCap is child-friendly; still, parents should supervise device sharing and exports.
+- Party / pass-and-play entertainment. Supervise younger players.
+
+## App Store nutrition (planned native wrap)
+- **Data Not Collected** — local-only progress.
 
 ## Contact
-Built by Capricorn Systems — issues via the PrismCap GitHub repository.
+Built by Capricorn Systems — issues via the [PrismCap GitHub repository](https://github.com/shamikhahmed/PrismCap).

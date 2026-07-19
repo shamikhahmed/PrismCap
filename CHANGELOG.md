@@ -1,3 +1,7 @@
+## 4.3.8
+- Store pack: Prism-only privacy, listing copy, iPhone 6.7" screenshots under docs/store-screenshots/
+- App Store prep docs aligned to 39 games + Data Not Collected
+
 ## 4.3.7
 - Demo seed AFTER game registry — Smart Hub LV/XP matches header; games = Reg.list.length
 - Expose window.Prog/Rec; hub always derives rank from XP.lvl(xp)

@@ -1,6 +1,6 @@
 # PrismCap — User Guide
 
-PrismCap is a **38-game offline gaming platform** built for Pass & Play on a single device. No accounts, no downloads — install once and play anywhere.
+PrismCap is a **36-game offline gaming platform** built for Pass & Play on a single device. No accounts, no downloads — install once and play anywhere.
 
 **Live app:** https://shamikhahmed.github.io/PrismCap
 
@@ -71,7 +71,7 @@ Snake (multiplayer twist), Tournament Mode (4-player bracket)
 | Feature | How to use |
 |---------|------------|
 | **Tournament** | Select Tournament Mode → pick games → 4-player bracket |
-| **QR Transfer** | Suspend game → Export via QR → scan on second device |
+| **State Transfer** | Suspend game → copy transfer code → paste on second device |
 | **Suspend & Resume** | Any game can be saved and continued later |
 | **Director Engine** | Adapts difficulty and pacing automatically |
 
@@ -103,7 +103,7 @@ After first load, PrismCap works **fully offline**:
 - Pick your exact iPhone model on first launch — Dynamic Island and notch spacing are calibrated per device.
 - Use Tournament Mode for game-night brackets across different titles.
 - Enable music for rhythm games; disable in quiet settings.
-- QR transfer works device-to-device without cloud — useful for continuing a long Heist session.
+- Transfer codes work device-to-device without cloud — useful for continuing a long Heist session.
 
 ---
 
@@ -114,7 +114,7 @@ After first load, PrismCap works **fully offline**:
 | Games won't load | Clear Safari cache, revisit live URL, wait for loader to finish |
 | Wrong safe area | Profile → Device → re-select your model |
 | Music won't play | Tap music indicator; iOS may require a user tap first |
-| Progress lost | Data is per-browser; re-installing PWA may reset — export via QR before reset |
+| Progress lost | Data is per-browser; re-installing PWA may reset — copy a transfer code before reset |
 
 ---
 

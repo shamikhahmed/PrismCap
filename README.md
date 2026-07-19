@@ -1,6 +1,6 @@
 # PrismCap 🎮
 
-**38 offline games. Pass & Play. Fully offline gaming platform — by Capricorn Systems.**
+**36 offline games. Pass & Play. Fully offline gaming platform — by Capricorn Systems.**
 
 🔗 **Live:** https://shamikhahmed.github.io/PrismCap
 📱 **Optimized for iPhone** — install as PWA for best experience
@@ -13,7 +13,7 @@ PrismCap is a fully offline, installable gaming platform built as a single-page 
 
 ---
 
-## Games (38)
+## Games (36)
 
 ### 🎭 Social Deception
 - **Shadow Protocol** — Hidden roles, suspicion, betrayal
@@ -59,7 +59,7 @@ PrismCap is a fully offline, installable gaming platform built as a single-page 
 - **Daily Challenges** — New challenge every day
 - **Mutators** — Game modifiers (Sudden Death, Blind Mode, Speed Mode, etc.)
 - **Tournament Bracket** — 4-player bracket play
-- **QR State Transfer** — Transfer game state between devices
+- **State Transfer** — Copy/paste a transfer code between devices (no scannable QR)
 - **Suspend & Resume** — Save and continue any game
 - **Offline PWA** — Install to home screen, works without internet
 

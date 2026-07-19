@@ -110,6 +110,7 @@ body[data-device="mac"]  .btn  { font-size: 1rem; }
 /* ── LANDSCAPE: phone ── */
 @media (orientation: landscape) and (max-height: 500px) {
   :root  { --sat: 0px; --sab: 0px; }
+  body:has(#game-screen.active) { --sat: env(safe-area-inset-top, 0px); --sab: env(safe-area-inset-bottom, 0px); }
   #nav   { padding-top: 2px; padding-bottom: 2px; }
   .ni    { padding: 4px 0 2px; }
   .screen { padding-bottom: calc(var(--sab) + 52px); }
@@ -124,8 +125,10 @@ body[data-device="mac"]  .btn  { font-size: 1rem; }
 @media (min-width: 768px) and (orientation: landscape) {
   #app  { max-width: 100vw !important; left: 0 !important; transform: none !important; }
   body[data-device="ipad"] #app { max-width: 100vw; left: 0; transform: none; }
-  .screen { display: grid; grid-template-columns: 260px 1fr; gap: 0; padding-top: 0; }
+  .screen:not(#game-screen) { display: grid; grid-template-columns: 260px 1fr; gap: 0; padding-top: 0; }
+  #game-screen.active { display: flex !important; flex-direction: column; padding-top: 0; max-width: min(720px, 100vw); margin: 0 auto; }
   #nav { width: 260px; height: 100vh; flex-direction: column; position: fixed; left: 0; top: 0; bottom: auto; border-right: 1px solid var(--border); border-top: none; padding-bottom: 0; padding-top: 20px; }
+  body:has(#game-screen.active) #nav { display: none; }
   .ni  { flex-direction: row; gap: 10px; padding: 12px 18px; border-radius: 10px; margin: 2px 8px; justify-content: flex-start; }
   .nil { font-size: .82rem; }
 }

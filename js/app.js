@@ -226,6 +226,7 @@ Game.prototype.done=function(winner){
   Drama.tick('win');Announcer.win(winner||'Nobody');
   Save.save();
 };
+function prismBindTap(el,fn){if(!el||typeof fn!=='function')return;var lock=false;var wrap=function(e){if(lock)return;lock=true;try{fn(e);}finally{setTimeout(function(){lock=false;},280);}};el.addEventListener('click',wrap);el.addEventListener('touchend',function(e){e.preventDefault();wrap(e);},{passive:false});}
 Game.prototype.showWin=function(winner,scores,extra){var c=this.col;var sc=(scores||[]).slice(0,5).map(function(s,i){return'<div class="rcard"><div class="rbadge" style="background:'+(i===0?c:'rgba(255,255,255,.08)')+'">'+(i===0?'👑':i+1)+'</div><div><div style="font-weight:700">'+s.n+'</div><div style="font-size:.73rem;opacity:.43">'+s.s+' pts</div></div></div>';}).join('');var cur=(this.gs&&typeof this.gs.sc==='number')?this.gs.sc:0;var best=Leaderboard.best(this.id);var lbExtra='';if(best>0||cur>0){var isNew=cur>0&&cur>=best;lbExtra='<div style="padding:10px 13px;background:rgba(255,214,10,.08);border:1px solid rgba(255,214,10,.18);border-radius:13px;margin:12px 0;display:flex;align-items:center;justify-content:center;gap:10px"><span style="font-size:1.1rem">🏆</span><div><div style="font-size:.68rem;opacity:.38">Local best</div><div style="font-weight:800;font-size:.92rem;color:var(--amber)">'+best+' pts'+(isNew&&cur===best?' · New best!':'')+'</div></div></div>';}document.getElementById('gbody').innerHTML='<div style="text-align:center;padding:14px 0 30px"><div style="font-size:3.4rem;margin-bottom:5px">🏆</div><div style="font-size:2rem;font-weight:800;letter-spacing:-.03em;color:'+c+'">'+winner+'</div><div style="opacity:.38;margin-top:6px;font-size:.84rem">Wins this round!</div>'+(Mutators.active.length?'<div style="margin-top:8px;display:flex;flex-wrap:wrap;gap:4px;justify-content:center">'+Mutators.active.map(function(m){return'<div style="background:'+m.col+'22;border-radius:100px;padding:2px 8px;font-size:.62rem;font-weight:700">'+m.icon+' '+m.name+'</div>';}).join('')+'</div>':'')+lbExtra+(extra||'')+sc+'<div style="margin-top:20px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap"><button type="button" class="btn ba" style="--acc:'+c+';--glow:'+c+'3a" onclick="GL.launch(\''+this.id+'\')">Play Again</button><button type="button" class="btn bg" onclick="GL.exitGame()">Exit</button></div></div>';Snd.ok();Hap.ok();};
 
 // ═══ CINEMATIC INTRO ═════════════════════════════════════════════════
@@ -3914,6 +3915,7 @@ GL.launch = _v6Launch;
 
 // ── 4. CLEAN CINEMATIC (no slow scan messages) ────────────────────
 Cinematic.show = function(game, players, cb) {
+  if (/[?&]e2e=1(?:&|$)/.test(location.search)) { if (cb) cb(); return; }
   var ov = document.createElement('div');
   ov.style.cssText = 'position:fixed;inset:0;z-index:999;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:26px;transition:opacity .45s ease';
   var mutStr = typeof Mutators !== 'undefined' && Mutators.active.length ?
@@ -5719,7 +5721,7 @@ OrientMgr.init();
     },
     registerSW: function(){
       if (!('serviceWorker' in navigator)) return;
-      navigator.serviceWorker.register('./sw.js?v=433').catch(function(){});
+      navigator.serviceWorker.register('./sw.js?v=434').catch(function(){});
     }
   };
 

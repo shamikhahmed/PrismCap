@@ -1,3 +1,8 @@
+## 4.3.4
+- Museum game chrome: safe-area header, ≥44px controls, iPad landscape exempt `#game-screen`
+- Playwright: launch all 39 games + mobile/iPad shell checks
+- Meta/OG: 39 games (was 38)
+
 ## [4.3.3] — 2026-07-19
 
 ### Honesty

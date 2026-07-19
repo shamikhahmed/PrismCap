@@ -9,18 +9,18 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#000">
 <meta name="author" content="Capricorn Systems">
-<meta name="description" content="38 offline party games — pass & play on one device. No accounts, no ads, by Capricorn Systems.">
+<meta name="description" content="39 offline party games — pass & play on one device. No accounts, no ads, by Capricorn Systems.">
 <title>PrismCap</title>
 <link rel="canonical" href="https://shamikhahmed.github.io/PrismCap/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Capricorn Systems">
-<meta property="og:title" content="PrismCap — 38 Offline Party Games">
-<meta property="og:description" content="38 offline party games — pass & play on one device. No accounts, no ads, by Capricorn Systems.">
+<meta property="og:title" content="PrismCap — 39 Offline Party Games">
+<meta property="og:description" content="39 offline party games — pass & play on one device. No accounts, no ads, by Capricorn Systems.">
 <meta property="og:url" content="https://shamikhahmed.github.io/PrismCap/">
 <meta property="og:image" content="https://shamikhahmed.github.io/assets/screenshots/prismcap.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="PrismCap — 38 Offline Party Games">
-<meta name="twitter:description" content="38 offline party games — pass & play on one device. No accounts, no ads, by Capricorn Systems.">
+<meta name="twitter:title" content="PrismCap — 39 Offline Party Games">
+<meta name="twitter:description" content="39 offline party games — pass & play on one device. No accounts, no ads, by Capricorn Systems.">
 <meta name="twitter:image" content="https://shamikhahmed.github.io/assets/screenshots/prismcap.png">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="public/favicon.svg" type="image/svg+xml">
@@ -342,11 +342,11 @@
 <div class="screen" id="game-screen">
   <div id="game-progress"><div id="game-progress-fill"></div></div>
   <div class="ghdr" style="gap:8px">
-    <button onclick="GL.exitGame()" style="min-width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0" title="Back (Esc)">←</button>
+    <button type="button" onclick="GL.exitGame()" style="min-width:44px;min-height:44px;border-radius:50%;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0" title="Back (Esc)" aria-label="Back">←</button>
     <div id="gtitle" style="font-size:.9rem;font-weight:700;letter-spacing:-.01em;flex:1;text-align:center"></div>
     <div id="gright" style="display:flex;gap:5px;align-items:center">
-      <button id="ghint-btn" onclick="GL.showHint()" style="width:30px;height:30px;border-radius:50%;background:rgba(255,214,10,.12);border:1px solid rgba(255,214,10,.25);display:none;align-items:center;justify-content:center;font-size:.8rem" title="Hint">💡</button>
-      <button onclick="GL.showGameSettings()" style="width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;font-size:.8rem" title="Settings">⚙️</button>
+      <button type="button" id="ghint-btn" onclick="GL.showHint()" style="min-width:44px;min-height:44px;border-radius:50%;background:rgba(255,214,10,.12);border:1px solid rgba(255,214,10,.25);display:none;align-items:center;justify-content:center;font-size:.8rem" title="Hint" aria-label="Hint">💡</button>
+      <button type="button" onclick="GL.showGameSettings()" style="min-width:44px;min-height:44px;border-radius:50%;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;font-size:.8rem" title="Settings" aria-label="Settings">⚙️</button>
     </div>
   </div>
   <div class="gbody" id="gbody"></div>

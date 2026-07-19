@@ -1,3 +1,7 @@
+## 4.3.6
+- Fix Mac/desktop landscape wrongly applying iPad home grid (empty MP/Solo, shredded layout)
+- Smart Hub rank syncs to profile LV/XP; demo seed games = Reg.list.length; dedupe recent vs recommended
+
 ## 4.3.5
 - Playwright play-smoke: interact every game (start/tap/keys) + mobile/iPad samples
 - Docs/manifest/presentation: remaining 38→39 honesty

@@ -652,7 +652,7 @@ _buildScrolls:function(){var mp=document.getElementById('mp-row'),solo=document.
 _buildLib:function(filter){var grid=document.getElementById('lib');if(!grid)return;var games=filter==='all'?Reg.list:filter==='multiplayer'?Reg.mp():filter==='solo'?Reg.solo():Reg.byCat(filter);var lc=document.getElementById('lib-count');if(lc)lc.textContent=games.length+' games · Fully offline';grid.innerHTML=games.map(function(g){return'<div class="lcard" style="background:'+g.col+'12;border:1px solid '+g.col+'28" onclick="GL.launch(\''+g.id+'\')"><div><div style="font-size:1.8rem;margin-bottom:5px">'+g.icon+'</div><div style="font-size:.88rem;font-weight:800;line-height:1.2">'+g.title+'</div><div style="font-size:.56rem;opacity:.4;margin-top:2px;text-transform:uppercase;letter-spacing:.07em">'+g.type+'</div></div><div><div style="display:inline-flex;align-items:center;gap:3px;background:rgba(255,255,255,.07);border-radius:100px;padding:3px 8px;font-size:.58rem;font-weight:700;margin-top:5px">'+(g.mp?'👥 '+g.min+'-'+g.max+'p':'🎮 Solo')+'</div></div></div>';}).join('');},
 editProfile:function(){var p=S.prof;var avs=['😎','🦊','🐺','🦁','🐯','🦅','🐲','👾','🤖','💀','🎭','🔥','🌟','⚡','🎯'];Modal.open('<div><div style="font-size:1rem;font-weight:800;margin-bottom:12px">Edit Profile</div><input id="_ename" value="'+p.name+'" placeholder="Name" autocorrect="off" style="width:100%;padding:11px;border-radius:11px;border:1px solid rgba(255,255,255,.13);background:rgba(255,255,255,.06);font-size:.9rem;color:#fff;margin-bottom:12px"><div style="font-size:.6rem;opacity:.32;margin-bottom:5px;text-transform:uppercase;letter-spacing:.09em">Avatar</div><div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px">'+avs.map(function(a){return'<div onclick="window._pav(\''+a+'\',this)" style="width:38px;height:38px;border-radius:9px;background:rgba(255,255,255,.06);border:2px solid '+(p.av===a?'#fff':'transparent')+';display:flex;align-items:center;justify-content:center;font-size:1.25rem;cursor:pointer" id="_av-'+a+'">'+a+'</div>';}).join('')+'</div><button type="button" class="btn bw bf" onclick="window._savep()">Save</button></div>');var sel=p.av;window._pav=function(a,el){sel=a;document.querySelectorAll('[id^="_av-"]').forEach(function(e){e.style.borderColor='transparent';});el.style.borderColor='#fff';Snd.click();};window._savep=function(){var nm=document.getElementById('_ename').value.trim();if(nm)S.prof.name=nm;S.prof.av=sel;Save.save();Modal.close();UI.prof();UI.home();toast('Profile saved!');};},
 togSet:function(key,el){S.cfg[key]=!S.cfg[key];el.className='tog'+(S.cfg[key]?' on':'');Save.save();Snd.click();if(key==='bg'||key==='lowPower'||key==='colorBlind'){if(typeof PrismPerf!=='undefined')PrismPerf.apply();}},
-loadDemoSeed:function(opts){var silent=opts&&opts.silent;if(!silent&&!confirm('Load demo operator profile? Adds XP, games played, wins, and achievements for enterprise demos.'))return;S.prof={name:'Demo Operative',av:'🎭',xp:2850,lvl:XP.lvl(2850),games:42,wins:28,losses:14,streak:4,best:7,bluff:12,betrayals:6,reflex:187,time:3600,hist:[],style:'chaos'};S.ach=['g1','w1','w10','p25','s3'];Save.save();UI.prof();UI.home();UI.dash();toast('Demo profile loaded — Level '+S.prof.lvl+' · '+S.prof.games+' games');},
+loadDemoSeed:function(opts){var silent=opts&&opts.silent;if(!silent&&!confirm('Load demo operator profile? Adds XP, games played, wins, and achievements for enterprise demos.'))return;S.prof={name:'Demo Operative',av:'🎭',xp:2850,lvl:XP.lvl(2850),games:(typeof Reg!=='undefined'&&Reg.list?Reg.list.length:39),wins:28,losses:14,streak:4,best:7,bluff:12,betrayals:6,reflex:187,time:3600,hist:[],style:'chaos'};S.ach=['g1','w1','w10','p25','s3'];Save.save();if(typeof Prog!=='undefined'&&Prog.data){Prog.data.xp=S.prof.xp;Prog.data.rank=(XP.ranks[Math.min(Math.max(S.prof.lvl-1,0),XP.ranks.length-1)]||Prog.data.rank);Prog.save&&Prog.save();}if(typeof GL!=='undefined'&&GL._buildScrolls)GL._buildScrolls();UI.prof();UI.home();UI.dash();if(typeof Rec!=='undefined'&&Rec.render)Rec.render();toast('Demo profile loaded — Level '+S.prof.lvl+' · '+S.prof.games+' games');},
 resetData:function(){Modal.open('<div style="text-align:center"><div style="font-size:1.75rem;margin-bottom:5px">⚠️</div><div style="font-size:.97rem;font-weight:700;margin-bottom:4px">Reset All Data?</div><div style="font-size:.78rem;opacity:.38;margin-bottom:14px">All progress deleted.</div><div style="display:flex;gap:7px"><button type="button" class="btn bg" style="flex:1" onclick="Modal.close()">Cancel</button><button type="button" class="btn br" style="flex:1" onclick="Save.reset()">Reset</button></div></div>');}};
 
 // ═══ WELCOME (multi-step) ════════════════════════════════════════════
@@ -3424,6 +3424,7 @@ W.init=function(){
   var _baseHome = UI.home.bind(UI);
   UI.home = function() {
     _baseHome();
+    if (typeof GL !== 'undefined' && GL._buildScrolls) GL._buildScrolls();
     // Greeting
     var h = new Date().getHours();
     var n = S.prof.name || 'Player';
@@ -5558,7 +5559,9 @@ OrientMgr.init();
       var host = this.ensureHost();
       if (!host) return;
       var recents = this.recent.slice(0,4);
-      var recs = this.topRecs();
+      var recentIds = {}; recents.forEach(function(x){ recentIds[x.id]=1; });
+      var recs = this.topRecs().filter(function(g){ return g && !recentIds[g.id]; });
+      if (!recs.length) recs = this.topRecs().slice(0,2);
       host.innerHTML =
         '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">' +
           '<div class="sec">Smart Hub</div>' +
@@ -5567,8 +5570,8 @@ OrientMgr.init();
         '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px">' +
           '<div style="padding:10px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08)">' +
             '<div style="font-size:.58rem;opacity:.45;text-transform:uppercase;letter-spacing:.08em">Rank</div>' +
-            '<div style="font-weight:800;margin-top:4px">' + Prog.data.rank + '</div>' +
-            '<div style="font-size:.7rem;opacity:.45;margin-top:2px">' + Prog.data.xp + ' XP</div>' +
+            '<div style="font-weight:800;margin-top:4px">' + (function(){var lvl=(S.prof&&S.prof.lvl)||1;var r=(typeof XP!=='undefined'&&XP.ranks)?XP.ranks[Math.min(Math.max(lvl-1,0),XP.ranks.length-1)]:Prog.data.rank;return r||Prog.data.rank;})() + '</div>' +
+            '<div style="font-size:.7rem;opacity:.45;margin-top:2px">LV'+(S.prof&&S.prof.lvl?S.prof.lvl:1)+' · ' + ((S.prof&&typeof S.prof.xp==='number')?S.prof.xp:Prog.data.xp) + ' XP</div>' +
           '</div>' +
           '<div style="padding:10px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08)">' +
             '<div style="font-size:.58rem;opacity:.45;text-transform:uppercase;letter-spacing:.08em">Streak</div>' +
@@ -5721,7 +5724,7 @@ OrientMgr.init();
     },
     registerSW: function(){
       if (!('serviceWorker' in navigator)) return;
-      navigator.serviceWorker.register('./sw.js?v=435').catch(function(){});
+      navigator.serviceWorker.register('./sw.js?v=436').catch(function(){});
     }
   };
 

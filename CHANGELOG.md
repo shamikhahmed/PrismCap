@@ -1,3 +1,6 @@
+## 4.3.9 — 2026-07-20
+- Visual DNA: arcade cabinet/cartridge loader, softer neon, home bezel chrome, welcome cart-shell. 39 games offline honesty.
+
 ## 4.3.8
 - Store pack: Prism-only privacy, listing copy, iPhone 6.7" screenshots under docs/store-screenshots/
 - App Store prep docs aligned to 39 games + Data Not Collected

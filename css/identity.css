@@ -1,6 +1,33 @@
-/* PrismOS — light identity overlay (layout/components own structure) */
+/* PrismCap v4.3.9 — arcade cabinet / cartridge visual DNA */
 
-.sv, h1, h2, #gtitle, .feat-title {
-  font-family: 'Audiowide', 'Space Grotesk', sans-serif;
-  letter-spacing: 0.03em;
+:root {
+  --arcade-display: 'Audiowide', 'Space Grotesk', sans-serif;
+  --arcade-body: 'Space Grotesk', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+}
+
+.sv, h1, h2, #gtitle, .feat-title, .loader-title, .wstep-title {
+  font-family: var(--arcade-display);
+  letter-spacing: 0.04em;
+}
+
+#home-screen .screen-header > div:first-child > div:first-child {
+  font-family: var(--arcade-display);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 1.05rem;
+}
+
+#home-screen .screen-header > div:first-child > div:first-child span {
+  opacity: 0.35;
+  font-weight: 400;
+}
+
+/* Craft over pure neon — section labels */
+.sec {
+  filter: saturate(.88);
+}
+
+/* Cartridge notch accent on welcome card */
+.cart-shell .wprogdot.on {
+  background: linear-gradient(135deg, var(--acc), var(--acc2));
 }

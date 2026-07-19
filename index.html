@@ -73,77 +73,89 @@
 
 <div id="tension-bar"></div>
 
-<!-- LOADER -->
+<!-- LOADER — arcade cabinet / cartridge insert ritual -->
 <div id="loader">
-  <div class="lring"><canvas id="lcan" width="88" height="88"></canvas><div class="lring-anim"></div></div>
-  <div style="text-align:center"><div style="font-size:1.72rem;font-weight:800;letter-spacing:-.04em">Prism<span style="opacity:.2">Cap</span></div><div style="font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;opacity:.25;margin-top:1px">Gaming Platform</div></div>
-  <div class="ldots"><span class="ldot"></span><span class="ldot"></span><span class="ldot"></span></div>
-  <div class="lscan" id="lscan"></div>
+  <div class="cab-ritual" aria-hidden="true">
+    <div class="cab-shell">
+      <div class="cab-marquee"><span class="cab-marquee-dot"></span><span class="cab-marquee-dot"></span><span class="cab-marquee-dot"></span></div>
+      <div class="cab-screen-frame">
+        <div class="cab-doors">
+          <div class="cab-door cab-door--l"></div>
+          <div class="cab-door cab-door--r"></div>
+        </div>
+        <div class="cab-screen-inner">
+          <canvas id="lcan" width="64" height="64"></canvas>
+          <div class="loader-title">PrismCap</div>
+          <div class="loader-tagline">39 games. Offline.</div>
+        </div>
+      </div>
+      <div class="cab-slot">
+        <div class="cab-cartridge"><span class="cab-cart-label">PRISM</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="lscan" id="lscan" aria-live="polite"></div>
 </div>
 
 <!-- WELCOME (multi-step) -->
 <div id="welcome">
-  <div style="width:100%;max-width:320px">
+  <div class="cart-shell">
     <div class="wprog" style="justify-content:center" id="wprog">
       <div class="wprogdot on"></div><div class="wprogdot"></div><div class="wprogdot"></div><div class="wprogdot"></div><div class="wprogdot"></div><div class="wprogdot"></div>
     </div>
     <!-- Step 1: Name -->
     <div class="wstep active" id="ws1">
       <canvas id="wcan" width="100" height="100" style="margin-bottom:20px"></canvas>
-      <div style="font-size:2rem;font-weight:800;letter-spacing:-.04em;margin-bottom:5px">✨ PrismCap</div>
-      <div style="font-size:.84rem;opacity:.38;line-height:1.55;margin-bottom:24px">39 games. Fully offline. Always fun! 🎮</div>
-      <input id="wname" placeholder="What's your name?" style="width:100%;padding:14px 18px;border-radius:14px;border:1px solid rgba(255,255,255,.13);background:rgba(255,255,255,.07);font-size:.95rem;font-weight:600;color:#fff;text-align:center;margin-bottom:13px" autocorrect="off">
+      <div class="wstep-title">PrismCap</div>
+      <div class="wstep-sub">39 games. Fully offline. Always fun.</div>
+      <input id="wname" placeholder="What's your name?" class="cart-input" autocorrect="off">
       <button class="btn bw bf blg" onclick="W.next()">Continue →</button>
     </div>
     <!-- Step 2: Gender (for theme suggestions) -->
     <div class="wstep" id="ws2">
-      <div style="font-size:1.6rem;margin-bottom:12px">🌈</div>
-      <div style="font-size:1.1rem;font-weight:800;margin-bottom:5px">How do you identify?</div>
-      <div style="opacity:.38;font-size:.78rem;margin-bottom:18px">Helps us suggest themes you'll love</div>
-      <div style="display:flex;flex-direction:column;gap:8px;width:100%;margin-bottom:16px">
-        <div class="pchip" style="cursor:pointer;justify-content:center;font-size:.92rem" onclick="W.setGender('girl',this)">💕 Girl / Woman</div>
-        <div class="pchip" style="cursor:pointer;justify-content:center;font-size:.92rem" onclick="W.setGender('boy',this)">⚡ Boy / Man</div>
-        <div class="pchip" style="cursor:pointer;justify-content:center;font-size:.92rem" onclick="W.setGender('other',this)">🌈 Non-binary / Other</div>
-        <div class="pchip" style="cursor:pointer;justify-content:center;font-size:.92rem" onclick="W.setGender('skip',this)">🤷 Prefer not to say</div>
+      <div class="wstep-title">How do you identify?</div>
+      <div class="wstep-sub">Helps us suggest themes you'll love</div>
+      <div class="cart-chip-col">
+        <div class="pchip" style="cursor:pointer;justify-content:center;font-size:.92rem" onclick="W.setGender('girl',this)">Girl / Woman</div>
+        <div class="pchip" style="cursor:pointer;justify-content:center;font-size:.92rem" onclick="W.setGender('boy',this)">Boy / Man</div>
+        <div class="pchip" style="cursor:pointer;justify-content:center;font-size:.92rem" onclick="W.setGender('other',this)">Non-binary / Other</div>
+        <div class="pchip" style="cursor:pointer;justify-content:center;font-size:.92rem" onclick="W.setGender('skip',this)">Prefer not to say</div>
       </div>
       <button class="btn bw bf" onclick="W.next()">Continue →</button>
     </div>
     <!-- Step 3: Avatar -->
     <div class="wstep" id="ws3">
-      <div style="font-size:1.1rem;font-weight:800;margin-bottom:5px">Pick your vibe! ✨</div>
-      <div style="opacity:.38;font-size:.8rem;margin-bottom:16px">Your avatar across all games</div>
+      <div class="wstep-title">Pick your vibe</div>
+      <div class="wstep-sub">Your avatar across all games</div>
       <div id="wavs" style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:16px"></div>
       <button class="btn bw bf" onclick="W.next()">Continue →</button>
     </div>
     <!-- Step 4: Style -->
     <div class="wstep" id="ws4r">
-      <div style="font-size:1.6rem;margin-bottom:12px">🎮</div>
-      <div style="font-size:1.1rem;font-weight:800;margin-bottom:5px">Your gaming style?</div>
-      <div style="opacity:.38;font-size:.8rem;margin-bottom:16px">Personalizes everything for you</div>
-      <div style="display:flex;flex-direction:column;gap:8px;width:100%;margin-bottom:16px" id="wstyles">
-        <div class="pchip" style="cursor:pointer;justify-content:center" onclick="W.setStyle('deception',this)">🎭 Deception & Betrayal</div>
-        <div class="pchip" style="cursor:pointer;justify-content:center" onclick="W.setStyle('strategy',this)">♟️ Strategy & Mind Games</div>
-        <div class="pchip" style="cursor:pointer;justify-content:center" onclick="W.setStyle('reflex',this)">⚡ Reflex & Speed</div>
-        <div class="pchip" style="cursor:pointer;justify-content:center" onclick="W.setStyle('chaos',this)">🌀 Pure Chaos</div>
-        <div class="pchip" style="cursor:pointer;justify-content:center" onclick="W.setStyle('party',this)">🥳 Party Games</div>
-        <div class="pchip" style="cursor:pointer;justify-content:center" onclick="W.setStyle('creative',this)">🎨 Creative & Artistic</div>
+      <div class="wstep-title">Your gaming style?</div>
+      <div class="wstep-sub">Personalizes everything for you</div>
+      <div class="cart-chip-col" id="wstyles">
+        <div class="pchip" style="cursor:pointer;justify-content:center" onclick="W.setStyle('deception',this)">Deception & Betrayal</div>
+        <div class="pchip" style="cursor:pointer;justify-content:center" onclick="W.setStyle('strategy',this)">Strategy & Mind Games</div>
+        <div class="pchip" style="cursor:pointer;justify-content:center" onclick="W.setStyle('reflex',this)">Reflex & Speed</div>
+        <div class="pchip" style="cursor:pointer;justify-content:center" onclick="W.setStyle('chaos',this)">Pure Chaos</div>
+        <div class="pchip" style="cursor:pointer;justify-content:center" onclick="W.setStyle('party',this)">Party Games</div>
+        <div class="pchip" style="cursor:pointer;justify-content:center" onclick="W.setStyle('creative',this)">Creative & Artistic</div>
       </div>
       <button class="btn bw bf" onclick="W.next()">Continue →</button>
     </div>
-    <!-- Step 4: Scanning -->
+    <!-- Step 5: Scanning -->
     <div class="wstep" id="ws5">
-      <div style="font-size:2.5rem;margin-bottom:16px" id="wscan-icon">🔍</div>
-      <div style="font-size:1rem;font-weight:700;margin-bottom:8px">Analyzing profile...</div>
-      <div id="wscan-msg" style="font-size:.75rem;opacity:.38;font-family:monospace;min-height:16px;margin-bottom:20px"></div>
-      <div style="background:rgba(255,255,255,.06);border-radius:100px;height:4px;width:100%;overflow:hidden;margin-bottom:20px"><div id="wscan-bar" style="height:100%;background:linear-gradient(90deg,var(--violet),var(--cyan));border-radius:100px;width:0%;transition:width .4s ease"></div></div>
-      <div id="wscan-result" style="opacity:0;text-align:center;transition:opacity .5s ease"></div>
+      <div class="wstep-title wstep-title--sm">Analyzing profile...</div>
+      <div id="wscan-msg" class="wscan-msg"></div>
+      <div class="cart-progress"><div id="wscan-bar" class="cart-progress-fill"></div></div>
+      <div id="wscan-result" class="wscan-result"></div>
     </div>
     <!-- Step 6: First game picker -->
     <div class="wstep" id="ws6">
-      <div style="font-size:1.6rem;margin-bottom:10px">🎯</div>
-      <div style="font-size:1.1rem;font-weight:800;margin-bottom:5px">Pick your first game</div>
-      <div style="opacity:.38;font-size:.78rem;margin-bottom:14px;line-height:1.45">Matched to your style — tap to launch instantly</div>
-      <div id="wgame-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;width:100%;margin-bottom:14px;max-height:280px;overflow-y:auto"></div>
+      <div class="wstep-title">Pick your first game</div>
+      <div class="wstep-sub">Matched to your style — tap to launch instantly</div>
+      <div id="wgame-grid" class="wgame-grid"></div>
       <button class="btn bg bf" style="margin-bottom:8px" onclick="W.skipGamePicker()">Browse all games →</button>
     </div>
   </div>

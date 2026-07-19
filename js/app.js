@@ -1641,32 +1641,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
   animLogo('lcan');
 
-  // OS boot messages
-  var scanMsgs=['PRISM OS v4.0.0','Loading 39 games...','Wiring Drama Engine...','Calibrating difficulty...','SYSTEM READY ✓'];
+  // Arcade boot ritual (~2s)
+  var scanMsgs=['Insert cartridge...','39 games loaded','Cabinet online','Offline ready ✓'];
   var i=0, scan=document.getElementById('lscan');
-  var biv=setInterval(function(){if(scan)scan.textContent=scanMsgs[i]||'';i++;if(i>=scanMsgs.length)clearInterval(biv);},220);
+  var biv=setInterval(function(){if(scan)scan.textContent=scanMsgs[i]||'';i++;if(i>=scanMsgs.length)clearInterval(biv);},480);
 
   setTimeout(function() {
     GL._buildFeat(); GL._buildScrolls(); GL._buildLib('all');
     UI.home(); UI.dash(); UI.prof();
     Meta.check(S.prof);
-
-    var seen = localStorage.getItem('po5s');
-    var loader = document.getElementById('loader');
-    if (loader) {
-      loader.classList.add('out');
-      setTimeout(function(){loader.style.display='none';}, 600);
-    }
-
-    // Device selection (then welcome if first time)
-    DevSel.init();
-
-    if (!seen) {
-      animLogo('wcan'); W.init();
-    } else {
-      var w = document.getElementById('welcome');
-      if (w) { w.classList.add('out'); w.classList.remove('ready'); }
-    }
 
     if (Suspend.has()) {
       setTimeout(function() {
@@ -1675,30 +1658,41 @@ document.addEventListener('DOMContentLoaded', function() {
       }, 2200);
     }
 
-    // Bus listeners
     Bus.on('drama:tick', function(state) {
       if (state.tension > 72 && Math.random() < 0.11) Announcer.tension();
     });
 
-    // Swipe navigation - DISABLED (caused game slider conflict)
-    // Tab switching only via explicit tap on nav items
-
-    // PWA install
     window.addEventListener('beforeinstallprompt', function(e) {
       e.preventDefault();
       window._installEvt = e;
     });
 
-    // Orient lock
     if (screen.orientation && screen.orientation.lock) {
       screen.orientation.lock('portrait').catch(function(){});
     }
 
-    // Update game counts
     var lc = document.getElementById('lib-count');
     if (lc) lc.textContent = Reg.list.length + ' games · Fully offline';
 
+    DevSel.init();
   }, 1600);
+
+  // ~2s cabinet ritual before revealing shell
+  setTimeout(function() {
+    var seen = localStorage.getItem('po5s');
+    var loader = document.getElementById('loader');
+    if (loader) {
+      loader.classList.add('out');
+      setTimeout(function(){loader.style.display='none';}, 600);
+    }
+
+    if (!seen) {
+      animLogo('wcan'); W.init();
+    } else {
+      var w = document.getElementById('welcome');
+      if (w) { w.classList.add('out'); w.classList.remove('ready'); }
+    }
+  }, 2000);
 });
 
 
@@ -5747,7 +5741,7 @@ OrientMgr.init();
     },
     registerSW: function(){
       if (!('serviceWorker' in navigator)) return;
-      navigator.serviceWorker.register('./sw.js?v=438').catch(function(){});
+      navigator.serviceWorker.register('./sw.js?v=439').catch(function(){});
     }
   };
 

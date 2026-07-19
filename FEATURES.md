@@ -6,7 +6,10 @@
 
 ## S
 - 38 Pass & Play games · XP · daily challenges · QR · offline
+- Capricorn OS brand lock · SW `prismcap-v431` · shell gallery
 
 ## W
-- Playable audit all 38 · game-session gallery · brand · push
+- (shipped in 4.3.1)
 
+## L
+- Playable audit all 38 · game-session gallery shots

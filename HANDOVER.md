@@ -1,13 +1,13 @@
 # PrismCap — Handover
 
 > Read this + `ROADMAP.md` + `~/Capricorn-Brain/01 Projects/PrismCap.md` before working here.
-> Last updated: 2026-07-11 · Fleet-wide standard: `capricorn-tooling/shared/CAP-STANDARD.md`
+> Last updated: 2026-07-19 · Fleet-wide standard: `capricorn-tooling/shared/CAP-STANDARD.md`
 
 ## What this is
 38 offline Pass & Play games PWA (former PrismOS merged in).
 
 ## Facts
-**Version:** 4.2.0
+**Version:** 4.3.1
 **Live:** https://shamikhahmed.github.io/PrismCap
 **Repo:** https://github.com/shamikhahmed/PrismCap
 **Stack:** Vanilla JS PWA. Game registry pattern (`js/games/`). Playwright tests.
@@ -15,24 +15,26 @@
 
 ## Run & verify
 ```bash
-python3 -m http.server 8000   # static
-npm run test:e2e              # if wired — verify
+python3 -m http.server 8767   # or npm run serve
+npm run verify                # Playwright smoke
+npm run gallery               # shell screens (CAPTURE_GALLERY=1)
 ```
 
 ## Architecture
-- `js/app.js` — shell, toasts, settings, keyboard tab cycling
+- `js/app.js` — shell, toasts, settings, keyboard tab cycling, SW register `?v=431`
 - `js/games/` — one module per game (example-game.js is the template)
 - `js/cap-demo-mode.js`, `js/cap-desktop-nav.js` — added 2026-07-11
+- `public/` — Capricorn OS brand icons (also mirrored to root for PWA)
 - `css/capricorn-core.css` — shared design system
 
-## Cap Standard status (2026-07-11)
+## Cap Standard status (2026-07-19)
 | Cap Standard item | Status |
 |---|---|
 | Docs pack | ✅ |
-| Screen gallery | ❌ |
+| Screen gallery | ✅ (shell; game-session deferred) |
 | Version discipline | ✅ |
-| QA / e2e | 🟡 |
-| CI gate | ❌ |
+| QA / e2e | ✅ |
+| CI gate | ✅ |
 | PWA polish | ✅ |
 | Demo mode | ✅ |
 

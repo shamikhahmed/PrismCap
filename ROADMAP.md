@@ -1,9 +1,9 @@
 # PrismCap — Roadmap
 
-> Updated 2026-07-11. Fleet order & standard: `capricorn-tooling/shared/CAP-STANDARD.md`.
+> Updated 2026-07-19. Fleet order & standard: `capricorn-tooling/shared/CAP-STANDARD.md`.
 
-## Now — v4.2.0
-Current shipped state. See `CHANGELOG.md` for how we got here.
+## Now — v4.3.1
+Cap Family Mega-Wave brand lock. See `CHANGELOG.md`.
 
 ## Cap Standard gaps
 | Cap Standard item | Status |

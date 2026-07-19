@@ -1,5 +1,10 @@
 # Changelog — PrismCap
 
+## 4.3.1 (2026-07-19)
+- Cap Family Mega-Wave: Capricorn OS brand lock — `mark.svg`, favicon, apple-touch-icon-180, and separate any/maskable PWA icons in `public/` + root + `manifest.json`.
+- Version / SW cache bump (`prismcap-v431`); SW register query `?v=431`.
+- Shell gallery regenerated for release.
+
 ## 4.3.0 (2026-07-11)
 - Cap Standard rollout: 10-shot screen gallery (5 shell screens x mobile/desktop, `npm run gallery`) + browsable `screen-gallery.html`. Game-screen shots deferred (needs live session).
 - CI: PrismCap CI workflow runs Playwright suite on every push; package-lock resynced.

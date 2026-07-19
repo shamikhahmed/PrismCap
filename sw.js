@@ -1,4 +1,4 @@
-const CACHE = 'prismcap-v41';
+const CACHE = 'prismcap-v431';
 const ASSETS = [
   './css/capricorn-core.css',
   './',
@@ -14,6 +14,10 @@ const ASSETS = [
   './css/components.css',
   './css/identity.css',
   './public/favicon.svg',
+  './public/mark.svg',
+  './public/icon-maskable-192.png',
+  './public/icon-maskable-512.png',
+  './apple-touch-icon-180.png',
   './icon-192.png',
   './icon-512.png',
   './js/capricorn-motion.js',

@@ -1,4 +1,4 @@
-const CACHE = 'prismcap-v432';
+const CACHE = 'prismcap-v433';
 const ASSETS = [
   './css/capricorn-core.css',
   './',
@@ -31,6 +31,7 @@ const ASSETS = [
   './js/vendor/ScrollTrigger.min.js',
   './privacy.html',
   './changelog.html',
+  './assets/qr-prismcap.png',
 ];
 
 self.addEventListener('install', (event) => {

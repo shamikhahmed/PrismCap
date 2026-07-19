@@ -1628,7 +1628,7 @@ document.addEventListener('DOMContentLoaded', function() {
   animLogo('lcan');
 
   // OS boot messages
-  var scanMsgs=['PRISM OS v4.0.0','Loading 38 games...','Wiring Drama Engine...','Calibrating difficulty...','SYSTEM READY ✓'];
+  var scanMsgs=['PRISM OS v4.0.0','Loading 39 games...','Wiring Drama Engine...','Calibrating difficulty...','SYSTEM READY ✓'];
   var i=0, scan=document.getElementById('lscan');
   var biv=setInterval(function(){if(scan)scan.textContent=scanMsgs[i]||'';i++;if(i>=scanMsgs.length)clearInterval(biv);},220);
 
@@ -5719,7 +5719,7 @@ OrientMgr.init();
     },
     registerSW: function(){
       if (!('serviceWorker' in navigator)) return;
-      navigator.serviceWorker.register('./sw.js?v=432').catch(function(){});
+      navigator.serviceWorker.register('./sw.js?v=433').catch(function(){});
     }
   };
 

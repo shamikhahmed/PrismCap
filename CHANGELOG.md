@@ -1,10 +1,21 @@
-## [4.3.2] — 2026-07-19
+## [4.3.3] — 2026-07-19
+
+### Honesty
+- Game count synced to **39** (runtime `Reg.list.length`) — pitch/landing/index were mixed 36/38
+
+### Pitch
+- Capricorn QR already on CTA
+
+### Ops
+- SW `prismcap-v433`
+
+## [4.3.3] — 2026-07-19
 
 ### Pitch
 - Premium Capricorn QR (`assets/qr-prismcap.png`) — H ECC, Capricorn Systems center mark, gold quiet frame on CTA
 
 ### Ops
-- SW `prismcap-v432`
+- SW `prismcap-v433`
 
 # Changelog — PrismCap
 

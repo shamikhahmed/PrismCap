@@ -1,3 +1,9 @@
+## 4.3.7
+- Demo seed AFTER game registry — Smart Hub LV/XP matches header; games = Reg.list.length
+- Expose window.Prog/Rec; hub always derives rank from XP.lvl(xp)
+- Board/MP/Solo rows share `_buildScrollRow` (keyboard + aria)
+- Try-new dedupe vs daily/recent; home integrity Playwright test
+
 ## 4.3.6
 - Fix Mac/desktop landscape wrongly applying iPad home grid (empty MP/Solo, shredded layout)
 - Smart Hub rank syncs to profile LV/XP; demo seed games = Reg.list.length; dedupe recent vs recommended

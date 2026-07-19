@@ -648,11 +648,12 @@ clearTimeout(this._ck);this._ck=setTimeout(function(){if(S.game&&S.game.gs&&Obje
 exitGame:function(){if(S.game){['_ft','_rt2','_dt','_qi','_rl','_si','_pti','_snki','_ifi','_ck'].forEach(function(k){clearInterval(S.game[k]);clearTimeout(S.game[k]);});S.game=null;}Drama.state.tension=0;Drama._updateBanner();Mutators.active=[];Nav.go('home');},
 filter:function(cat){document.querySelectorAll('.pill').forEach(function(p){p.classList.remove('on');});var el=document.querySelector('.pill[data-c="'+cat+'"]');if(el)el.classList.add('on');this._buildLib(cat);},
 _buildFeat:function(){var gs=Reg.list;var f=gs[Math.floor(Math.random()*gs.length)];S.feat=f;var bg=document.getElementById('feat-bg');if(bg)bg.style.background='linear-gradient(135deg,'+f.col+'36,'+f.col+'07)';function set(id,v){var el=document.getElementById(id);if(el)el.textContent=v;}set('feat-title',f.title);set('feat-type',f.type);set('feat-desc',f.desc);set('feat-icon',f.icon);var badge=document.getElementById('feat-badge');if(badge){badge.textContent=f.mp?'👥 Multiplayer':'🎮 Solo';badge.style.background=f.col+'2a';}},
-_buildScrolls:function(){var mp=document.getElementById('mp-row'),solo=document.getElementById('solo-row');var mk=function(g){var d=document.createElement('div');d.className='mcard';d.style.cssText='background:'+g.col+'15;border:1px solid '+g.col+'2e;flex-shrink:0';d.innerHTML='<div style="padding:11px;height:100%;display:flex;flex-direction:column;justify-content:space-between"><div style="font-size:1.65rem">'+g.icon+'</div><div><div style="font-size:.78rem;font-weight:800;line-height:1.2">'+g.title+'</div><div style="font-size:.55rem;opacity:.38;margin-top:1px;text-transform:uppercase;letter-spacing:.07em">'+g.type+'</div></div></div>';d.onclick=function(){GL.launch(g.id);};return d;};if(mp){mp.innerHTML='';Reg.mp().forEach(function(g){mp.appendChild(mk(g));});}if(solo){solo.innerHTML='';Reg.solo().forEach(function(g){solo.appendChild(mk(g));});}},
+_buildScrollRow:function(id,games){var row=document.getElementById(id);if(!row)return;var mk=function(g){var d=document.createElement('div');d.className='mcard';d.setAttribute('role','button');d.setAttribute('tabindex','0');d.setAttribute('aria-label',(g.title||'Game')+' — '+(g.type||''));d.style.cssText='background:'+g.col+'15;border:1px solid '+g.col+'2e;flex-shrink:0';d.innerHTML='<div style="padding:11px;height:100%;display:flex;flex-direction:column;justify-content:space-between"><div style="font-size:1.65rem" aria-hidden="true">'+g.icon+'</div><div><div style="font-size:.78rem;font-weight:800;line-height:1.2">'+g.title+'</div><div style="font-size:.55rem;opacity:.38;margin-top:1px;text-transform:uppercase;letter-spacing:.07em">'+g.type+'</div></div></div>';d.onclick=function(){GL.launch(g.id);};d.onkeydown=function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();GL.launch(g.id);}};return d;};row.innerHTML='';(games||[]).forEach(function(g){row.appendChild(mk(g));});},
+_buildScrolls:function(){this._buildScrollRow('mp-row',Reg.mp());this._buildScrollRow('solo-row',Reg.solo());this._buildScrollRow('board-row',Reg.board());},
 _buildLib:function(filter){var grid=document.getElementById('lib');if(!grid)return;var games=filter==='all'?Reg.list:filter==='multiplayer'?Reg.mp():filter==='solo'?Reg.solo():Reg.byCat(filter);var lc=document.getElementById('lib-count');if(lc)lc.textContent=games.length+' games · Fully offline';grid.innerHTML=games.map(function(g){return'<div class="lcard" style="background:'+g.col+'12;border:1px solid '+g.col+'28" onclick="GL.launch(\''+g.id+'\')"><div><div style="font-size:1.8rem;margin-bottom:5px">'+g.icon+'</div><div style="font-size:.88rem;font-weight:800;line-height:1.2">'+g.title+'</div><div style="font-size:.56rem;opacity:.4;margin-top:2px;text-transform:uppercase;letter-spacing:.07em">'+g.type+'</div></div><div><div style="display:inline-flex;align-items:center;gap:3px;background:rgba(255,255,255,.07);border-radius:100px;padding:3px 8px;font-size:.58rem;font-weight:700;margin-top:5px">'+(g.mp?'👥 '+g.min+'-'+g.max+'p':'🎮 Solo')+'</div></div></div>';}).join('');},
 editProfile:function(){var p=S.prof;var avs=['😎','🦊','🐺','🦁','🐯','🦅','🐲','👾','🤖','💀','🎭','🔥','🌟','⚡','🎯'];Modal.open('<div><div style="font-size:1rem;font-weight:800;margin-bottom:12px">Edit Profile</div><input id="_ename" value="'+p.name+'" placeholder="Name" autocorrect="off" style="width:100%;padding:11px;border-radius:11px;border:1px solid rgba(255,255,255,.13);background:rgba(255,255,255,.06);font-size:.9rem;color:#fff;margin-bottom:12px"><div style="font-size:.6rem;opacity:.32;margin-bottom:5px;text-transform:uppercase;letter-spacing:.09em">Avatar</div><div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px">'+avs.map(function(a){return'<div onclick="window._pav(\''+a+'\',this)" style="width:38px;height:38px;border-radius:9px;background:rgba(255,255,255,.06);border:2px solid '+(p.av===a?'#fff':'transparent')+';display:flex;align-items:center;justify-content:center;font-size:1.25rem;cursor:pointer" id="_av-'+a+'">'+a+'</div>';}).join('')+'</div><button type="button" class="btn bw bf" onclick="window._savep()">Save</button></div>');var sel=p.av;window._pav=function(a,el){sel=a;document.querySelectorAll('[id^="_av-"]').forEach(function(e){e.style.borderColor='transparent';});el.style.borderColor='#fff';Snd.click();};window._savep=function(){var nm=document.getElementById('_ename').value.trim();if(nm)S.prof.name=nm;S.prof.av=sel;Save.save();Modal.close();UI.prof();UI.home();toast('Profile saved!');};},
 togSet:function(key,el){S.cfg[key]=!S.cfg[key];el.className='tog'+(S.cfg[key]?' on':'');Save.save();Snd.click();if(key==='bg'||key==='lowPower'||key==='colorBlind'){if(typeof PrismPerf!=='undefined')PrismPerf.apply();}},
-loadDemoSeed:function(opts){var silent=opts&&opts.silent;if(!silent&&!confirm('Load demo operator profile? Adds XP, games played, wins, and achievements for enterprise demos.'))return;S.prof={name:'Demo Operative',av:'🎭',xp:2850,lvl:XP.lvl(2850),games:(typeof Reg!=='undefined'&&Reg.list?Reg.list.length:39),wins:28,losses:14,streak:4,best:7,bluff:12,betrayals:6,reflex:187,time:3600,hist:[],style:'chaos'};S.ach=['g1','w1','w10','p25','s3'];Save.save();if(typeof Prog!=='undefined'&&Prog.data){Prog.data.xp=S.prof.xp;Prog.data.rank=(XP.ranks[Math.min(Math.max(S.prof.lvl-1,0),XP.ranks.length-1)]||Prog.data.rank);Prog.save&&Prog.save();}if(typeof GL!=='undefined'&&GL._buildScrolls)GL._buildScrolls();UI.prof();UI.home();UI.dash();if(typeof Rec!=='undefined'&&Rec.render)Rec.render();toast('Demo profile loaded — Level '+S.prof.lvl+' · '+S.prof.games+' games');},
+loadDemoSeed:function(opts){var silent=opts&&opts.silent;if(!silent&&!confirm('Load demo operator profile? Adds XP, games played, wins, and achievements for enterprise demos.'))return;var nGames=(typeof Reg!=='undefined'&&Reg.list&&Reg.list.length)?Reg.list.length:39;var seedIds=['spy','ttt','reflex','chaos','chess'];var hist=[];seedIds.forEach(function(id){var g=Reg.get&&Reg.get(id);if(!g)return;hist.push({g:g.title,i:g.icon,w:'Demo Operative',d:12,dt:new Date().toLocaleDateString(),c:g.col});});S.prof={name:'Demo Operative',av:'🎭',xp:2850,lvl:XP.lvl(2850),games:nGames,wins:28,losses:14,streak:4,best:7,bluff:12,betrayals:6,reflex:187,time:3600,hist:hist,style:'chaos'};S.ach=['g1','w1','w10','p25','s3'];localStorage.setItem('po5s','1');Save.save();if(window.Prog&&Prog.data){Prog.data.xp=S.prof.xp;Prog.data.rank=XP.rank(S.prof.lvl);Prog.data.streak=4;Prog.data.gamesById=Prog.data.gamesById||{};seedIds.forEach(function(id){Prog.data.gamesById[id]=(Prog.data.gamesById[id]||0)+3;});if(Prog.save)Prog.save();}if(window.Rec){Rec.recent=[];seedIds.forEach(function(id){var g=Reg.get&&Reg.get(id);if(g)Rec.addRecent(g);});}if(GL._buildScrolls)GL._buildScrolls();UI.prof();UI.home();UI.dash();if(window.Rec&&Rec.render)Rec.render();toast('Demo profile loaded — Level '+S.prof.lvl+' · '+S.prof.games+' games');},
 resetData:function(){Modal.open('<div style="text-align:center"><div style="font-size:1.75rem;margin-bottom:5px">⚠️</div><div style="font-size:.97rem;font-weight:700;margin-bottom:4px">Reset All Data?</div><div style="font-size:.78rem;opacity:.38;margin-bottom:14px">All progress deleted.</div><div style="display:flex;gap:7px"><button type="button" class="btn bg" style="flex:1" onclick="Modal.close()">Cancel</button><button type="button" class="btn br" style="flex:1" onclick="Save.reset()">Reset</button></div></div>');}};
 
 // ═══ WELCOME (multi-step) ════════════════════════════════════════════
@@ -736,16 +737,26 @@ document.addEventListener('touchend',function(){clearTimeout(_lpt);},{passive:tr
 // ── PLAYER COUNT SMART RECOMMENDER on Home ───────────────────────────
 function buildRecommended(){
   var area=document.getElementById('hw-area');
-  if(!area||S.prof.games<3)return; // Only show after a few games
-  // Pick best unplayed MP game
+  if(!area||S.prof.games<3)return;
   var tried=JSON.parse(localStorage.getItem('po5t')||'[]');
-  var untried=Reg.list.filter(function(g){return!tried.includes(g.id);});
+  var daily=(typeof Daily!=='undefined'&&Daily.getToday)?Daily.getToday():null;
+  var recentIds={};if(window.Rec&&Rec.recent)Rec.recent.forEach(function(x){if(x&&x.id)recentIds[x.id]=1;});
+  var untried=Reg.list.filter(function(g){
+    if(tried.indexOf(g.id)>-1)return false;
+    if(daily&&g.id===daily.game)return false;
+    if(recentIds[g.id])return false;
+    return true;
+  });
   if(!untried.length)return;
+  if(area.querySelector('[data-try-new]'))return;
   var pick=untried[Math.floor(Math.random()*Math.min(untried.length,5))];
   var div=document.createElement('div');
+  div.setAttribute('data-try-new','1');
   div.style.cssText='margin:0 15px 10px;padding:12px 15px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:14px;cursor:pointer;display:flex;align-items:center;gap:10px';
-  div.innerHTML='<div style="font-size:1.55rem">'+pick.icon+'</div><div style="flex:1"><div style="font-size:.58rem;opacity:.3;text-transform:uppercase;letter-spacing:.09em;margin-bottom:2px">Try something new</div><div style="font-weight:700;font-size:.86rem">'+pick.title+'</div></div><div style="font-size:.72rem;color:var(--dim)">→</div>';
+  div.setAttribute('role','button');div.setAttribute('tabindex','0');div.setAttribute('aria-label','Try something new: '+pick.title);
+  div.innerHTML='<div style="font-size:1.55rem" aria-hidden="true">'+pick.icon+'</div><div style="flex:1"><div style="font-size:.58rem;opacity:.3;text-transform:uppercase;letter-spacing:.09em;margin-bottom:2px">Try something new</div><div style="font-weight:700;font-size:.86rem">'+pick.title+'</div></div><div style="font-size:.72rem;color:var(--dim)">→</div>';
   div.onclick=function(){GL.launch(pick.id);};
+  div.onkeydown=function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();GL.launch(pick.id);}};
   if(area.children.length<3)area.appendChild(div);
 }
 
@@ -1573,9 +1584,6 @@ ConnectFour.render = function() {
 // Single DOMContentLoaded — replaces previous boot
 document.addEventListener('DOMContentLoaded', function() {
   Save.load(); Memory.load(); Meta.load();
-  if (new URLSearchParams(location.search).get('demo') === '1' && window.GL && GL.loadDemoSeed) {
-    GL.loadDemoSeed({ silent: true });
-  }
   Mutators.loadPresets(); Tutorial._load();
 
   // Modular games (js/games/*.js) register via PRISM_GAME_FACTORIES
@@ -1590,6 +1598,11 @@ document.addEventListener('DOMContentLoaded', function() {
    RhythmPulse,InfiniteMaze,ImposterFreq,TrustFall,ReflexLadder,NeonSnake,
    TheHeist,PressureCooker,ChessGame,Draughts,ConnectFour
   ].forEach(function(g){ Reg.add(g); });
+
+  // Demo AFTER Reg is full — games count + Smart Hub need real list
+  if (new URLSearchParams(location.search).get('demo') === '1' && window.GL && GL.loadDemoSeed) {
+    GL.loadDemoSeed({ silent: true });
+  }
 
   Snd.init(); BG.init(); Theme.apply(S.cfg.theme||'');
   if (typeof PrismPerf !== 'undefined') PrismPerf.apply();
@@ -3445,7 +3458,7 @@ W.init=function(){
     if (typeof buildRecommended === 'function') setTimeout(buildRecommended, 200);
     // Records update
     if (typeof Records !== 'undefined' && typeof Records.load === 'function') Records.load();
-    if (typeof Rec !== 'undefined' && typeof Rec.render === 'function') Rec.render();
+    if (window.Rec && typeof Rec.render === 'function') Rec.render();
   };
 })();
 
@@ -5165,6 +5178,11 @@ setTimeout(function() {
       GL._buildLib ? GL._buildLib('all') : null;
       GL._buildFeat ? GL._buildFeat() : null;
     }
+    // Keep demo/stats games count = live registry
+    if (S.prof && (S.prof.games !== Reg.list.length) && (S.prof.name === 'Demo Operative' || /[?&]demo=1(?:&|$)/.test(location.search))) {
+      S.prof.games = Reg.list.length;
+      Save.save();
+    }
     // Update count
     var lc = document.getElementById('lib-count');
     if (lc) lc.textContent = Reg.list.length + ' games · Fully offline';
@@ -5173,6 +5191,7 @@ setTimeout(function() {
     if (br && GL._buildScrollRow) {
       GL._buildScrollRow('board-row', Reg.board ? Reg.board() : []);
     }
+    if (typeof UI !== 'undefined' && UI.home) UI.home();
   }
 }, 800);
 
@@ -5561,7 +5580,11 @@ OrientMgr.init();
       var recents = this.recent.slice(0,4);
       var recentIds = {}; recents.forEach(function(x){ recentIds[x.id]=1; });
       var recs = this.topRecs().filter(function(g){ return g && !recentIds[g.id]; });
-      if (!recs.length) recs = this.topRecs().slice(0,2);
+      if (!recs.length) recs = this.topRecs().filter(function(g){ return g && !recentIds[g.id]; }).slice(0,2);
+      if (!recs.length) recs = (window.Reg && Reg.list ? Reg.list : []).filter(function(g){ return g && !recentIds[g.id]; }).slice(0,2);
+      var lvl = (typeof XP !== 'undefined') ? XP.lvl((S.prof && S.prof.xp) || 0) : ((S.prof && S.prof.lvl) || 1);
+      var rank = (typeof XP !== 'undefined' && XP.rank) ? XP.rank(lvl) : (Prog.data.rank || 'Rookie');
+      var xpShow = (S.prof && typeof S.prof.xp === 'number') ? S.prof.xp : (Prog.data.xp || 0);
       host.innerHTML =
         '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">' +
           '<div class="sec">Smart Hub</div>' +
@@ -5570,8 +5593,8 @@ OrientMgr.init();
         '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px">' +
           '<div style="padding:10px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08)">' +
             '<div style="font-size:.58rem;opacity:.45;text-transform:uppercase;letter-spacing:.08em">Rank</div>' +
-            '<div style="font-weight:800;margin-top:4px">' + (function(){var lvl=(S.prof&&S.prof.lvl)||1;var r=(typeof XP!=='undefined'&&XP.ranks)?XP.ranks[Math.min(Math.max(lvl-1,0),XP.ranks.length-1)]:Prog.data.rank;return r||Prog.data.rank;})() + '</div>' +
-            '<div style="font-size:.7rem;opacity:.45;margin-top:2px">LV'+(S.prof&&S.prof.lvl?S.prof.lvl:1)+' · ' + ((S.prof&&typeof S.prof.xp==='number')?S.prof.xp:Prog.data.xp) + ' XP</div>' +
+            '<div style="font-weight:800;margin-top:4px">' + rank + '</div>' +
+            '<div style="font-size:.7rem;opacity:.45;margin-top:2px">LV' + lvl + ' · ' + xpShow + ' XP</div>' +
           '</div>' +
           '<div style="padding:10px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08)">' +
             '<div style="font-size:.58rem;opacity:.45;text-transform:uppercase;letter-spacing:.08em">Streak</div>' +
@@ -5592,13 +5615,13 @@ OrientMgr.init();
           return hint;
         })() +
         '<div style="display:flex;gap:7px;overflow-x:auto">' +
-          recs.map(function(g){
+          (recs.length ? recs.map(function(g){
             var star = Rec.isFav(g.id) ? '★' : '☆';
             return '<div style="display:flex;gap:4px;align-items:center">' +
               '<button type="button" class="btn bg bsm" style="padding:8px 10px;white-space:nowrap" onclick="GL.launch(\''+g.id+'\')">'+g.icon+' '+g.title+'</button>' +
-              '<button type="button" class="btn bg bsm" style="padding:8px 8px" onclick="window.__fav(\''+g.id+'\')">'+star+'</button>' +
+              '<button type="button" class="btn bg bsm" style="padding:8px 8px" aria-label="Favorite '+g.title+'" onclick="window.__fav(\''+g.id+'\')">'+star+'</button>' +
             '</div>';
-          }).join('') +
+          }).join('') : '<div style="font-size:.75rem;opacity:.35">Play a few games for picks.</div>') +
         '</div>';
     }
   };
@@ -5724,7 +5747,7 @@ OrientMgr.init();
     },
     registerSW: function(){
       if (!('serviceWorker' in navigator)) return;
-      navigator.serviceWorker.register('./sw.js?v=436').catch(function(){});
+      navigator.serviceWorker.register('./sw.js?v=437').catch(function(){});
     }
   };
 
@@ -5746,12 +5769,19 @@ OrientMgr.init();
   });
 
   // Boot
+  window.Prog = Prog;
+  window.Rec = Rec;
   PWA.bindInstall();
   PWA.registerSW();
   Perf.init();
   Prog.data.sessions = (Prog.data.sessions || 0) + 1;
   Prog.save();
-  Rec.render();
+  // Defer hub paint until Save/demo ran (DOMContentLoaded) + scrolls exist
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function(){ setTimeout(function(){ Rec.render(); }, 50); });
+  } else {
+    setTimeout(function(){ Rec.render(); }, 50);
+  }
 })();
 
 

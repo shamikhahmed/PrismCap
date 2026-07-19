@@ -31,3 +31,4 @@ PrismOS*.html
 
 .env
 .env.*
+test-results/

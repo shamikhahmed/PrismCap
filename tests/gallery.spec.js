@@ -42,12 +42,27 @@ for (const viewport of ['mobile', 'desktop']) {
 
     test(`capture ${SCREENS.length} ${viewport} screens`, async ({ page }) => {
       test.setTimeout(120_000);
+      // Skip first-run welcome overlay so Nav.go shots show real shell screens.
+      await page.addInitScript(() => {
+        try {
+          localStorage.setItem('po5s', '1');
+        } catch {
+          /* ignore */
+        }
+      });
       await page.goto('/?e2e=1&demo=1');
       await page.waitForFunction(
         () => typeof window.Nav !== 'undefined' && typeof window.Nav.go === 'function',
         undefined,
         { timeout: 20_000 },
       );
+      await page.evaluate(() => {
+        const w = document.getElementById('welcome');
+        if (w) {
+          w.classList.add('out');
+          w.style.display = 'none';
+        }
+      });
       await page.waitForTimeout(600);
 
       const shots = [];

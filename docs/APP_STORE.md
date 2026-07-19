@@ -17,7 +17,7 @@
 - [ ] Review notes: offline PWA, no account required
 - [ ] Export compliance: no encryption beyond standard iOS APIs
 
-## Disclaimers (38 offline games)
+## Disclaimers (39 offline games)
 - Offline party games for entertainment; supervise younger players.
 
 ## Version

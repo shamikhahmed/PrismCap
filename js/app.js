@@ -5721,7 +5721,7 @@ OrientMgr.init();
     },
     registerSW: function(){
       if (!('serviceWorker' in navigator)) return;
-      navigator.serviceWorker.register('./sw.js?v=434').catch(function(){});
+      navigator.serviceWorker.register('./sw.js?v=435').catch(function(){});
     }
   };
 

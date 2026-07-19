@@ -1,5 +1,7 @@
 # PrismCap 🎮
 
+**Version:** 4.3.5
+
 **36 offline games. Pass & Play. Fully offline gaming platform — by Capricorn Systems.**
 
 🔗 **Live:** https://shamikhahmed.github.io/PrismCap

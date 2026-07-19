@@ -1,3 +1,7 @@
+## 4.3.5
+- Playwright play-smoke: interact every game (start/tap/keys) + mobile/iPad samples
+- Docs/manifest/presentation: remaining 38→39 honesty
+
 ## 4.3.4
 - Museum game chrome: safe-area header, ≥44px controls, iPad landscape exempt `#game-screen`
 - Playwright: launch all 39 games + mobile/iPad shell checks

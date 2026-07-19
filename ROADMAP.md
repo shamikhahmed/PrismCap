@@ -18,12 +18,12 @@ Cap Family Mega-Wave brand lock. See `CHANGELOG.md`.
 
 ## Next (ordered)
 1. CI: Pages deploy workflow with test gate (currently NO workflows)
-2. Screen gallery: hub + representative game screens (all 38 = overkill; pick ~10)
+2. Screen gallery: hub + representative game screens (all 39 = overkill; pick ~10)
 3. `verify` script per Cap Standard
 
 ## Later
 - Gallery: add game-screen shots (launch a game session in spec)
-- Game completion audit — verify all 38 playable end-to-end
+- Game completion audit — verify all 39 playable end-to-end
 - Score history export
 
 ## Ground rules

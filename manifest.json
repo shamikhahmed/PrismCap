@@ -1,7 +1,7 @@
 {
   "name": "PrismCap",
   "short_name": "PrismCap",
-  "description": "PrismCap by Capricorn Systems — 38 offline games. Pass & Play. Fully offline gaming platform.",
+  "description": "PrismCap by Capricorn Systems — 39 offline games. Pass & Play. Fully offline gaming platform.",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#000000",

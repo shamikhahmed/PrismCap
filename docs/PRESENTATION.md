@@ -7,7 +7,7 @@
 ## Slide 1 — Title
 
 # PrismCap ✨
-### 38 Offline Games · Pass & Play
+### 39 Offline Games · Pass & Play
 
 *Solo to 10+ players · AI bots · Eco performance · Zero servers*
 

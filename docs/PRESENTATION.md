@@ -26,9 +26,9 @@
 
 ## Slide 3 — Solution
 
-A pocket arcade — 38 games, one device, zero internet.
+A pocket arcade — 39 games, one device, zero internet.
 
-- **38 games in one PWA** — deception, reflex, board, puzzle — all offline after first load
+- **39 games in one PWA** — deception, reflex, board, puzzle — all offline after first load
 - **Pass & Play for 1–10+ players** — private reveals, handoffs, bot fill
 - **No account. No server. Ever.** — XP, settings, suspended games in localStorage
 
@@ -54,7 +54,7 @@ No framework. No CDN. No build step.
 ```
 index.html          — shell + nav tabs
 ├── css/            base.css · layout.css · components.css
-├── js/app.js       38 games, Drama Engine, bots
+├── js/app.js       39 games, Drama Engine, bots
 ├── sw.js           offline asset cache
 ├── manifest.json   PWA install
 └── docs/           GUIDE.md · PRESENTATION.md
@@ -87,7 +87,7 @@ First launch: name · age · gender theme · playstyle scan · operator profile
 
 ## Slide 8 — Game Library
 
-Library tab: 38 games · fully offline · filter by category
+Library tab: 39 games · fully offline · filter by category
 
 | Game | Type | Players |
 |------|------|---------|

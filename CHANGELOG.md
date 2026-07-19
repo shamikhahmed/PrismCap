@@ -1,3 +1,11 @@
+## [4.3.2] — 2026-07-19
+
+### Pitch
+- Premium Capricorn QR (`assets/qr-prismcap.png`) — H ECC, Capricorn Systems center mark, gold quiet frame on CTA
+
+### Ops
+- SW `prismcap-v432`
+
 # Changelog — PrismCap
 
 ## 4.3.1 (2026-07-19)

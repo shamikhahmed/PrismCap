@@ -5719,7 +5719,7 @@ OrientMgr.init();
     },
     registerSW: function(){
       if (!('serviceWorker' in navigator)) return;
-      navigator.serviceWorker.register('./sw.js?v=431').catch(function(){});
+      navigator.serviceWorker.register('./sw.js?v=432').catch(function(){});
     }
   };
 

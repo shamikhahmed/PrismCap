@@ -1,7 +1,7 @@
 /* PrismCap v4.3.9 — arcade cabinet / cartridge visual DNA */
 
 :root {
-  --arcade-display: 'Audiowide', 'Space Grotesk', sans-serif;
+  --arcade-display: 'Press Start 2P', 'Space Grotesk', sans-serif;
   --arcade-body: 'Space Grotesk', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
 }
 
@@ -31,3 +31,5 @@
 .cart-shell .wprogdot.on {
   background: linear-gradient(135deg, var(--acc), var(--acc2));
 }
+
+:root { --cap-accent: #FF00FF; --cap-accent-contrast: #0a0a0a; }

@@ -11,7 +11,7 @@
 .mh { width: 30px; height: 3px; background: rgba(255,255,255,.13); border-radius: 2px; margin: 0 auto 16px; }
 
 /* ── BUTTONS ── */
-.btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 12px 22px; border-radius: var(--radius-md) !important; font-size: .9rem; font-weight: 800 !important; letter-spacing: .03em !important; text-transform: uppercase; transition: transform .12s cubic-bezier(.34,1.56,.64,1), box-shadow .15s !important; cursor: pointer; user-select: none; -webkit-user-select: none; position: relative !important; overflow: hidden !important; min-height: 44px; font-family: 'Audiowide', 'Space Grotesk', sans-serif; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 12px 22px; border-radius: var(--radius-md) !important; font-size: .9rem; font-weight: 800 !important; letter-spacing: .03em !important; text-transform: uppercase; transition: transform .12s cubic-bezier(.34,1.56,.64,1), box-shadow .15s !important; cursor: pointer; user-select: none; -webkit-user-select: none; position: relative !important; overflow: hidden !important; min-height: 44px; font-family: 'Press Start 2P', 'Space Grotesk', sans-serif; }
 .btn::before { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(255,255,255,.25) 0%, rgba(255,255,255,0) 55%); border-radius: inherit; pointer-events: none; }
 .btn:active { transform: scale(.89) !important; opacity: .85; }
 .bw { background: linear-gradient(135deg, var(--acc), var(--acc2)) !important; color: #fff !important; border: 1px solid rgba(255,255,255,.22) !important; box-shadow: var(--shadow-neon) !important; }
@@ -146,7 +146,7 @@
 .board-cell:active { transform: scale(.92); }
 
 /* ── UTILS ── */
-.sec  { font-size: .65rem !important; font-weight: 800 !important; letter-spacing: .14em !important; text-transform: uppercase; font-family: 'Audiowide', 'Space Grotesk', sans-serif; background: linear-gradient(90deg, rgba(255,255,255,.88), rgba(206,147,255,.9), rgba(106,230,255,.8)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.sec  { font-size: .65rem !important; font-weight: 800 !important; letter-spacing: .14em !important; text-transform: uppercase; font-family: 'Press Start 2P', 'Space Grotesk', sans-serif; background: linear-gradient(90deg, rgba(255,255,255,.88), rgba(255,0,255,.9), rgba(0,255,255,.85)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 .shdr { padding: 15px 15px 8px; display: flex; align-items: center; justify-content: space-between; }
 .noscroll { scrollbar-width: none; }
 .noscroll::-webkit-scrollbar { display: none; }

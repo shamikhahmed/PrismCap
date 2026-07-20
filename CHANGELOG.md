@@ -1,3 +1,6 @@
+## 4.4.1 — 2026-07-20
+- Home deep: CRT cabinet layout — mobile stack; desktop bezel + sticky scoreboard rail. SW `prismcap-v441`.
+
 ## 4.4.0 — 2026-07-20
 - Uniqueness remint: CRT warmup flicker, cabinet bezel, restrained scanlines, INSERT COIN boot ritual
 - LOUD neon tokens (#FF00FF / #00FFFF on near-black); Press Start 2P + VT323 typography

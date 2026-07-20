@@ -183,42 +183,51 @@
 
 <!-- HOME -->
 <div class="screen active" id="home-screen">
-  <div class="home-cart-marquee" aria-hidden="true"><span class="home-cart-label">PRISM</span><span class="home-cart-led"></span><span class="home-cart-led"></span><span class="home-cart-led"></span></div>
-  <div class="screen-header" style="display:flex;align-items:center;justify-content:space-between">
-    <div><div style="font-size:1.25rem;font-weight:800;letter-spacing:-.03em">Prism<span style="opacity:.2">Cap</span></div><div id="home-greeting" style="font-size:.6rem;opacity:.25;margin-top:1px">Good evening</div></div>
-    <div style="display:flex;gap:8px;align-items:center">
-      <div style="display:flex;align-items:center;gap:5px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.09);border-radius:100px;padding:4px 10px;cursor:pointer" onclick="Nav.go('profile')">
-        <span id="hlvl" style="font-size:.68rem;font-weight:800;color:var(--amber)">LV1</span>
-        <div style="width:48px;height:2px;background:rgba(255,255,255,.09);border-radius:1px;overflow:hidden"><div id="hxp" style="height:100%;background:linear-gradient(90deg,var(--violet),var(--cyan));border-radius:1px;width:0%;transition:width 1s ease"></div></div>
+  <div class="home-cabinet">
+    <div class="home-cab-side home-cab-side--l" aria-hidden="true"></div>
+    <div class="home-cab-layout">
+      <div class="home-cab-main">
+        <div class="home-cart-marquee" aria-hidden="true"><span class="home-cart-label">PRISM</span><span class="home-cart-led"></span><span class="home-cart-led"></span><span class="home-cart-led"></span></div>
+        <div class="screen-header" style="display:flex;align-items:center;justify-content:space-between">
+          <div><div style="font-size:1.25rem;font-weight:800;letter-spacing:-.03em">Prism<span style="opacity:.2">Cap</span></div><div id="home-greeting" style="font-size:.6rem;opacity:.25;margin-top:1px">Good evening</div></div>
+          <div style="display:flex;gap:8px;align-items:center">
+            <div style="display:flex;align-items:center;gap:5px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.09);border-radius:100px;padding:4px 10px;cursor:pointer" onclick="Nav.go('profile')">
+              <span id="hlvl" style="font-size:.68rem;font-weight:800;color:var(--amber)">LV1</span>
+              <div style="width:48px;height:2px;background:rgba(255,255,255,.09);border-radius:1px;overflow:hidden"><div id="hxp" style="height:100%;background:linear-gradient(90deg,var(--violet),var(--cyan));border-radius:1px;width:0%;transition:width 1s ease"></div></div>
+            </div>
+            <div id="hav" onclick="Nav.go('profile')" style="width:31px;height:31px;border-radius:50%;background:rgba(255,255,255,.07);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1rem;cursor:pointer">👤</div>
+          </div>
+        </div>
+        <div id="hw-area" style="padding:6px 0 0"></div>
+        <div class="home-feat-wrap">
+          <div class="feat" id="feat" onclick="GL.launchFeat()">
+            <div id="feat-bg" style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(100,210,255,.26),rgba(100,210,255,.05))"></div>
+            <div style="position:relative;z-index:2;padding:18px;height:100%;display:flex;flex-direction:column;justify-content:space-between">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start"><span id="feat-badge" style="background:rgba(255,255,255,.12);border-radius:100px;padding:3px 10px;font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase">Featured</span><span id="feat-icon" style="font-size:2.2rem">🎮</span></div>
+              <div><div id="feat-type" style="font-size:.58rem;opacity:.48;letter-spacing:.12em;text-transform:uppercase;margin-bottom:2px"></div><div id="feat-title" style="font-size:1.6rem;font-weight:800;letter-spacing:-.03em;line-height:1.05">Loading...</div><div id="feat-desc" style="font-size:.78rem;opacity:.48;margin-top:4px"></div><div style="margin-top:11px;display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.88);color:#000;border-radius:100px;padding:7px 15px;font-size:.78rem;font-weight:700">▶ Play Now</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="shdr"><div class="sec">🔥 Multiplayer</div><div style="font-size:.73rem;opacity:.28;cursor:pointer" onclick="Nav.go('library')">See All</div></div>
+        <div class="hscroll noscroll" id="mp-row"></div>
+        <div class="shdr" style="margin-top:6px"><div class="sec">⚡ Solo</div><div style="font-size:.73rem;opacity:.28;cursor:pointer" onclick="Nav.go('library')">See All</div></div>
+        <div class="hscroll noscroll" id="solo-row"></div>
       </div>
-      <div id="hav" onclick="Nav.go('profile')" style="width:31px;height:31px;border-radius:50%;background:rgba(255,255,255,.07);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1rem;cursor:pointer">👤</div>
+      <aside class="home-cab-rail" aria-label="Scoreboard">
+        <div class="home-cab-rail__label">Scoreboard</div>
+        <div class="home-stats-block"><div class="sec" style="margin-bottom:9px">📊 Stats</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
+            <div class="glass" style="padding:11px 9px;text-align:center;border-radius:12px"><div id="sg" style="font-size:1.45rem;font-weight:800">0</div><div style="font-size:.52rem;opacity:.33;text-transform:uppercase;letter-spacing:.08em;margin-top:2px">Games</div></div>
+            <div class="glass" style="padding:11px 9px;text-align:center;border-radius:12px"><div id="sw" style="font-size:1.45rem;font-weight:800;color:var(--green)">0</div><div style="font-size:.52rem;opacity:.33;text-transform:uppercase;letter-spacing:.08em;margin-top:2px">Wins</div></div>
+            <div class="glass" style="padding:11px 9px;text-align:center;border-radius:12px"><div id="ss" style="font-size:1.45rem;font-weight:800;color:var(--amber)">0</div><div style="font-size:.52rem;opacity:.33;text-transform:uppercase;letter-spacing:.08em;margin-top:2px">Streak</div></div>
+          </div>
+        </div>
+        <div class="shdr"><div class="sec">🕐 Recent</div></div>
+        <div class="home-recent-wrap" id="recent"></div>
+      </aside>
     </div>
+    <div class="home-cab-side home-cab-side--r" aria-hidden="true"></div>
   </div>
-  <!-- Widgets area -->
-  <div id="hw-area" style="padding:6px 0 0"></div>
-  <!-- Featured -->
-  <div style="padding:4px 15px 11px">
-    <div class="feat" id="feat" onclick="GL.launchFeat()">
-      <div id="feat-bg" style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(100,210,255,.26),rgba(100,210,255,.05))"></div>
-      <div style="position:relative;z-index:2;padding:18px;height:100%;display:flex;flex-direction:column;justify-content:space-between">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start"><span id="feat-badge" style="background:rgba(255,255,255,.12);border-radius:100px;padding:3px 10px;font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase">Featured</span><span id="feat-icon" style="font-size:2.2rem">🎮</span></div>
-        <div><div id="feat-type" style="font-size:.58rem;opacity:.48;letter-spacing:.12em;text-transform:uppercase;margin-bottom:2px"></div><div id="feat-title" style="font-size:1.6rem;font-weight:800;letter-spacing:-.03em;line-height:1.05">Loading...</div><div id="feat-desc" style="font-size:.78rem;opacity:.48;margin-top:4px"></div><div style="margin-top:11px;display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.88);color:#000;border-radius:100px;padding:7px 15px;font-size:.78rem;font-weight:700">▶ Play Now</div></div>
-      </div>
-    </div>
-  </div>
-  <div class="shdr"><div class="sec">🔥 Multiplayer</div><div style="font-size:.73rem;opacity:.28;cursor:pointer" onclick="Nav.go('library')">See All</div></div>
-  <div class="hscroll noscroll" id="mp-row"></div>
-  <div class="shdr" style="margin-top:6px"><div class="sec">⚡ Solo</div><div style="font-size:.73rem;opacity:.28;cursor:pointer" onclick="Nav.go('library')">See All</div></div>
-  <div class="hscroll noscroll" id="solo-row"></div>
-  <div style="padding:15px 15px 5px"><div class="sec" style="margin-bottom:9px">📊 Stats</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
-      <div class="glass" style="padding:11px 9px;text-align:center;border-radius:12px"><div id="sg" style="font-size:1.45rem;font-weight:800">0</div><div style="font-size:.52rem;opacity:.33;text-transform:uppercase;letter-spacing:.08em;margin-top:2px">Games</div></div>
-      <div class="glass" style="padding:11px 9px;text-align:center;border-radius:12px"><div id="sw" style="font-size:1.45rem;font-weight:800;color:var(--green)">0</div><div style="font-size:.52rem;opacity:.33;text-transform:uppercase;letter-spacing:.08em;margin-top:2px">Wins</div></div>
-      <div class="glass" style="padding:11px 9px;text-align:center;border-radius:12px"><div id="ss" style="font-size:1.45rem;font-weight:800;color:var(--amber)">0</div><div style="font-size:.52rem;opacity:.33;text-transform:uppercase;letter-spacing:.08em;margin-top:2px">Streak</div></div>
-    </div>
-  </div>
-  <div class="shdr"><div class="sec">🕐 Recent</div></div>
-  <div style="padding:0 15px" id="recent"></div>
 </div>
 
 <!-- LIBRARY -->

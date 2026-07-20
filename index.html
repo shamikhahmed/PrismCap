@@ -29,12 +29,12 @@
 <link rel="apple-touch-icon" sizes="512x512" href="icon-512.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet"></noscript>
 <link rel="preload" href="css/base.css" as="style">
 <link rel="preload" href="css/components.css" as="style">
 <link rel="stylesheet" href="css/capricorn-core.css">
-<style>:root{--cap-accent:#c77dff}</style>
+<style>:root{--cap-accent:#FF00FF}</style>
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/layout.css">
 <link rel="stylesheet" href="css/components.css">
@@ -74,7 +74,8 @@
 <div id="tension-bar"></div>
 
 <!-- LOADER — arcade cabinet / cartridge insert ritual -->
-<div id="loader">
+<div id="loader" class="crt-stage">
+  <div class="crt-vignette" aria-hidden="true"></div>
   <div class="cab-ritual" aria-hidden="true">
     <div class="cab-shell">
       <div class="cab-marquee"><span class="cab-marquee-dot"></span><span class="cab-marquee-dot"></span><span class="cab-marquee-dot"></span></div>
@@ -94,12 +95,13 @@
       </div>
     </div>
   </div>
-  <div class="lscan" id="lscan" aria-live="polite"></div>
+  <div class="lscan lscan--coin" id="lscan" aria-live="polite">INSERT COIN</div>
 </div>
 
 <!-- WELCOME (multi-step) -->
-<div id="welcome">
-  <div class="cart-shell">
+<div id="welcome" class="crt-stage">
+  <div class="crt-vignette" aria-hidden="true"></div>
+  <div class="cart-shell crt-screen">
     <div class="wprog" style="justify-content:center" id="wprog">
       <div class="wprogdot on"></div><div class="wprogdot"></div><div class="wprogdot"></div><div class="wprogdot"></div><div class="wprogdot"></div><div class="wprogdot"></div>
     </div>
@@ -181,6 +183,7 @@
 
 <!-- HOME -->
 <div class="screen active" id="home-screen">
+  <div class="home-cart-marquee" aria-hidden="true"><span class="home-cart-label">PRISM</span><span class="home-cart-led"></span><span class="home-cart-led"></span><span class="home-cart-led"></span></div>
   <div class="screen-header" style="display:flex;align-items:center;justify-content:space-between">
     <div><div style="font-size:1.25rem;font-weight:800;letter-spacing:-.03em">Prism<span style="opacity:.2">Cap</span></div><div id="home-greeting" style="font-size:.6rem;opacity:.25;margin-top:1px">Good evening</div></div>
     <div style="display:flex;gap:8px;align-items:center">

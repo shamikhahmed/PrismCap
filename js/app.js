@@ -1642,7 +1642,7 @@ document.addEventListener('DOMContentLoaded', function() {
   animLogo('lcan');
 
   // Arcade boot ritual (~2s)
-  var scanMsgs=['Insert cartridge...','39 games loaded','Cabinet online','Offline ready ✓'];
+  var scanMsgs=['▶ INSERT COIN','Cartridge detected · PRISM','39 games loaded','CREDIT OK · PLAY'];
   var i=0, scan=document.getElementById('lscan');
   var biv=setInterval(function(){if(scan)scan.textContent=scanMsgs[i]||'';i++;if(i>=scanMsgs.length)clearInterval(biv);},480);
 
@@ -5741,7 +5741,7 @@ OrientMgr.init();
     },
     registerSW: function(){
       if (!('serviceWorker' in navigator)) return;
-      navigator.serviceWorker.register('./sw.js?v=439').catch(function(){});
+      navigator.serviceWorker.register('./sw.js?v=440').catch(function(){});
     }
   };
 

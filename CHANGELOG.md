@@ -1,3 +1,8 @@
+## 4.4.0 — 2026-07-20
+- Uniqueness remint: CRT warmup flicker, cabinet bezel, restrained scanlines, INSERT COIN boot ritual
+- LOUD neon tokens (#FF00FF / #00FFFF on near-black); Press Start 2P + VT323 typography
+- Home cartridge marquee strip; SW `prismcap-v440`
+
 ## 4.3.9 — 2026-07-20
 - Visual DNA: arcade cabinet/cartridge loader, softer neon, home bezel chrome, welcome cart-shell. 39 games offline honesty.
 

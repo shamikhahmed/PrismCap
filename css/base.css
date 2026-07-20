@@ -1,6 +1,6 @@
 /* ── RESET ── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-html,body{width:100%;height:100%;height:100dvh;overflow:hidden;background:#000;color:#fff;font-family:'Space Grotesk',-apple-system,BlinkMacSystemFont,'SF Pro Display',system-ui,sans-serif;-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:100%;overscroll-behavior:none}
+html,body{width:100%;height:100%;height:100dvh;overflow:hidden;background:#050508;color:#fff;font-family:'VT323',ui-monospace,Consolas,monospace;font-size:20px;-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:100%;overscroll-behavior:none}
 button{border:none;background:none;color:inherit;font:inherit;cursor:pointer;outline:none}
 input,select,textarea{border:none;background:none;color:inherit;font:inherit;outline:none}
 
@@ -12,23 +12,23 @@ input,select,textarea{border:none;background:none;color:inherit;font:inherit;out
   --sal: env(safe-area-inset-left, 0px);
   --sar: env(safe-area-inset-right, 0px);
 
-  /* Core palette (party-arcade — softened neon, craft chrome) */
-  --red:    #E8357A;  --orange: #E87218;  --amber:  #E8C008;
-  --green:  #2EE89A;  --cyan:   #3DD4E8;  --violet: #A058E8;
-  --pink:   #E845C0;  --rose:   #E85AA8;  --lime:   #C8E838;  --sky: #3890E8;
-  --ice:    #88D8E8;
+  /* Core palette — LOUD arcade neon on near-black */
+  --red:    #FF0055;  --orange: #FF6600;  --amber:  #FFE600;
+  --green:  #00FF88;  --cyan:   #00FFFF;  --violet: #FF00FF;
+  --pink:   #FF00CC;  --rose:   #FF0088;  --lime:   #CCFF00;  --sky: #0088FF;
+  --ice:    #88FFFF;
 
   /* Utility tints */
   --white: #fff;
-  --dim:   rgba(246,232,255,.58);
+  --dim:   rgba(0,255,255,.62);
   --faint: rgba(255,255,255,.07);
-  --border: rgba(214,167,255,.2);
+  --border: rgba(255,0,255,.28);
 
-  /* Dynamic accent */
-  --acc:   #B058E8;
-  --acc2:  #E848B0;
-  --glow:  rgba(176,88,232,.32);
-  --glow2: rgba(232,72,176,.28);
+  /* Dynamic accent — magenta / cyan */
+  --acc:   #FF00FF;
+  --acc2:  #00FFFF;
+  --glow:  rgba(255,0,255,.55);
+  --glow2: rgba(0,255,255,.45);
 
   /* Card surfaces */
   --card:        rgba(255,255,255,.1);
@@ -40,13 +40,13 @@ input,select,textarea{border:none;background:none;color:inherit;font:inherit;out
   --radius-md: 20px;
   --radius-lg: 28px;
   --shadow-soft: 0 14px 34px rgba(13,8,30,.38);
-  --shadow-neon: 0 0 0 1px rgba(255,255,255,.14), 0 16px 40px rgba(115,58,255,.22), 0 4px 18px rgba(255,77,215,.16);
+  --shadow-neon: 0 0 0 1px rgba(255,0,255,.35), 0 0 24px rgba(255,0,255,.28), 0 0 48px rgba(0,255,255,.12);
 
   /* Arcade cabinet craft tokens */
-  --bezel-chrome: linear-gradient(145deg, rgba(255,255,255,.42) 0%, rgba(180,170,160,.28) 35%, rgba(90,82,78,.55) 100%);
-  --bezel-inset: inset 0 1px 0 rgba(255,255,255,.22), inset 0 -2px 6px rgba(0,0,0,.35);
-  --cart-board: linear-gradient(168deg, #3a2e28 0%, #2a221e 48%, #1e1814 100%);
-  --cart-plastic: linear-gradient(155deg, rgba(255,255,255,.16) 0%, rgba(255,255,255,.04) 40%, rgba(0,0,0,.12) 100%);
+  --bezel-chrome: linear-gradient(145deg, rgba(255,0,255,.35) 0%, rgba(80,80,90,.55) 40%, rgba(20,20,28,.85) 100%);
+  --bezel-inset: inset 0 1px 0 rgba(0,255,255,.22), inset 0 -2px 6px rgba(0,0,0,.55);
+  --cart-board: linear-gradient(168deg, #1a1420 0%, #121018 48%, #0a0810 100%);
+  --cart-plastic: linear-gradient(155deg, rgba(255,0,255,.22) 0%, rgba(0,255,255,.08) 40%, rgba(0,0,0,.25) 100%);
 
   /* App sizing */
   --app-max:  480px;
@@ -56,10 +56,10 @@ input,select,textarea{border:none;background:none;color:inherit;font:inherit;out
 /* ── BODY ── */
 body {
   background:
-    radial-gradient(80% 80% at 15% 12%, rgba(160,88,232,.24) 0%, rgba(160,88,232,0) 58%),
-    radial-gradient(85% 70% at 88% 16%, rgba(232,72,176,.18) 0%, rgba(232,72,176,0) 60%),
-    radial-gradient(95% 80% at 50% 104%, rgba(61,212,232,.12) 0%, rgba(61,212,232,0) 62%),
-    linear-gradient(158deg, #08050f 0%, #100722 40%, #140828 100%);
+    radial-gradient(80% 80% at 15% 12%, rgba(255,0,255,.18) 0%, rgba(255,0,255,0) 58%),
+    radial-gradient(85% 70% at 88% 16%, rgba(0,255,255,.14) 0%, rgba(0,255,255,0) 60%),
+    radial-gradient(95% 80% at 50% 104%, rgba(0,255,255,.08) 0%, rgba(0,255,255,0) 62%),
+    linear-gradient(158deg, #050508 0%, #080810 40%, #0a0812 100%);
   overscroll-behavior: none;
   text-rendering: optimizeLegibility;
 }
@@ -70,11 +70,14 @@ body::before {
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  background:
-    linear-gradient(120deg, rgba(255,255,255,.08), rgba(255,255,255,0) 25%, rgba(255,255,255,.06) 52%, rgba(255,255,255,0) 78%),
-    repeating-linear-gradient(0deg, rgba(255,255,255,.035) 0px, rgba(255,255,255,.035) 1px, transparent 1px, transparent 14px);
-  mix-blend-mode: screen;
-  opacity: .32;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0,0,0,.22) 0px,
+    rgba(0,0,0,.22) 1px,
+    transparent 1px,
+    transparent 4px
+  );
+  opacity: .28;
 }
 
 /* Light mode — cardboard arcade / plastic cartridge craft */

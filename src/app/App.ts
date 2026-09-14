@@ -70,7 +70,7 @@ export class PrismApp {
       <main class="app-shell theme-${this.save.config.theme}">
         <header class="topbar glass">
           <div>
-            <h1>PrismOS</h1>
+            <h1>PrismCap</h1>
             <p>Offline Gaming Ecosystem</p>
           </div>
           <div class="top-actions">
@@ -124,9 +124,9 @@ export class PrismApp {
         <div class="cards">${recents || '<p class="muted">No recent games yet.</p>'}</div>
       </section>
       <section class="panel glass">
-        <h3>Legacy PrismOS</h3>
+        <h3>Legacy PrismCap</h3>
         <p class="muted">Your full previous single-file build is preserved.</p>
-        <a class="btn link" href="/legacy/PrismOS-v12.html" target="_blank" rel="noreferrer">Open Legacy Build</a>
+        <a class="btn link" href="/legacy/PrismCap-v12.html" target="_blank" rel="noreferrer">Open Legacy Build</a>
       </section>
     `;
   }

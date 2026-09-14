@@ -3,7 +3,7 @@ export function ShellView(): string {
     <main class="shell">
       <header class="topbar glass">
         <div>
-          <h1>PrismOS</h1>
+          <h1>PrismCap</h1>
           <p>Modular Offline Gaming Platform</p>
         </div>
         <button id="install-app-btn" class="btn">Install</button>
@@ -22,7 +22,7 @@ export function ShellView(): string {
         <article class="card glass">
           <h2>Legacy Runtime</h2>
           <p>Your current single-file app is preserved and testable:</p>
-          <a class="btn link" href="/legacy/PrismOS-v12.html" target="_blank" rel="noreferrer">Open Legacy PrismOS</a>
+          <a class="btn link" href="/legacy/PrismCap-v12.html" target="_blank" rel="noreferrer">Open Legacy PrismCap</a>
         </article>
       </section>
     </main>

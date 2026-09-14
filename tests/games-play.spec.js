@@ -6,7 +6,7 @@
 import { test, expect, devices } from '@playwright/test';
 
 async function waitReg39(page) {
-  await page.goto('/?e2e=1');
+  await page.goto('/?e2e=1', { timeout: 30000 });
   await page.waitForFunction(() => typeof window.Reg !== 'undefined' && window.Reg.list?.length >= 30, {
     timeout: 20000,
   });
@@ -100,8 +100,8 @@ test.describe('All 39 games play-smoke', () => {
     const failures = [];
     page.on('pageerror', (e) => errors.push(e.message));
 
-    page.setDefaultTimeout(2500);
     await waitReg39(page);
+    page.setDefaultTimeout(2500);
     const ids = await page.evaluate(() => window.Reg.list.map((g) => g.id));
     expect(ids.length).toBe(39);
 

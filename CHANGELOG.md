@@ -1,3 +1,6 @@
+## 4.5.0 — 2026-09-14
+- Tier 1 finish: D-06 renames (Four in a Row · Clue Grid · Word Dodge), device gate removed, system UI fonts (pixel logo-only), manifests PrismCap, game exit ConfirmDialog + aria-live turns, native dialogs replaced. SW `prismcap-v450`.
+
 ## 4.4.1 — 2026-07-20
 - Home deep: CRT cabinet layout — mobile stack; desktop bezel + sticky scoreboard rail. SW `prismcap-v441`.
 

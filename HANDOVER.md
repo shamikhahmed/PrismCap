@@ -1,13 +1,13 @@
 # PrismCap — Handover
 
 > Read this + `ROADMAP.md` + `~/Capricorn-Brain/01 Projects/PrismCap.md` before working here.
-> Last updated: 2026-07-19 · Fleet-wide standard: `capricorn-tooling/shared/CAP-STANDARD.md`
+> Last updated: 2026-09-14 · Fleet-wide standard: `capricorn-tooling/shared/CAP-STANDARD.md`
 
 ## What this is
-39 offline Pass & Play games PWA (former PrismOS merged in).
+39 offline Pass & Play games PWA (former PrismCap / Prism branding merged in).
 
 ## Facts
-**Version:** 4.3.8
+**Version:** 4.5.0 / SW `prismcap-v450`
 **Live:** https://shamikhahmed.github.io/PrismCap
 **Repo:** https://github.com/shamikhahmed/PrismCap
 **Stack:** Vanilla JS PWA. Game registry pattern (`js/games/`). Playwright tests.
@@ -48,3 +48,11 @@ Gaps are tracked as tasks in `ROADMAP.md`.
 - Dated decisions: Capricorn-Brain project note (path above)
 - Release history: `CHANGELOG.md`
 - Fleet-level events: `Cap-Apps/docs/CHANGELOG.md` (master)
+
+## Hub deploy
+```bash
+rsync -a --delete \
+  --exclude .git --exclude node_modules --exclude test-results --exclude playwright-report \
+  ./ /Users/shamikhahmed/Projects/Cap/Cap-Apps/shamikhahmed.github.io/PrismCap/
+```
+Commit + push hub repo. Bump VERSION.json + SW together.

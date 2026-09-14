@@ -1,8 +1,8 @@
-# PrismCap 🎮
+# PrismCap
 
-**Version:** 4.3.5
+**Version:** 4.5.0
 
-**36 offline games. Pass & Play. Fully offline gaming platform — by Capricorn Systems.**
+Party games for one phone, passed around the room.
 
 🔗 **Live:** https://shamikhahmed.github.io/PrismCap
 📱 **Optimized for iPhone** — install as PWA for best experience
@@ -51,7 +51,7 @@ PrismCap is a fully offline, installable gaming platform built as a single-page 
 ## Features
 
 - **Pass & Play** — Single device, 1–10+ players with quick presets (Solo, Duo, Party, Full)
-- **Bot / AI Players** — Board games (Chess, Draughts, Tic-Tac-Toe, Connect Four, Ludo, Snakes & Ladders, Blitz Duel) plus bot-fill for social games
+- **Bot / AI Players** — Board games (Chess, Draughts, Tic-Tac-Toe, Four in a Row, Ludo, Snakes & Ladders, Blitz Duel) plus bot-fill for social games
 - **Eco / Low Power Mode** — On by default for snappier performance on all devices
 - **Drama Engine** — Tracks tension, trust, and paranoia across the session
 - **Director Engine** — Adaptive difficulty and pacing

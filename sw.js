@@ -1,4 +1,4 @@
-const CACHE = 'prismcap-v441';
+const CACHE = 'prismcap-v450';
 const ASSETS = [
   './css/capricorn-core.css',
   './',
@@ -8,6 +8,7 @@ const ASSETS = [
   './pitch.html',
   './manifest.json',
   './js/games/example-game.js',
+  './js/dialogs.js',
   './js/app.js',
   './css/base.css',
   './css/layout.css',
@@ -20,15 +21,6 @@ const ASSETS = [
   './apple-touch-icon-180.png',
   './icon-192.png',
   './icon-512.png',
-  './js/capricorn-motion.js',
-  './js/capricorn-scene.js',
-  './js/capricorn-premium-nav.js',
-  './js/capricorn-cinematic.js',
-  './js/capricorn-deck.js',
-  './js/capricorn-deck-pro.js',
-  './js/capricorn-pitch.js',
-  './js/vendor/gsap.min.js',
-  './js/vendor/ScrollTrigger.min.js',
   './privacy.html',
   './changelog.html',
   './assets/qr-prismcap.png',

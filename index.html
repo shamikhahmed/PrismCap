@@ -9,18 +9,18 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#000">
 <meta name="author" content="Capricorn Systems">
-<meta name="description" content="39 offline party games — pass & play on one device. No accounts, no ads, by Capricorn Systems.">
+<meta name="description" content="Party games for one phone, passed around the room.">
 <title>PrismCap</title>
 <link rel="canonical" href="https://shamikhahmed.github.io/PrismCap/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Capricorn Systems">
-<meta property="og:title" content="PrismCap — 39 Offline Party Games">
-<meta property="og:description" content="39 offline party games — pass & play on one device. No accounts, no ads, by Capricorn Systems.">
+<meta property="og:title" content="PrismCap">
+<meta property="og:description" content="Party games for one phone, passed around the room.">
 <meta property="og:url" content="https://shamikhahmed.github.io/PrismCap/">
 <meta property="og:image" content="https://shamikhahmed.github.io/assets/screenshots/prismcap.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="PrismCap — 39 Offline Party Games">
-<meta name="twitter:description" content="39 offline party games — pass & play on one device. No accounts, no ads, by Capricorn Systems.">
+<meta name="twitter:title" content="PrismCap">
+<meta name="twitter:description" content="Party games for one phone, passed around the room.">
 <meta name="twitter:image" content="https://shamikhahmed.github.io/assets/screenshots/prismcap.png">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="public/favicon.svg" type="image/svg+xml">
@@ -29,8 +29,8 @@
 <link rel="apple-touch-icon" sizes="512x512" href="icon-512.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet"></noscript>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet"></noscript>
 <link rel="preload" href="css/base.css" as="style">
 <link rel="preload" href="css/components.css" as="style">
 <link rel="stylesheet" href="css/capricorn-core.css">
@@ -41,6 +41,7 @@
 <link rel="stylesheet" href="css/identity.css">
 </head>
 <body data-cap-app="1">
+<script>window.APP_VERSION='4.5.0';</script>
 <a href="#app" class="cap-skip-link">Skip to content</a>
 <div class="cap-scroll-progress" aria-hidden="true"></div>
 <div class="cap-ambient" aria-hidden="true"></div>
@@ -48,28 +49,11 @@
 <div id="app">
 <canvas id="bg"></canvas>
 <div id="music-ind" title="Toggle Music">🔇</div>
+<div id="turn-live" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+<div id="cap-dialog-root"></div>
 
-<!-- DEVICE SELECTION (2-step: family then model) -->
-<div id="device-sel" style="position:fixed;inset:0;z-index:1000;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;overflow-y:auto;-webkit-overflow-scrolling:touch">
-  <canvas id="dcan" width="72" height="72" style="margin-bottom:14px;flex-shrink:0"></canvas>
-  <div style="font-size:1.75rem;font-weight:800;letter-spacing:-.04em;margin-bottom:3px">✨ PrismCap</div>
-  <div style="font-size:.7rem;opacity:.28;margin-bottom:22px;letter-spacing:.14em;text-transform:uppercase">Select your device</div>
-  <div id="ds-step1" style="width:100%;max-width:300px">
-    <div style="font-size:.58rem;opacity:.28;text-transform:uppercase;letter-spacing:.12em;margin-bottom:9px;text-align:center">What device are you using?</div>
-    <div style="display:flex;flex-direction:column;gap:8px">
-      <button onclick="DevSel._showModels('iphone')" class="_dbtn"><span>📱</span><div><div style="font-weight:700">iPhone</div><div style="font-size:.68rem;opacity:.4">All models supported</div></div><div style="opacity:.3;font-size:.8rem">›</div></button>
-      <button onclick="DevSel._showModels('ipad')" class="_dbtn"><span>🖥️</span><div><div style="font-weight:700">iPad</div><div style="font-size:.68rem;opacity:.4">All models supported</div></div><div style="opacity:.3;font-size:.8rem">›</div></button>
-      <button onclick="DevSel._showModels('mac')" class="_dbtn"><span>💻</span><div><div style="font-weight:700">Mac / Browser</div><div style="font-size:.68rem;opacity:.4">Desktop experience</div></div><div style="opacity:.3;font-size:.8rem">›</div></button>
-    </div>
-  </div>
-  <div id="ds-step2" style="display:none;width:100%;max-width:300px">
-    <button onclick="DevSel._backToFamily()" style="background:none;border:none;color:rgba(255,255,255,.4);font-size:.82rem;cursor:pointer;margin-bottom:10px;padding:0;display:flex;align-items:center;gap:5px">← Back</button>
-    <div id="ds-model-title" style="font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;opacity:.4;margin-bottom:9px;text-align:center"></div>
-    <div id="ds-models" style="display:flex;flex-direction:column;gap:7px;max-height:55vh;overflow-y:auto;-webkit-overflow-scrolling:touch"></div>
-  </div>
-  <div style="margin-top:16px;font-size:.6rem;opacity:.15">Change anytime in Profile Settings</div>
-  <button onclick="DevSel.pickModel('ip16p',true)" style="margin-top:14px;background:none;border:none;color:rgba(255,255,255,.25);font-size:.68rem;cursor:pointer;padding:6px 12px;letter-spacing:.06em">Skip for now →</button>
-</div>
+<!-- DEVICE SELECTION removed for Tier 1 (P-PRSM-1); kept hidden for legacy DOM refs -->
+<div id="device-sel" hidden aria-hidden="true" style="display:none!important"></div>
 
 <div id="tension-bar"></div>
 
@@ -366,7 +350,7 @@
 <div class="screen" id="game-screen">
   <div id="game-progress"><div id="game-progress-fill"></div></div>
   <div class="ghdr" style="gap:8px">
-    <button type="button" onclick="GL.exitGame()" style="min-width:44px;min-height:44px;border-radius:50%;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0" title="Back (Esc)" aria-label="Back">←</button>
+    <button type="button" onclick="GL.requestExit()" style="min-width:44px;min-height:44px;border-radius:50%;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0" title="Back (Esc)" aria-label="Leave game">←</button>
     <div id="gtitle" style="font-size:.9rem;font-weight:700;letter-spacing:-.01em;flex:1;text-align:center"></div>
     <div id="gright" style="display:flex;gap:5px;align-items:center">
       <button type="button" id="ghint-btn" onclick="GL.showHint()" style="min-width:44px;min-height:44px;border-radius:50%;background:rgba(255,214,10,.12);border:1px solid rgba(255,214,10,.25);display:none;align-items:center;justify-content:center;font-size:.8rem" title="Hint" aria-label="Hint">💡</button>
@@ -385,15 +369,8 @@
   <div class="ni" data-s="profile" onclick="Nav.go('profile')" role="button" aria-label="Profile"><span class="nic" aria-hidden="true">◉</span><span class="nil">Profile</span></div>
 </nav>
 </div>
+<script src="js/dialogs.js"></script>
 <script src="js/games/example-game.js"></script>
 <script src="js/app.js"></script>
-<script src="js/capricorn-motion.js"></script>
-<script src="js/capricorn-premium-nav.js"></script>
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-      if (window.CapPremiumNav) CapPremiumNav.init({ item: '.ni' });
-      if (window.CapricornMotion) CapricornMotion.init();
-    });
-</script>
 </body>
 </html>

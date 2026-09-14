@@ -153,7 +153,7 @@ Cinematic intro before every game launch · Drama Engine wired.
 
 Pass-and-play + AI bot opponents on one device.
 
-Chess · Draughts · Connect Four · Tic-Tac-Toe · Ludo · Snakes & Ladders
+Chess · Draughts · Four in a Row · Tic-Tac-Toe · Ludo · Snakes & Ladders
 
 `BOT_BOARD_GAMES`: chess, draughts, ttt, c4, blitz, ludo, snl
 

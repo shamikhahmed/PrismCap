@@ -133,7 +133,7 @@ body[data-device="mac"] .screen-header { padding-top: 11px; }
   text-shadow: 0 0 12px rgba(255,0,255,.85), 0 0 24px rgba(0,255,255,.45);
 }
 .loader-tagline {
-  font-family: 'VT323', monospace;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 1rem; letter-spacing: .12em; text-transform: uppercase;
   color: var(--cyan); opacity: .72;
   text-shadow: 0 0 8px rgba(0,255,255,.5);
@@ -169,7 +169,7 @@ body[data-device="mac"] .screen-header { padding-top: 11px; }
   100% { bottom: 2px; }
 }
 .cab-cart-label {
-  font-family: 'Press Start 2P', monospace;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: .32rem; letter-spacing: .1em;
   color: var(--cyan);
   text-shadow: 0 0 6px rgba(0,255,255,.6);
@@ -177,7 +177,7 @@ body[data-device="mac"] .screen-header { padding-top: 11px; }
 
 .lscan {
   position: relative; z-index: 21;
-  font-size: 1.05rem; font-family: 'VT323', monospace;
+  font-size: 1.05rem; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   letter-spacing: .14em; text-align: center;
   min-height: 18px; text-transform: uppercase;
   transition: opacity .2s, color .2s;
@@ -230,7 +230,7 @@ body.light .cab-door { background: linear-gradient(180deg, #c8bfb4 0%, #b0a698 1
 .cart-shell::after {
   content: 'PRISM CAP';
   position: absolute; top: 14px; right: 16px;
-  font-family: 'Press Start 2P', monospace;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: .38rem; letter-spacing: .14em;
   opacity: .28;
 }
@@ -240,14 +240,14 @@ body.light .cab-door { background: linear-gradient(180deg, #c8bfb4 0%, #b0a698 1
 @keyframes wfadeup { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
 
 .wstep-title {
-  font-family: 'Press Start 2P', monospace;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: .72rem; font-weight: 400; letter-spacing: .06em;
   margin-bottom: 10px; line-height: 1.65;
   text-shadow: 0 0 12px rgba(255,0,255,.5);
 }
 .wstep-title--sm { font-size: .62rem; }
 .wstep-sub {
-  font-family: 'VT323', monospace;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 1.15rem; opacity: .55; line-height: 1.45;
   margin-bottom: 20px; max-width: 280px;
   color: var(--cyan);
@@ -256,7 +256,7 @@ body.light .cab-door { background: linear-gradient(180deg, #c8bfb4 0%, #b0a698 1
   width: 100%; padding: 14px 18px; border-radius: 14px;
   border: 1px solid rgba(0,255,255,.28);
   background: rgba(0,0,0,.45);
-  font-family: 'VT323', monospace;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 1.25rem; font-weight: 400; color: #fff;
   text-align: center; margin-bottom: 13px;
   box-shadow: inset 0 0 12px rgba(255,0,255,.08);
@@ -276,7 +276,7 @@ body.light .cab-door { background: linear-gradient(180deg, #c8bfb4 0%, #b0a698 1
   transition: width .4s ease;
 }
 .wscan-msg {
-  font-family: 'VT323', monospace;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 1.1rem; opacity: .48;
   min-height: 16px; margin-bottom: 12px;
   color: var(--cyan);
@@ -301,7 +301,7 @@ body.light .cab-door { background: linear-gradient(180deg, #c8bfb4 0%, #b0a698 1
   box-shadow: inset 0 2px 6px rgba(0,0,0,.45), 0 0 16px rgba(255,0,255,.12);
 }
 .home-cart-label {
-  font-family: 'Press Start 2P', monospace;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: .38rem; letter-spacing: .14em;
   color: var(--cyan);
   text-shadow: 0 0 8px rgba(0,255,255,.6);
@@ -336,7 +336,7 @@ body.light .cab-door { background: linear-gradient(180deg, #c8bfb4 0%, #b0a698 1
 .ni.on .nic { filter: drop-shadow(0 0 6px var(--acc2)) drop-shadow(0 0 10px var(--glow)); transform: scale(1.22) translateY(-2px); }
 .ni.on .nil { color: var(--acc); }
 .ni.on::after { content: ''; position: absolute; bottom: 2px; left: 50%; transform: translateX(-50%); width: 18px; height: 3px; border-radius: 999px; background: linear-gradient(90deg, var(--acc), var(--acc2)); box-shadow: 0 0 14px var(--glow); }
-.nil { font-size: .42rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; font-family: 'Press Start 2P', monospace; }
+.nil { font-size: .68rem; font-weight: 600; letter-spacing: .02em; text-transform: none; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
 
 /* ── PASS ── */
 #pass { position: fixed; inset: 0; z-index: 500; background: #000; display: none; flex-direction: column; align-items: center; justify-content: center; padding: 32px; }

@@ -1,12 +1,14 @@
 # PrismCap — Tier 1 App Report
 
-**Released:** 2026-09-15 · **v4.5.0** / SW `prismcap-v450` · tag `v4.5.0`
+**Released:** 2026-09-15 · **v4.5.0** / SW `prismcap-v450` · merge `c9d174d` · tag `v4.5.0`
 
 | Field | Value |
 |-------|--------|
 | Status | Tier 1 (P0/P1 complete) |
 | Live | https://shamikhahmed.github.io/PrismCap/ |
-| Branch | `finish/prismcap` → `main` |
+| Hub deploy | `d7a36ad` on shamikhahmed.github.io |
+| CI | https://github.com/shamikhahmed/PrismCap/actions/runs/34899127862 — **success** |
+| Live SW | `curl …/sw.js` → **prismcap-v450**; VERSION.json **4.5.0**; manifest **PrismCap** (proven 2026-09-14) |
 | Score (baseline → after) | 49 → ~86 |
 
 ## P0 / P1 register
@@ -34,7 +36,8 @@ D-06, P-PRSM-1, G-3, G-4 (§4.1 description), G-8 (4.5.0 + SW), P-VLT-1 (marketi
 - Gallery regen optional
 
 ## Release log
-- Branch `finish/prismcap`
+- Branch `finish/prismcap` → merge `c9d174d` on `main`
 - Tag `v4.5.0`
-- Hub rsync → shamikhahmed.github.io/PrismCap/
-- Live SW proof: `curl …/sw.js` → **prismcap-v450**
+- CI: https://github.com/shamikhahmed/PrismCap/actions/runs/34899127862 — success
+- Hub rsync + commit `d7a36ad`
+- Live smoke: caches `["prismcap-v450"]`, `APP_VERSION` 4.5.0, device gate hidden

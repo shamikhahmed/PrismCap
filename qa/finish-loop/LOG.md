@@ -11,3 +11,7 @@
 - SINKS.md · lighthouse stub · finish-matrix smoke spec · `test:matrix` script
 - VERSION/SW/package **4.5.2** / `prismcap-v452`
 - `npm run tier1` → PASS (warn: matrix:shots)
+
+## 2026-09-15 — 4.5.3 CI fix
+- addInitScript hist color literal (PCBrand not in init scope)
+- CapConfirm z-index 1200

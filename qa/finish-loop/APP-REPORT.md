@@ -1,7 +1,7 @@
 # PrismCap — APP-REPORT
 
 **Status:** `TIER1.json` **PASS** — fleet Tier 1 **not** claimed (VO ⛔ BLOCKED-EXTERNAL)  
-**Version:** 4.5.2 · **SW:** `prismcap-v452`  
+**Version:** 4.5.3 · **SW:** `prismcap-v453`  
 **Live URL:** https://shamikhahmed.github.io/PrismCap/  
 **CI:** https://github.com/shamikhahmed/PrismCap/actions/runs/34969969608 (pre-merge pages; refresh after finish/prismcap-tier1 merges)  
 **Updated:** 2026-09-15
@@ -16,7 +16,7 @@ Automated gate PASS (warn: matrix:shots). VO not linked — C-09 honesty. No sco
 - Suppressions FP: `requestLeave` / `_origGLLeaveFn`; haptic `Hap.heavy`
 - `css/app-tokens.css` + `css/app-runtime.css` · vite styles under brandOk `css/app-*`
 - SINKS.md · LH stub (scores not claimed) · finish-matrix spec
-- Patch **4.5.2** / SW **`prismcap-v452`**
+- Patch **4.5.3** / SW **`prismcap-v453`**
 
 ## Prior gates
 | ID | Status |
@@ -29,7 +29,7 @@ Automated gate PASS (warn: matrix:shots). VO not linked — C-09 honesty. No sco
 |---|---|---|
 | G5 | EVIDENCE | LH stub — score not claimed |
 | G7 | PARTIAL | VO ⛔ BLOCKED-EXTERNAL |
-| G8 | PASS | 4.5.2 / prismcap-v452 |
+| G8 | PASS | 4.5.3 / prismcap-v453 |
 | G10 | PASS | SINKS.md |
 | G14 | PASS | main CI (see URL above) |
 

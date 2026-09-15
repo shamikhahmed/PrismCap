@@ -6,7 +6,8 @@ test.describe('PrismCap Tier 1 (PRSM-P0/P1)', () => {
     await page.addInitScript(() => {
       localStorage.setItem('po5s', '1');
       localStorage.setItem('po5', JSON.stringify({
-        p: { name: 'Tester', av: '🎮', xp: 100, lvl: 2, games: 3, wins: 1, losses: 0, streak: 0, best: 1, bluff: 0, betrayals: 0, reflex: 0, time: 0, hist: [{ g: 'Connect Four', i: '🔴', w: 'Tester', d: 1, dt: '1/1/2026', c: PCBrand.h_ffd60a }], style: 'chaos' },
+        // literal hex OK in test fixtures (kill-list skips tests/); PCBrand is not loaded in addInitScript
+        p: { name: 'Tester', av: '🎮', xp: 100, lvl: 2, games: 3, wins: 1, losses: 0, streak: 0, best: 1, bluff: 0, betrayals: 0, reflex: 0, time: 0, hist: [{ g: 'Connect Four', i: '🔴', w: 'Tester', d: 1, dt: '1/1/2026', c: '#ffd60a' }], style: 'chaos' },
         c: { sfx: true, haptic: true, bg: false, save: true, theme: '', music: false, lowPower: true },
         a: []
       }));

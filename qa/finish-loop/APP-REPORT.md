@@ -3,7 +3,7 @@
 **Status:** `TIER1.json` **PASS** — fleet Tier 1 **not** claimed (VO ⛔ BLOCKED-EXTERNAL)  
 **Version:** 4.5.2 · **SW:** `prismcap-v452`  
 **Live URL:** https://shamikhahmed.github.io/PrismCap/  
-**CI:** *(filled after green main)*  
+**CI:** https://github.com/shamikhahmed/PrismCap/actions/runs/34969969608 (pre-merge pages; refresh after finish/prismcap-tier1 merges)  
 **Updated:** 2026-09-15
 
 Evidence: TIER1.json · SINKS.md · lighthouse stub · finish-matrix.spec.mjs

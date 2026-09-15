@@ -1751,6 +1751,7 @@ document.addEventListener('DOMContentLoaded', function() {
       var w = document.getElementById('welcome');
       if (w) { w.classList.add('out'); w.classList.remove('ready'); }
     }
+    try { window.__APP_READY__ = true; document.documentElement.dataset.appReady = 'true'; } catch (e) {}
   }, 2000);
 });
 

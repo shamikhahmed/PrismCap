@@ -1,3 +1,8 @@
+## 4.5.1 — 2026-09-15
+- C-16: Self-host Press Start 2P (Inter on pitch); remove Google Fonts + CSP font CDN entries.
+- C-20: Set `window.__APP_READY__` after arcade boot splash dismiss.
+- SW `prismcap-v451`.
+
 ## 4.5.0 — 2026-09-14
 - Tier 1 finish: D-06 renames (Four in a Row · Clue Grid · Word Dodge), device gate removed, system UI fonts (pixel logo-only), manifests PrismCap, game exit ConfirmDialog + aria-live turns, native dialogs replaced. SW `prismcap-v450`.
 

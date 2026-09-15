@@ -19,7 +19,7 @@ async function launchAndExit(page, id) {
       id: 'p' + (i + 1),
       name: 'P' + (i + 1),
       av: '🎮',
-      col: '#64D2FF',
+      col: PCBrand.h_64d2ff,
       local: i === 0,
     }));
     try {
@@ -76,7 +76,7 @@ test.describe('Game shell mobile / iPad', () => {
     await waitReg39(page);
     await page.evaluate(() => {
       const g = window.Reg.get('mem');
-      window.GL._start(g, [{ id: 'p1', name: 'P1', av: '🎮', col: '#64D2FF', local: true }]);
+      window.GL._start(g, [{ id: 'p1', name: 'P1', av: '🎮', col: PCBrand.h_64d2ff, local: true }]);
     });
     const display = await page.locator('#game-screen').evaluate((el) => getComputedStyle(el).display);
     expect(display).not.toBe('grid');

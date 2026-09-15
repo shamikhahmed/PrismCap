@@ -1,0 +1,144 @@
+# PrismCap innerHTML sinks
+
+## Policy
+Static templates OK. User/player text escaped or from controlled game state.
+
+## Counts
+| Class | Count |
+|---|---:|
+| static-template | 130 |
+
+## Inventory
+| File | Line | Class |
+|------|-----:|-------|
+| js/cap-demo-mode.js | 55 | static-template |
+| js/dialogs.js | 30 | static-template |
+| js/dialogs.js | 49 | static-template |
+| js/dialogs.js | 78 | static-template |
+| js/dialogs.js | 95 | static-template |
+| js/app.js | 85 | static-template |
+| js/app.js | 88 | static-template |
+| js/app.js | 114 | static-template |
+| js/app.js | 236 | static-template |
+| js/app.js | 274 | static-template |
+| js/app.js | 277 | static-template |
+| js/app.js | 290 | static-template |
+| js/app.js | 291 | static-template |
+| js/app.js | 292 | static-template |
+| js/app.js | 297 | static-template |
+| js/app.js | 298 | static-template |
+| js/app.js | 304 | static-template |
+| js/app.js | 305 | static-template |
+| js/app.js | 311 | static-template |
+| js/app.js | 318 | static-template |
+| js/app.js | 320 | static-template |
+| js/app.js | 324 | static-template |
+| js/app.js | 329 | static-template |
+| js/app.js | 330 | static-template |
+| js/app.js | 331 | static-template |
+| js/app.js | 335 | static-template |
+| js/app.js | 340 | static-template |
+| js/app.js | 344 | static-template |
+| js/app.js | 349 | static-template |
+| js/app.js | 350 | static-template |
+| js/app.js | 355 | static-template |
+| js/app.js | 360 | static-template |
+| js/app.js | 365 | static-template |
+| js/app.js | 370 | static-template |
+| js/app.js | 374 | static-template |
+| js/app.js | 378 | static-template |
+| js/app.js | 384 | static-template |
+| js/app.js | 388 | static-template |
+| js/app.js | 393 | static-template |
+| js/app.js | 400 | static-template |
+| js/app.js | 401 | static-template |
+| js/app.js | 402 | static-template |
+| js/app.js | 409 | static-template |
+| js/app.js | 414 | static-template |
+| js/app.js | 415 | static-template |
+| js/app.js | 429 | static-template |
+| js/app.js | 508 | static-template |
+| js/app.js | 531 | static-template |
+| js/app.js | 540 | static-template |
+| js/app.js | 545 | static-template |
+| js/app.js | 552 | static-template |
+| js/app.js | 594 | static-template |
+| js/app.js | 599 | static-template |
+| js/app.js | 600 | static-template |
+| js/app.js | 613 | static-template |
+| js/app.js | 643 | static-template |
+| js/app.js | 647 | static-template |
+| js/app.js | 650 | static-template |
+| js/app.js | 653 | static-template |
+| js/app.js | 669 | static-template |
+| js/app.js | 679 | static-template |
+| js/app.js | 680 | static-template |
+| js/app.js | 682 | static-template |
+| js/app.js | 683 | static-template |
+| js/app.js | 707 | static-template |
+| js/app.js | 709 | static-template |
+| js/app.js | 717 | static-template |
+| js/app.js | 722 | static-template |
+| js/app.js | 813 | static-template |
+| js/app.js | 1393 | static-template |
+| js/app.js | 1519 | static-template |
+| js/app.js | 1605 | static-template |
+| js/app.js | 1632 | static-template |
+| js/app.js | 1828 | static-template |
+| js/app.js | 1957 | static-template |
+| js/app.js | 1974 | static-template |
+| js/app.js | 2011 | static-template |
+| js/app.js | 2038 | static-template |
+| js/app.js | 2124 | static-template |
+| js/app.js | 2207 | static-template |
+| js/app.js | 2230 | static-template |
+| js/app.js | 2300 | static-template |
+| js/app.js | 2394 | static-template |
+| js/app.js | 2482 | static-template |
+| js/app.js | 2627 | static-template |
+| js/app.js | 3026 | static-template |
+| js/app.js | 3036 | static-template |
+| js/app.js | 3118 | static-template |
+| js/app.js | 3156 | static-template |
+| js/app.js | 3194 | static-template |
+| js/app.js | 3197 | static-template |
+| js/app.js | 3227 | static-template |
+| js/app.js | 3228 | static-template |
+| js/app.js | 3278 | static-template |
+| js/app.js | 3438 | static-template |
+| js/app.js | 3505 | static-template |
+| js/app.js | 3704 | static-template |
+| js/app.js | 3773 | static-template |
+| js/app.js | 3820 | static-template |
+| js/app.js | 3837 | static-template |
+| js/app.js | 4023 | static-template |
+| js/app.js | 4247 | static-template |
+| js/app.js | 4543 | static-template |
+| js/app.js | 4546 | static-template |
+| js/app.js | 4566 | static-template |
+| js/app.js | 4577 | static-template |
+| js/app.js | 4603 | static-template |
+| js/app.js | 4606 | static-template |
+| js/app.js | 4806 | static-template |
+| js/app.js | 5070 | static-template |
+| js/app.js | 5274 | static-template |
+| js/app.js | 5280 | static-template |
+| js/app.js | 5284 | static-template |
+| js/app.js | 5288 | static-template |
+| js/app.js | 5293 | static-template |
+| js/app.js | 5360 | static-template |
+| js/app.js | 5615 | static-template |
+| js/games/example-game.js | 59 | static-template |
+| src/counter.ts | 5 | static-template |
+| src/app/App.ts | 69 | static-template |
+| src/app/App.ts | 105 | static-template |
+| src/app/App.ts | 106 | static-template |
+| src/app/App.ts | 107 | static-template |
+| src/app/App.ts | 108 | static-template |
+| src/app/App.ts | 109 | static-template |
+| src/app/App.ts | 329 | static-template |
+| src/app/App.ts | 357 | static-template |
+| src/app/App.ts | 363 | static-template |
+| src/app/App.ts | 395 | static-template |
+| src/app/App.ts | 456 | static-template |
+

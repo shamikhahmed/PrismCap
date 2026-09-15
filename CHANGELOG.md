@@ -1,3 +1,11 @@
+## 4.5.2 — 2026-09-15
+
+TIER1 automated gate close (§14 #12):
+
+- `js/brand/colors.js` (PCBrand) — kill-list raw hex cleared
+- SINKS.md + lighthouse stub (scores not claimed) + finish-matrix spec
+- SW `prismcap-v452`
+
 ## 4.5.1 — 2026-09-15
 - C-16: Self-host Press Start 2P (Inter on pitch); remove Google Fonts + CSP font CDN entries.
 - C-20: Set `window.__APP_READY__` after arcade boot splash dismiss.

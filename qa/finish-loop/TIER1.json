@@ -1,17 +1,17 @@
 {
   "app": "PrismCap",
-  "version": "4.5.2",
-  "swCache": "prismcap-v452",
-  "generatedAt": "2026-09-15T12:52:15.234Z",
+  "version": "4.5.3",
+  "swCache": "prismcap-v453",
+  "generatedAt": "2026-09-15T13:04:51.597Z",
   "status": "PASS",
   "pass": [
     {
       "id": "version:field",
-      "detail": "4.5.2"
+      "detail": "4.5.3"
     },
     {
       "id": "version:sw-cache-match",
-      "detail": "sw.js contains prismcap-v452"
+      "detail": "sw.js contains prismcap-v453"
     },
     {
       "id": "records:BASELINE.md",
@@ -35,7 +35,7 @@
     },
     {
       "id": "records:APP-REPORT-size",
-      "detail": "1490 bytes (need ≥1024)"
+      "detail": "1680 bytes (need ≥1024)"
     },
     {
       "id": "suppressions",
@@ -47,11 +47,11 @@
     },
     {
       "id": "ci:main",
-      "detail": "pages build and deployment → success https://github.com/shamikhahmed/PrismCap/actions/runs/34969969608"
+      "detail": "pages build and deployment → success https://github.com/shamikhahmed/PrismCap/actions/runs/34972483744"
     },
     {
       "id": "tag",
-      "detail": "found v4.5.2"
+      "detail": "found v4.5.3"
     },
     {
       "id": "matrix:spec",

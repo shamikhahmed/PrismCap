@@ -15,3 +15,5 @@
 ## 2026-09-15 — 4.5.3 CI fix
 - addInitScript hist color literal (PCBrand not in init scope)
 - CapConfirm z-index 1200
+
+- CI https://github.com/shamikhahmed/PrismCap/actions/runs/34972484644 success · tag `v4.5.3` · merge `332c79c`

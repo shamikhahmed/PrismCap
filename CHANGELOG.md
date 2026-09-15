@@ -1,3 +1,9 @@
+## 4.5.3 — 2026-09-15
+
+- Fix e2e fixture: literal hist color (PCBrand unavailable in addInitScript)
+- CapConfirm backdrop z-index 1200 (above game header)
+- SW `prismcap-v453`
+
 ## 4.5.2 — 2026-09-15
 
 TIER1 automated gate close (§14 #12):

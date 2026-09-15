@@ -2,7 +2,7 @@
   "app": "PrismCap",
   "version": "4.5.3",
   "swCache": "prismcap-v453",
-  "generatedAt": "2026-09-15T13:04:51.597Z",
+  "generatedAt": "2026-09-15T13:07:30.880Z",
   "status": "PASS",
   "pass": [
     {
@@ -35,7 +35,7 @@
     },
     {
       "id": "records:APP-REPORT-size",
-      "detail": "1680 bytes (need ≥1024)"
+      "detail": "1538 bytes (need ≥1024)"
     },
     {
       "id": "suppressions",
@@ -47,7 +47,7 @@
     },
     {
       "id": "ci:main",
-      "detail": "pages build and deployment → success https://github.com/shamikhahmed/PrismCap/actions/runs/34972483744"
+      "detail": "pages build and deployment → success https://github.com/shamikhahmed/PrismCap/actions/runs/34972843525"
     },
     {
       "id": "tag",

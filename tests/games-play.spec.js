@@ -23,7 +23,7 @@ async function startGame(page, id) {
       id: 'p' + (i + 1),
       name: 'P' + (i + 1),
       av: '🎮',
-      col: '#64D2FF',
+      col: PCBrand.h_64d2ff,
       local: i === 0,
       isBot: i > 0,
     }));

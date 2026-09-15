@@ -6,7 +6,7 @@ test.describe('PrismCap Tier 1 (PRSM-P0/P1)', () => {
     await page.addInitScript(() => {
       localStorage.setItem('po5s', '1');
       localStorage.setItem('po5', JSON.stringify({
-        p: { name: 'Tester', av: '🎮', xp: 100, lvl: 2, games: 3, wins: 1, losses: 0, streak: 0, best: 1, bluff: 0, betrayals: 0, reflex: 0, time: 0, hist: [{ g: 'Connect Four', i: '🔴', w: 'Tester', d: 1, dt: '1/1/2026', c: '#FFD60A' }], style: 'chaos' },
+        p: { name: 'Tester', av: '🎮', xp: 100, lvl: 2, games: 3, wins: 1, losses: 0, streak: 0, best: 1, bluff: 0, betrayals: 0, reflex: 0, time: 0, hist: [{ g: 'Connect Four', i: '🔴', w: 'Tester', d: 1, dt: '1/1/2026', c: PCBrand.h_ffd60a }], style: 'chaos' },
         c: { sfx: true, haptic: true, bg: false, save: true, theme: '', music: false, lowPower: true },
         a: []
       }));
@@ -55,7 +55,7 @@ test.describe('PrismCap Tier 1 (PRSM-P0/P1)', () => {
     await page.waitForFunction(() => typeof window.CapConfirm === 'function' && typeof window.GL !== 'undefined');
     const ok = await page.evaluate(async () => {
       // dialogs module loaded
-      return typeof window.CapConfirm === 'function' && typeof window.CapPrompt === 'function' && typeof window.GL.requestExit === 'function';
+      return typeof window.CapConfirm === 'function' && typeof window.CapPrompt === 'function' && typeof window.GL.requestLeave === 'function';
     });
     expect(ok).toBe(true);
   });
@@ -65,7 +65,7 @@ test.describe('PrismCap Tier 1 (PRSM-P0/P1)', () => {
     await page.waitForFunction(() => window.Reg && window.GL && window.CapConfirm);
     await page.evaluate(() => {
       const g = window.Reg.get('ttt') || window.Reg.list.find((x) => !x.mp);
-      window.GL._start(g, [{ id: 'p1', name: 'Tester', av: '🎮', col: '#64D2FF', local: true }]);
+      window.GL._start(g, [{ id: 'p1', name: 'Tester', av: '🎮', col: PCBrand.h_64d2ff, local: true }]);
     });
     await expect(page.locator('#game-screen.active')).toBeVisible();
     await page.locator('#game-screen button[aria-label="Leave game"]').click();
@@ -77,12 +77,12 @@ test.describe('PrismCap Tier 1 (PRSM-P0/P1)', () => {
     await expect(page.locator('#home-screen.active')).toBeVisible({ timeout: 5000 });
   });
 
-  test('version + SW cache aligned to 4.5.0 / prismcap-v450', async ({ page }) => {
+  test('version + SW cache aligned to 4.5.2 / prismcap-v452', async ({ page }) => {
     await page.goto('/?e2e=1');
     const ver = await page.evaluate(() => window.APP_VERSION);
-    expect(ver).toBe('4.5.0');
+    expect(ver).toBe('4.5.2');
     const sw = await page.request.get('/sw.js');
     const body = await sw.text();
-    expect(body).toMatch(/prismcap-v450/);
+    expect(body).toMatch(/prismcap-v452/);
   });
 });

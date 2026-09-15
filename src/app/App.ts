@@ -303,7 +303,7 @@ export class PrismApp {
       this.save.daily = { key, claimed: false };
       this.save.profile.streak += 1;
     }
-    if (this.save.daily.claimed) return alert('Daily reward already claimed.');
+    if (this.save.daily.claimed) return void (window as any).toast?.('Daily reward already claimed.');
     this.save.daily.claimed = true;
     this.awardXP(80, 'Daily reward');
     this.persist();
@@ -376,7 +376,7 @@ export class PrismApp {
     const timer = window.setTimeout(() => {
       live = false;
       this.finishGame('reflex', score);
-      alert(`Reflex complete! Score ${score}`);
+      (window as any).toast?.(`Reflex complete! Score ${score}`);
       this.closeOverlay();
     }, 20000);
     this.activeCleanup = () => {
@@ -423,7 +423,7 @@ export class PrismApp {
         const pos = input.length - 1;
         if (sequence[pos] !== idx) {
           this.finishGame('memory', score);
-          alert(`Memory over! Level ${level}, score ${score}`);
+          (window as any).toast?.(`Memory over! Level ${level}, score ${score}`);
           this.closeOverlay();
           return;
         }
@@ -476,7 +476,7 @@ export class PrismApp {
       if (w === 'X') points = 80;
       if (w === 'O') points = 20;
       this.finishGame('ttt', points);
-      alert(w === 'X' ? 'You win!' : w === 'O' ? 'ARIA wins!' : 'Draw');
+      (window as any).toast?.(w === 'X' ? 'You win!' : w === 'O' ? 'ARIA wins!' : 'Draw');
       this.closeOverlay();
     };
     cells.forEach((c) => {

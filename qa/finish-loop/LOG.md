@@ -37,3 +37,6 @@
 - Committed: C-29 tokens.css + CSS var migration; C-31 finish-matrix CI job; capture-axe.mjs; gallery regen; CI-WORKFLOW; skip-allowlist; honest TIER1 FAIL (was stale PASS).
 - Left uncommitted: none.
 - Not merging (Tier1 FAIL: matrix-results / empty LH / axe / gallery freshness still open until CI runs).
+
+## 2026-09-16 — residual a11y (cats scroll region)
+- Committed: `tabindex=0` + `role=navigation` on `#cats` (scrollable-region-focusable); honest TIER1 still FAIL (empty LH + remaining axe).

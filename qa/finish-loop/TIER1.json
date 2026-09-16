@@ -2,7 +2,7 @@
   "app": "PrismCap",
   "version": "4.5.3",
   "swCache": "prismcap-v453",
-  "generatedAt": "2026-09-16T10:45:47.193Z",
+  "generatedAt": "2026-09-16T10:47:16.385Z",
   "status": "FAIL",
   "pass": [
     {
@@ -124,8 +124,8 @@
       "detail": "empty"
     },
     {
-      "id": "axe:files",
-      "detail": "empty"
+      "id": "axe:serious-critical",
+      "detail": "home-demo-dark.json: 1 serious/critical (scrollable-region-focusable)\nhome-demo-light.json: 1 serious/critical (scrollable-region-focusable)"
     }
   ],
   "warn": [],

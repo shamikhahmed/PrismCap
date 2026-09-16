@@ -26,3 +26,9 @@
 - Change: ≥0.6875rem captions; SVG nav icons; solid greeting color; text-caption tokens; Multiplayer/Solo plain.
 - Risks: game-body emoji elsewhere still present (in-game decoration).
 - Verification: nav SVG; greeting readable; section labels sentence-case ≥11px.
+
+### 2026-09-16 C-57 Pages allowlist
+- **Problem:** Pages published repo-root internals (HANDOVER/CLAUDE/qa/worker/package.json).
+- **Root cause:** deploy copied (nearly) the whole tree.
+- **Change:** `scripts/stage-pages-site.sh` + `verify-pages-artifact.cjs`; workflow stages allowlisted paths only.
+- **Verification:** local stage dry-run + SW precache check; live curl after deploy.

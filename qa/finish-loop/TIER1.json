@@ -2,7 +2,7 @@
   "app": "PrismCap",
   "version": "4.5.3",
   "swCache": "prismcap-v453",
-  "generatedAt": "2026-09-16T10:51:02.908Z",
+  "generatedAt": "2026-09-16T11:04:44.225Z",
   "status": "FAIL",
   "pass": [
     {
@@ -120,8 +120,16 @@
       "detail": "matrix 2026-09-16T10:45:31.417Z before last UI commit 2026-09-16T15:48:58+05:00"
     },
     {
-      "id": "lighthouse:files",
-      "detail": "empty"
+      "id": "lighthouse:home-demo-desktop.json",
+      "detail": "perf 73 a11y 98 bp 96 LCP 910.1892 TBT 466.5 CLS 0.11319326922830272"
+    },
+    {
+      "id": "lighthouse:home-demo-mobile.json",
+      "detail": "perf 43 a11y 100 bp 96 LCP 2167.365164719534 TBT 11703.817417640232 CLS 0.2599200622699001"
+    },
+    {
+      "id": "lighthouse:passing",
+      "detail": "0/2 files meet thresholds"
     },
     {
       "id": "gallery:freshness",

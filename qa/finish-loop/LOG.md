@@ -43,3 +43,10 @@
 
 ## 2026-09-16 — axe re-capture after #cats focusable
 - Committed: axe JSON now 0 serious/critical; honest TIER1 refresh.
+
+## 2026-09-16 — real Lighthouse + matrix refresh (Step R evidence)
+- Tool: `_workspace` lighthouse 13.4.1 vs local `http.server` `/?demo=1` (mobile + desktop).
+- Wrote `qa/finish-loop/lighthouse/home-demo-{mobile,desktop}.json` (real UA, non-null scores — no stubs).
+- Scores (honest): mobile perf 43 / a11y 100 / bp 96 (LCP~2.2s TBT~11.7s CLS~0.26); desktop perf 73 / a11y 98 / bp 96.
+- Refreshed matrix-results + 6 shots; axe already 0 serious/critical.
+- Not claiming lighthouse:passing or Tier 1 PASS.

@@ -170,7 +170,7 @@ body[data-device="mac"] .screen-header { padding-top: 11px; }
 }
 .cab-cart-label {
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: .32rem; letter-spacing: .1em;
+  font-size: 0.6875rem; letter-spacing: .06em;
   color: var(--cyan);
   text-shadow: 0 0 6px rgba(0,255,255,.6);
 }
@@ -231,7 +231,7 @@ body.light .cab-door { background: linear-gradient(180deg, #c8bfb4 0%, #b0a698 1
   content: 'PRISM CAP';
   position: absolute; top: 14px; right: 16px;
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: .38rem; letter-spacing: .14em;
+  font-size: 0.6875rem; letter-spacing: .06em;
   opacity: .28;
 }
 
@@ -302,7 +302,7 @@ body.light .cab-door { background: linear-gradient(180deg, #c8bfb4 0%, #b0a698 1
 }
 .home-cart-label {
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: .38rem; letter-spacing: .14em;
+  font-size: 0.6875rem; letter-spacing: .06em;
   color: var(--cyan);
   text-shadow: 0 0 8px rgba(0,255,255,.6);
 }
@@ -332,11 +332,12 @@ body.light .cab-door { background: linear-gradient(180deg, #c8bfb4 0%, #b0a698 1
 #nav.hide { transform: translateY(110%); }
 .ni  { display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 6px 0 4px; cursor: pointer; opacity: .46; user-select: none; -webkit-user-select: none; flex: 1; transition: opacity .16s, transform .2s ease; position: relative; min-height: 44px; -webkit-user-select: none; }
 .ni.on { opacity: 1; }
-.nic { font-size: 1.25rem; transition: transform .32s cubic-bezier(.34,1.56,.64,1), filter .24s ease; display: block; }
+.nic { font-size: 1.25rem; transition: transform .32s cubic-bezier(.34,1.56,.64,1), filter .24s ease; display: flex; align-items: center; justify-content: center; }
+.nic svg { width: 20px; height: 20px; display: block; }
 .ni.on .nic { filter: drop-shadow(0 0 6px var(--acc2)) drop-shadow(0 0 10px var(--glow)); transform: scale(1.22) translateY(-2px); }
 .ni.on .nil { color: var(--acc); }
 .ni.on::after { content: ''; position: absolute; bottom: 2px; left: 50%; transform: translateX(-50%); width: 18px; height: 3px; border-radius: 999px; background: linear-gradient(90deg, var(--acc), var(--acc2)); box-shadow: 0 0 14px var(--glow); }
-.nil { font-size: .68rem; font-weight: 600; letter-spacing: .02em; text-transform: none; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+.nil { font-size: 0.6875rem; font-weight: 600; letter-spacing: .02em; text-transform: none; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
 
 /* ── PASS ── */
 #pass { position: fixed; inset: 0; z-index: 500; background: #000; display: none; flex-direction: column; align-items: center; justify-content: center; padding: 32px; }
@@ -443,7 +444,7 @@ body[data-device="mac"]  .btn  { font-size: 1rem; }
     padding-top: 6px;
   }
   .ni { flex-direction: column; padding: 6px 0 4px; margin: 0; }
-  .nil { font-size: .52rem; }
+  .nil { font-size: 0.6875rem; }
 }
 
 /* ── iPhone SE / small phones ── */

@@ -63,7 +63,7 @@
 .sv--amber { background: linear-gradient(135deg, var(--amber), rgba(255,159,10,.75)); -webkit-background-clip: text; background-clip: text; }
 .sv--cyan  { background: linear-gradient(135deg, var(--cyan), rgba(0,229,255,.75)); -webkit-background-clip: text; background-clip: text; }
 .sv--red   { background: linear-gradient(135deg, var(--red), rgba(255,45,85,.75)); -webkit-background-clip: text; background-clip: text; }
-.sl  { font-size: .6rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--dim); margin-top: 3px; }
+.sl  { font-size: 0.6875rem; font-weight: 600; letter-spacing: .02em; text-transform: none; color: var(--dim); margin-top: 3px; }
 .btrack { height: 3px; background: rgba(255,255,255,.07); border-radius: 2px; overflow: hidden; }
 .bfill  { height: 100%; border-radius: 2px; transition: width .85s ease; }
 .xbar   { height: 5px; background: rgba(255,255,255,.07); border-radius: 3px; overflow: hidden; margin: 6px 0; }
@@ -146,13 +146,28 @@
 .board-cell:active { transform: scale(.92); }
 
 /* ── UTILS ── */
-.sec  { font-size: .72rem !important; font-weight: 600 !important; letter-spacing: .04em !important; text-transform: uppercase; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif; color: rgba(255,255,255,.78); }
+.sec  { font-size: 0.6875rem !important; font-weight: 600 !important; letter-spacing: .02em !important; text-transform: none; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif; color: rgba(255,255,255,.88); }
 .shdr { padding: 15px 15px 8px; display: flex; align-items: center; justify-content: space-between; }
 .noscroll { scrollbar-width: none; }
 .noscroll::-webkit-scrollbar { display: none; }
+.text-caption, .cap-caption {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: rgba(255,255,255,.72);
+}
 
 /* ── HOME GREETING ── */
-#home-greeting { font-size: .75rem !important; font-weight: 700 !important; background: linear-gradient(90deg, var(--acc), var(--acc2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+#home-greeting {
+  font-size: 0.875rem !important;
+  font-weight: 700 !important;
+  color: var(--acc2, #e8d5ff) !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  -webkit-text-fill-color: unset !important;
+  background-clip: unset !important;
+}
 
 /* ── DEVICE BUTTONS ── */
 ._dbtn { width: 100%; padding: 14px 16px; border-radius: 16px !important; border: 1px solid rgba(255,255,255,.1) !important; background: rgba(255,255,255,.05) !important; color: #fff; font: 600 .88rem -apple-system,sans-serif; cursor: pointer; display: flex; align-items: center; gap: 12px; text-align: left; transition: all .18s cubic-bezier(.34,1.56,.64,1) !important; }

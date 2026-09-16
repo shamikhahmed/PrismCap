@@ -17,3 +17,12 @@
 - CapConfirm z-index 1200
 
 - CI https://github.com/shamikhahmed/PrismCap/actions/runs/34972484644 success · tag `v4.5.3` · merge `332c79c`
+
+## 2026-09-16 — C-40
+### §15 mini-plan
+- Problem: sub-11px labels; emoji/symbols in nav controls; purple greeting contrast; uppercase caption labels.
+- Root cause: .nil/.sl/.cab tiny rem; unicode nic; gradient text-fill; uppercase .sec.
+- Files: layout.css, components.css, index.html, app.js
+- Change: ≥0.6875rem captions; SVG nav icons; solid greeting color; text-caption tokens; Multiplayer/Solo plain.
+- Risks: game-body emoji elsewhere still present (in-game decoration).
+- Verification: nav SVG; greeting readable; section labels sentence-case ≥11px.

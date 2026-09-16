@@ -1,10 +1,10 @@
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #FF00FF;
+  --text: var(--pc-6b6375);
+  --text-h: var(--pc-08060d);
+  --bg: var(--pc-ffffff);
+  --border: var(--pc-e5e4e7);
+  --code-bg: var(--pc-f4f3ec);
+  --accent: var(--pc-ff00ff);
   --accent-bg: rgba(255, 0, 255, 0.12);
   --accent-border: rgba(0, 255, 255, 0.45);
   --social-bg: rgba(244, 243, 236, 0.5);
@@ -32,12 +32,12 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #FF33FF;
+    --text: var(--pc-9ca3af);
+    --text-h: var(--pc-f3f4f6);
+    --bg: var(--pc-16171d);
+    --border: var(--pc-2e303a);
+    --code-bg: var(--pc-1f2028);
+    --accent: var(--pc-ff33ff);
     --accent-bg: rgba(255, 51, 255, 0.15);
     --accent-border: rgba(51, 255, 255, 0.5);
     --social-bg: rgba(47, 48, 58, 0.5);

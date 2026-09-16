@@ -32,6 +32,7 @@
 <link rel="stylesheet" href="css/fonts-local.css">
   <link rel="preload" href="css/base.css" as="style">
 <link rel="preload" href="css/components.css" as="style">
+<link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/capricorn-core.css">
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/layout.css">
@@ -48,7 +49,7 @@
 <canvas id="cap-scene" class="cap-scene-canvas cap-scene-canvas--subtle" aria-hidden="true"></canvas>
 <div id="app">
 <canvas id="bg"></canvas>
-<div id="music-ind" title="Toggle Music">🔇</div>
+<div id="music-ind" title="Toggle Music" role="button" tabindex="0" aria-label="Toggle music"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a9 9 0 0 1 0 14"/></svg></div>
 <div id="turn-live" class="sr-only" aria-live="polite" aria-atomic="true"></div>
 <div id="cap-dialog-root"></div>
 
@@ -155,11 +156,11 @@
 <div id="pass">
   <div class="pass-priv"></div>
   <div id="pass-c" style="display:flex;flex-direction:column;align-items:center;width:100%;max-width:340px">
-    <div style="font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;opacity:.28;margin-bottom:16px">Pass to</div>
+    <div style="font-size:0.6875rem;letter-spacing:.16em;text-transform:uppercase;opacity:.28;margin-bottom:16px">Pass to</div>
     <div id="pav" style="font-size:4rem;margin-bottom:9px"></div>
     <div id="pnm" style="font-size:1.9rem;font-weight:800;letter-spacing:-.03em;margin-bottom:4px"></div>
     <div id="prl" style="font-size:.8rem;opacity:.38;margin-bottom:30px"></div>
-    <div style="font-size:.68rem;opacity:.2;margin-bottom:14px">Shield screen from others</div>
+    <div style="font-size:0.6875rem;opacity:.2;margin-bottom:14px">Shield screen from others</div>
     <button class="btn bw bf" style="max-width:250px" onclick="PP.reveal()">Tap to Reveal →</button>
   </div>
   <div id="pass-rv" style="display:none;width:100%;max-width:360px"></div>
@@ -173,13 +174,13 @@
       <div class="home-cab-main">
         <div class="home-cart-marquee" aria-hidden="true"><span class="home-cart-label">PRISM</span><span class="home-cart-led"></span><span class="home-cart-led"></span><span class="home-cart-led"></span></div>
         <div class="screen-header" style="display:flex;align-items:center;justify-content:space-between">
-          <div><div style="font-size:1.25rem;font-weight:800;letter-spacing:-.03em">Prism<span style="opacity:.2">Cap</span></div><div id="home-greeting" style="font-size:.6rem;opacity:.25;margin-top:1px">Good evening</div></div>
+          <div><div style="font-size:1.25rem;font-weight:800;letter-spacing:-.03em">Prism<span style="opacity:.2">Cap</span></div><div id="home-greeting" style="margin-top:2px">Good evening</div></div>
           <div style="display:flex;gap:8px;align-items:center">
             <div style="display:flex;align-items:center;gap:5px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.09);border-radius:100px;padding:4px 10px;cursor:pointer" onclick="Nav.go('profile')">
-              <span id="hlvl" style="font-size:.68rem;font-weight:800;color:var(--amber)">LV1</span>
+              <span id="hlvl" style="font-size:0.6875rem;font-weight:800;color:var(--amber)">LV1</span>
               <div style="width:48px;height:2px;background:rgba(255,255,255,.09);border-radius:1px;overflow:hidden"><div id="hxp" style="height:100%;background:linear-gradient(90deg,var(--violet),var(--cyan));border-radius:1px;width:0%;transition:width 1s ease"></div></div>
             </div>
-            <div id="hav" onclick="Nav.go('profile')" style="width:31px;height:31px;border-radius:50%;background:rgba(255,255,255,.07);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1rem;cursor:pointer">👤</div>
+            <div id="hav" onclick="Nav.go('profile')" role="button" aria-label="Profile" style="width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.07);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-4 6-6 8-6s6.5 2 8 6"/></svg></div>
           </div>
         </div>
         <div id="hw-area" style="padding:6px 0 0"></div>
@@ -187,26 +188,26 @@
           <div class="feat" id="feat" onclick="GL.launchFeat()">
             <div id="feat-bg" style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(100,210,255,.26),rgba(100,210,255,.05))"></div>
             <div style="position:relative;z-index:2;padding:18px;height:100%;display:flex;flex-direction:column;justify-content:space-between">
-              <div style="display:flex;justify-content:space-between;align-items:flex-start"><span id="feat-badge" style="background:rgba(255,255,255,.12);border-radius:100px;padding:3px 10px;font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase">Featured</span><span id="feat-icon" style="font-size:2.2rem">🎮</span></div>
-              <div><div id="feat-type" style="font-size:.58rem;opacity:.48;letter-spacing:.12em;text-transform:uppercase;margin-bottom:2px"></div><div id="feat-title" style="font-size:1.6rem;font-weight:800;letter-spacing:-.03em;line-height:1.05">Loading...</div><div id="feat-desc" style="font-size:.78rem;opacity:.48;margin-top:4px"></div><div class="feat-play-pill" style="margin-top:11px;display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.88);color:var(--pc-play-fg);border-radius:100px;padding:7px 15px;font-size:.78rem;font-weight:700">▶ Play Now</div></div>
+              <div style="display:flex;justify-content:space-between;align-items:flex-start"><span id="feat-badge" class="text-caption" style="background:rgba(255,255,255,.12);border-radius:100px;padding:3px 10px">Featured</span><span id="feat-icon" style="font-size:2.2rem" aria-hidden="true">🎮</span></div>
+              <div><div id="feat-type" class="text-caption" style="opacity:.72;margin-bottom:2px"></div><div id="feat-title" style="font-size:1.6rem;font-weight:800;letter-spacing:-.03em;line-height:1.05">Loading...</div><div id="feat-desc" style="font-size:.78rem;opacity:.48;margin-top:4px"></div><div class="feat-play-pill" style="margin-top:11px;display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.88);color:var(--pc-play-fg);border-radius:100px;padding:7px 15px;font-size:.78rem;font-weight:700">Play now</div></div>
             </div>
           </div>
         </div>
-        <div class="shdr"><div class="sec">🔥 Multiplayer</div><div style="font-size:.73rem;opacity:.28;cursor:pointer" onclick="Nav.go('library')">See All</div></div>
+        <div class="shdr"><div class="sec">Multiplayer</div><div style="font-size:0.6875rem;opacity:.55;cursor:pointer" onclick="Nav.go('library')">See all</div></div>
         <div class="hscroll noscroll" id="mp-row"></div>
-        <div class="shdr" style="margin-top:6px"><div class="sec">⚡ Solo</div><div style="font-size:.73rem;opacity:.28;cursor:pointer" onclick="Nav.go('library')">See All</div></div>
+        <div class="shdr" style="margin-top:6px"><div class="sec">Solo</div><div style="font-size:0.6875rem;opacity:.55;cursor:pointer" onclick="Nav.go('library')">See all</div></div>
         <div class="hscroll noscroll" id="solo-row"></div>
       </div>
       <aside class="home-cab-rail" aria-label="Scoreboard">
         <div class="home-cab-rail__label">Scoreboard</div>
-        <div class="home-stats-block"><div class="sec" style="margin-bottom:9px">📊 Stats</div>
+        <div class="home-stats-block"><div class="sec" style="margin-bottom:9px">Stats</div>
           <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
-            <div class="glass" style="padding:11px 9px;text-align:center;border-radius:12px"><div id="sg" style="font-size:1.45rem;font-weight:800">0</div><div style="font-size:.52rem;opacity:.33;text-transform:uppercase;letter-spacing:.08em;margin-top:2px">Games</div></div>
-            <div class="glass" style="padding:11px 9px;text-align:center;border-radius:12px"><div id="sw" style="font-size:1.45rem;font-weight:800;color:var(--green)">0</div><div style="font-size:.52rem;opacity:.33;text-transform:uppercase;letter-spacing:.08em;margin-top:2px">Wins</div></div>
-            <div class="glass" style="padding:11px 9px;text-align:center;border-radius:12px"><div id="ss" style="font-size:1.45rem;font-weight:800;color:var(--amber)">0</div><div style="font-size:.52rem;opacity:.33;text-transform:uppercase;letter-spacing:.08em;margin-top:2px">Streak</div></div>
+            <div class="glass" style="padding:11px 9px;text-align:center;border-radius:12px"><div id="sg" style="font-size:1.45rem;font-weight:800">0</div><div class="text-caption" style="margin-top:2px">Games</div></div>
+            <div class="glass" style="padding:11px 9px;text-align:center;border-radius:12px"><div id="sw" style="font-size:1.45rem;font-weight:800;color:var(--green)">0</div><div class="text-caption" style="margin-top:2px">Wins</div></div>
+            <div class="glass" style="padding:11px 9px;text-align:center;border-radius:12px"><div id="ss" style="font-size:1.45rem;font-weight:800;color:var(--amber)">0</div><div class="text-caption" style="margin-top:2px">Streak</div></div>
           </div>
         </div>
-        <div class="shdr"><div class="sec">🕐 Recent</div></div>
+        <div class="shdr"><div class="sec">Recent</div></div>
         <div class="home-recent-wrap" id="recent"></div>
       </aside>
     </div>
@@ -218,11 +219,11 @@
 <div class="screen" id="library-screen">
   <div class="screen-header" style="padding-bottom:9px">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
-      <div style="font-size:1.25rem;font-weight:800;letter-spacing:-.02em">🎮 Games</div>
+      <div style="font-size:1.25rem;font-weight:800;letter-spacing:-.02em">Games</div>
       <div style="font-size:.73rem;opacity:.28" id="lib-count">39 games</div>
     </div>
     <div style="position:relative;margin-bottom:0">
-      <input id="game-search" placeholder="🔍  Search games..." autocorrect="off" oninput="GL.search(this.value)" style="width:100%;padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.06);font-size:.88rem;color:var(--pc-search-fg)">
+      <input id="game-search" placeholder="Search games..." autocorrect="off" oninput="GL.search(this.value)" style="width:100%;padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.06);font-size:.88rem;color:var(--pc-search-fg)">
     </div>
   </div>
   <div style="display:flex;gap:6px;padding:0 15px 12px;overflow-x:auto;scrollbar-width:none;touch-action:pan-x;-webkit-overflow-scrolling:touch" class="noscroll" id="cats">
@@ -244,11 +245,11 @@
   <!-- XP Card -->
   <div style="margin:0 15px 14px"><div class="glass" style="padding:15px">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-      <div><div id="drank" style="font-size:1.05rem;font-weight:800">Rookie</div><div style="font-size:.6rem;opacity:.33;margin-top:1px">Level <span id="dlvl">1</span></div></div>
-      <div style="text-align:right"><div id="dxp" style="font-size:1.45rem;font-weight:800;color:var(--amber)">0</div><div style="font-size:.6rem;opacity:.33">Total XP</div></div>
+      <div><div id="drank" style="font-size:1.05rem;font-weight:800">Rookie</div><div style="font-size:0.6875rem;opacity:.33;margin-top:1px">Level <span id="dlvl">1</span></div></div>
+      <div style="text-align:right"><div id="dxp" style="font-size:1.45rem;font-weight:800;color:var(--amber)">0</div><div style="font-size:0.6875rem;opacity:.33">Total XP</div></div>
     </div>
     <div class="xbar"><div class="xfill" id="dxpb" style="width:0%"></div></div>
-    <div style="display:flex;justify-content:space-between;font-size:.6rem;opacity:.3;margin-top:4px"><span>Lv<span id="dlc">1</span></span><span id="dnxt">100 XP to next</span></div>
+    <div style="display:flex;justify-content:space-between;font-size:0.6875rem;opacity:.3;margin-top:4px"><span>Lv<span id="dlc">1</span></span><span id="dnxt">100 XP to next</span></div>
   </div></div>
   <!-- Stat Grid -->
   <div id="most-played-dash" style="padding:0 15px;margin-bottom:12px"></div>
@@ -262,25 +263,25 @@
   </div>
   <!-- Charts -->
   <div style="padding:0 15px;margin-bottom:14px">
-    <div class="sec" style="margin-bottom:9px">📈 Win Trend</div>
+    <div class="sec" style="margin-bottom:9px">Win trend</div>
     <div class="glass" style="padding:14px"><canvas id="wchart" width="300" height="60" style="width:100%;display:block"></canvas></div>
   </div>
   <!-- Playstyle Radar -->
   <div style="padding:0 15px;margin-bottom:14px">
-    <div class="sec" style="margin-bottom:9px">🎭 Playstyle Profile</div>
+    <div class="sec" style="margin-bottom:9px">Playstyle profile</div>
     <div class="glass" style="padding:14px;display:flex;gap:14px;align-items:center">
       <canvas id="radar" width="100" height="100"></canvas>
       <div id="persona-block"></div>
     </div>
   </div>
   <!-- Achievements -->
-  <div style="padding:0 15px"><div class="sec" style="margin-bottom:9px">🏆 Achievements</div><div id="achl"></div></div>
+  <div style="padding:0 15px"><div class="sec" style="margin-bottom:9px">Achievements</div><div id="achl"></div></div>
   <!-- History -->
-  <div style="padding:0 15px;margin-top:14px"><div class="sec" style="margin-bottom:9px">📋 History</div><div id="hlist"></div></div>
+  <div style="padding:0 15px;margin-top:14px"><div class="sec" style="margin-bottom:9px">History</div><div id="hlist"></div></div>
   <!-- High Scores -->
-  <div style="padding:0 15px;margin-top:14px;margin-bottom:8px"><div class="sec" style="margin-bottom:9px">🏆 High Scores</div><div id="records-list"></div></div>
+  <div style="padding:0 15px;margin-top:14px;margin-bottom:8px"><div class="sec" style="margin-bottom:9px">High scores</div><div id="records-list"></div></div>
   <!-- Unlock progress -->
-  <div style="padding:0 15px;margin-top:14px;margin-bottom:20px"><div class="sec" style="margin-bottom:9px">🔓 Unlock Progress</div><div id="unlock-list"></div></div>
+  <div style="padding:0 15px;margin-top:14px;margin-bottom:20px"><div class="sec" style="margin-bottom:9px">Unlock progress</div><div id="unlock-list"></div></div>
 </div>
 
 <!-- ARCADE (5th tab) -->
@@ -288,22 +289,22 @@
   <div class="screen-header"><div style="font-size:1.25rem;font-weight:800;letter-spacing:-.02em">Arcade</div><div style="font-size:.78rem;opacity:.3;margin-top:2px">Modes, daily, custom games</div></div>
   <!-- Daily Challenge -->
   <div style="padding:0 15px;margin-bottom:16px">
-    <div class="sec" style="margin-bottom:9px">🎯 Daily Challenge</div>
+    <div class="sec" style="margin-bottom:9px">Daily challenge</div>
     <div id="daily-widget" class="holo" style="border-radius:16px;padding:15px;cursor:pointer"></div>
   </div>
   <!-- Tournament -->
   <div style="padding:0 15px;margin-bottom:16px">
-    <div class="sec" style="margin-bottom:9px">🏆 Tournament</div>
+    <div class="sec" style="margin-bottom:9px">Tournament</div>
     <div id="tourney-widget"></div>
   </div>
   <!-- Custom Game Creator -->
   <div style="padding:0 15px;margin-bottom:16px">
-    <div class="sec" style="margin-bottom:9px">⚙️ Custom Game Creator</div>
+    <div class="sec" style="margin-bottom:9px">Custom game creator</div>
     <div id="custom-creator"></div>
   </div>
   <!-- Vault -->
   <div style="padding:0 15px;margin-bottom:16px">
-    <div class="sec" style="margin-bottom:9px">🔓 Vault</div>
+    <div class="sec" style="margin-bottom:9px">Vault</div>
     <div id="vault-list"></div>
   </div>
 </div>
@@ -311,16 +312,16 @@
 <!-- PROFILE -->
 <div class="screen" id="profile-screen">
   <div class="screen-header" style="display:flex;flex-direction:column;align-items:center;text-align:center;padding-bottom:18px">
-    <div id="pav2" style="width:88px;height:88px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2.7rem;margin-bottom:12px;border:1px solid var(--border);background:rgba(255,255,255,.05)">👤</div>
+    <div id="pav2" style="width:88px;height:88px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2.7rem;margin-bottom:12px;border:1px solid var(--border);background:rgba(255,255,255,.05)" aria-hidden="true"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-4 6-6 8-6s6.5 2 8 6"/></svg></div>
     <div id="pnm2" style="font-size:1.65rem;font-weight:800;letter-spacing:-.03em">Player</div>
     <div id="prk2" style="font-size:.73rem;opacity:.3;margin-top:3px">Rookie · Level 1</div>
     <div id="pbadges" style="display:flex;flex-wrap:wrap;justify-content:center;gap:5px;margin:10px 0"></div>
     <button class="btn bg bsm" style="margin-top:4px" onclick="GL.editProfile()">Edit Profile</button>
   </div>
   <!-- Themes -->
-  <div style="padding:0 15px"><div class="sec" style="margin-bottom:9px">🎨 Themes</div><div id="tgrid"></div></div>
+  <div style="padding:0 15px"><div class="sec" style="margin-bottom:9px">Themes</div><div id="tgrid"></div></div>
   <!-- Performance -->
-  <div style="padding:0 15px;margin-top:18px"><div class="sec" style="margin-bottom:9px">📈 Performance</div>
+  <div style="padding:0 15px;margin-top:18px"><div class="sec" style="margin-bottom:9px">Performance</div>
     <div class="glass" style="padding:14px">
       <div style="margin-bottom:12px"><div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:.76rem;font-weight:600">Win Rate</span><span id="pwr" style="font-size:.73rem;opacity:.48">0%</span></div><div class="btrack"><div class="bfill" id="pwrb" style="width:0%;background:var(--acc)"></div></div></div>
       <div style="margin-bottom:12px"><div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:.76rem;font-weight:600">Bluff Score</span><span id="pbl" style="font-size:.73rem;opacity:.48">0</span></div><div class="btrack"><div class="bfill" id="pblb" style="width:0%;background:var(--violet)"></div></div></div>
@@ -328,19 +329,19 @@
     </div>
   </div>
   <!-- Settings -->
-  <div style="padding:14px 15px"><div class="sec" style="margin-bottom:9px">⚙️ Settings</div>
+  <div style="padding:14px 15px"><div class="sec" style="margin-bottom:9px">Settings</div>
     <div class="glass" style="border-radius:15px;overflow:hidden">
-      <div class="srow"><span style="font-size:.84rem;font-weight:600">🔊 Sound Effects</span><div class="tog on" id="tsfx" onclick="GL.togSet('sfx',this)"></div></div>
-      <div class="srow"><span style="font-size:.84rem;font-weight:600">📳 Haptics</span><div class="tog on" id="thap" onclick="GL.togSet('haptic',this)"></div></div>
-      <div class="srow"><span style="font-size:.84rem;font-weight:600">🌟 Animated BG</span><div class="tog on" id="tbg" onclick="GL.togSet('bg',this)"></div></div>
-      <div class="srow"><span style="font-size:.84rem;font-weight:600">🔔 Notifications</span><div class="tog on" id="tnotif" onclick="GL.togSet('notif',this)"></div></div>
-      <div class="srow"><span style="font-size:.84rem;font-weight:600">👆 Larger Tap Targets</span><div class="tog" id="tlargetap" onclick="GL.togSet('largeTap',this)"></div></div>
-      <div class="srow"><span style="font-size:.84rem;font-weight:600">🎨 Color-Blind Mode</span><div class="tog" id="tcb" onclick="GL.togSet('colorBlind',this)"></div></div>
-      <div class="srow" style="border:none"><span style="font-size:.84rem;font-weight:600">💾 Auto-Save</span><div class="tog on" id="tsv" onclick="GL.togSet('save',this)"></div></div>
+      <div class="srow"><span style="font-size:.84rem;font-weight:600">Sound Effects</span><div class="tog on" id="tsfx" onclick="GL.togSet('sfx',this)"></div></div>
+      <div class="srow"><span style="font-size:.84rem;font-weight:600">Haptics</span><div class="tog on" id="thap" onclick="GL.togSet('haptic',this)"></div></div>
+      <div class="srow"><span style="font-size:.84rem;font-weight:600">Animated BG</span><div class="tog on" id="tbg" onclick="GL.togSet('bg',this)"></div></div>
+      <div class="srow"><span style="font-size:.84rem;font-weight:600">Notifications</span><div class="tog on" id="tnotif" onclick="GL.togSet('notif',this)"></div></div>
+      <div class="srow"><span style="font-size:.84rem;font-weight:600">Larger Tap Targets</span><div class="tog" id="tlargetap" onclick="GL.togSet('largeTap',this)"></div></div>
+      <div class="srow"><span style="font-size:.84rem;font-weight:600">Color-Blind Mode</span><div class="tog" id="tcb" onclick="GL.togSet('colorBlind',this)"></div></div>
+      <div class="srow" style="border:none"><span style="font-size:.84rem;font-weight:600">Auto-Save</span><div class="tog on" id="tsv" onclick="GL.togSet('save',this)"></div></div>
     </div>
     <div style="margin-top:12px;padding:12px;background:rgba(0,212,255,.06);border:1px solid rgba(0,212,255,.15);border-radius:12px;margin-bottom:10px">
       <div style="font-size:.72rem;opacity:.45;margin-bottom:8px;text-transform:uppercase;letter-spacing:.08em">Try demo</div>
-      <div style="font-size:.65rem;opacity:.35;line-height:1.4">Open with <strong>?demo=1</strong> for sample XP stats. PrismCap v4.0.0</div>
+      <div style="font-size:0.6875rem;opacity:.35;line-height:1.4">Open with <strong>?demo=1</strong> for sample XP stats. PrismCap v4.0.0</div>
     </div>
     <button class="btn bg bf" style="margin-top:4px" onclick="GL.resetData()">Reset All Data</button>
   </div>
@@ -353,8 +354,8 @@
     <button type="button" onclick="GL.requestLeave()" style="min-width:44px;min-height:44px;border-radius:50%;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0" title="Back (Esc)" aria-label="Leave game">←</button>
     <div id="gtitle" style="font-size:.9rem;font-weight:700;letter-spacing:-.01em;flex:1;text-align:center"></div>
     <div id="gright" style="display:flex;gap:5px;align-items:center">
-      <button type="button" id="ghint-btn" onclick="GL.showHint()" style="min-width:44px;min-height:44px;border-radius:50%;background:rgba(255,214,10,.12);border:1px solid rgba(255,214,10,.25);display:none;align-items:center;justify-content:center;font-size:.8rem" title="Hint" aria-label="Hint">💡</button>
-      <button type="button" onclick="GL.showGameSettings()" style="min-width:44px;min-height:44px;border-radius:50%;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;font-size:.8rem" title="Settings" aria-label="Settings">⚙️</button>
+      <button type="button" id="ghint-btn" onclick="GL.showHint()" style="min-width:44px;min-height:44px;border-radius:50%;background:rgba(255,214,10,.12);border:1px solid rgba(255,214,10,.25);display:none;align-items:center;justify-content:center;color:var(--amber)" title="Hint" aria-label="Hint"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 1 4 10c-.8.7-1.2 1.4-1.4 2.2H9.4C9.2 14.4 8.8 13.7 8 13a6 6 0 0 1 4-10z"/></svg></button>
+      <button type="button" onclick="GL.showGameSettings()" style="min-width:44px;min-height:44px;border-radius:50%;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;font-size:.8rem" title="Settings" aria-label="Settings"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9c.3.6.9 1 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button>
     </div>
   </div>
   <div class="gbody" id="gbody"></div>

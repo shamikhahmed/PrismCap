@@ -45,7 +45,7 @@ body, .wstep-sub, .cart-input, .wscan-msg, .lscan, .sl, .ttile .ttile-name, .btn
   background: linear-gradient(135deg, var(--acc), var(--acc2));
 }
 
-:root { --cap-accent: #FF00FF; --cap-accent-contrast: #050508; }
+:root { --cap-accent: var(--pc-ff00ff); --cap-accent-contrast: var(--pc-050508); }
 
 .sr-only {
   position: absolute;
@@ -84,7 +84,7 @@ body, .wstep-sub, .cart-input, .wscan-msg, .lscan, .sl, .ttile .ttile-name, .btn
   font-size: 1.05rem;
   font-weight: 800;
   margin: 0 0 8px;
-  color: #fff;
+  color: var(--pc-ffffff);
 }
 .cap-dialog-body {
   font-size: .88rem;
@@ -98,7 +98,7 @@ body, .wstep-sub, .cart-input, .wscan-msg, .lscan, .sl, .ttile .ttile-name, .btn
   border-radius: 12px;
   border: 1px solid rgba(255,255,255,.16);
   background: rgba(255,255,255,.06);
-  color: #fff;
+  color: var(--pc-ffffff);
   font-size: 1rem;
   margin-bottom: 14px;
 }
@@ -132,10 +132,10 @@ body, .wstep-sub, .cart-input, .wscan-msg, .lscan, .sl, .ttile .ttile-name, .btn
 
 @media (min-width: 900px) {
   body:has(#home-screen.active) #app {
-    max-width: min(980px, 96vw) !important;
+    max-width: min(980px, 96vw);
   }
   body:has(#home-screen.active) #nav {
-    max-width: min(980px, 96vw) !important;
+    max-width: min(980px, 96vw);
   }
 
   .home-cabinet {
@@ -144,7 +144,7 @@ body, .wstep-sub, .cart-input, .wscan-msg, .lscan, .sl, .ttile .ttile-name, .btn
     gap: 0;
     min-height: calc(100% - 8px);
     margin: 0 8px 12px;
-    background: linear-gradient(180deg, #1a1218 0%, #0c0a10 100%);
+    background: linear-gradient(180deg, var(--pc-1a1218) 0%, var(--pc-0c0a10) 100%);
     border: 2px solid rgba(255,0,255,.35);
     border-radius: 10px;
     box-shadow:
@@ -160,7 +160,7 @@ body, .wstep-sub, .cart-input, .wscan-msg, .lscan, .sl, .ttile .ttile-name, .btn
         transparent 0 4px,
         rgba(255,0,255,.04) 4px 5px
       ),
-      linear-gradient(180deg, #2a1a28, #120e16);
+      linear-gradient(180deg, var(--pc-2a1a28), var(--pc-120e16));
     border-radius: 6px 0 0 6px;
     position: relative;
   }

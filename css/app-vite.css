@@ -1,10 +1,10 @@
 :root {
   color-scheme: dark;
-  --bg: #06080f;
+  --bg: var(--pc-06080f);
   --card: rgba(255, 255, 255, 0.06);
   --border: rgba(255, 255, 255, 0.15);
-  --text: #f5f7ff;
-  --acc: #00d4ff;
+  --text: var(--pc-f5f7ff);
+  --acc: var(--pc-00d4ff);
 }
 
 * {
@@ -17,17 +17,17 @@ body,
   margin: 0;
   width: 100%;
   min-height: 100%;
-  background: radial-gradient(circle at 20% 15%, #1a1130 0%, var(--bg) 50%);
+  background: radial-gradient(circle at 20% 15%, var(--pc-1a1130) 0%, var(--bg) 50%);
   color: var(--text);
   font-family: Inter, -apple-system, system-ui, sans-serif;
 }
 
 body.theme-neon {
-  --acc: #ff4fe1;
+  --acc: var(--pc-ff4fe1);
 }
 
 body.theme-midnight {
-  --acc: #6aa2ff;
+  --acc: var(--pc-6aa2ff);
 }
 
 .app-shell {
@@ -156,7 +156,7 @@ body.theme-midnight {
 }
 
 .nav-btn small {
-  font-size: 0.62rem;
+  font-size: 0.6875rem;
 }
 
 .btn {
@@ -165,7 +165,7 @@ body.theme-midnight {
   justify-content: center;
   border: 1px solid var(--border);
   background: rgba(127, 212, 255, 0.15);
-  color: #e9f6ff;
+  color: var(--pc-e9f6ff);
   border-radius: 10px;
   padding: 10px 14px;
   text-decoration: none;

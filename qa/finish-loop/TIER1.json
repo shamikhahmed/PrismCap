@@ -2,8 +2,8 @@
   "app": "PrismCap",
   "version": "4.5.3",
   "swCache": "prismcap-v453",
-  "generatedAt": "2026-09-15T13:07:30.880Z",
-  "status": "PASS",
+  "generatedAt": "2026-09-16T10:43:22.906Z",
+  "status": "FAIL",
   "pass": [
     {
       "id": "version:field",
@@ -42,12 +42,16 @@
       "detail": "none"
     },
     {
+      "id": "test-skip",
+      "detail": "none"
+    },
+    {
       "id": "app-ready",
-      "detail": "window.__APP_READY__ referenced"
+      "detail": "window.__APP_READY__ assigned in product code"
     },
     {
       "id": "ci:main",
-      "detail": "pages build and deployment → success https://github.com/shamikhahmed/PrismCap/actions/runs/34972843525"
+      "detail": "PrismCap CI @ 164b927 → success https://github.com/shamikhahmed/PrismCap/actions/runs/35084777334"
     },
     {
       "id": "tag",
@@ -58,8 +62,8 @@
       "detail": "tests/finish-matrix.spec.mjs"
     },
     {
-      "id": "lighthouse:files",
-      "detail": "1 JSON"
+      "id": "live:VERSION.json",
+      "detail": "https://shamikhahmed.github.io/PrismCap/VERSION.json → 200"
     },
     {
       "id": "sinks:SINKS.md",
@@ -98,13 +102,25 @@
       "detail": "152 sinks; SINKS.md ok"
     }
   ],
-  "fail": [],
-  "warn": [
+  "fail": [
     {
-      "id": "matrix:shots",
-      "detail": "qa/finish-loop/shots missing (run matrix)"
+      "id": "matrix:results",
+      "detail": "missing qa/finish-loop/matrix-results.json (CI must set FINISH_MATRIX=1)"
+    },
+    {
+      "id": "lighthouse:files",
+      "detail": "empty"
+    },
+    {
+      "id": "axe:dir",
+      "detail": "missing qa/finish-loop/axe/ (JSON per route×theme)"
+    },
+    {
+      "id": "gallery:freshness",
+      "detail": "gallery 2026-07-20T15:49:17+05:00 before last UI commit 2026-09-16T15:18:08+05:00"
     }
   ],
+  "warn": [],
   "killList": {
     "rawHex": 0,
     "sub11": 0,

@@ -17,3 +17,9 @@
 - CapConfirm z-index 1200
 
 - CI https://github.com/shamikhahmed/PrismCap/actions/runs/34972484644 success · tag `v4.5.3` · merge `332c79c`
+
+### 2026-09-16 C-57 Pages allowlist
+- **Problem:** Pages published repo-root internals.
+- **Root cause:** deploy copied (nearly) the whole tree.
+- **Change:** allowlisted stage script + SW verify; workflow stages public paths only.
+- **Verification:** local stage dry-run; live curl after deploy.

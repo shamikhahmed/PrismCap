@@ -2,7 +2,7 @@
   "app": "PrismCap",
   "version": "4.5.3",
   "swCache": "prismcap-v453",
-  "generatedAt": "2026-09-16T10:43:22.906Z",
+  "generatedAt": "2026-09-16T10:45:47.193Z",
   "status": "FAIL",
   "pass": [
     {
@@ -62,6 +62,22 @@
       "detail": "tests/finish-matrix.spec.mjs"
     },
     {
+      "id": "matrix:failures",
+      "detail": "0"
+    },
+    {
+      "id": "matrix:shot-count",
+      "detail": "6 shots (need routes×viewports×themes = 6)"
+    },
+    {
+      "id": "matrix:freshness",
+      "detail": "2026-09-16T10:45:31.417Z"
+    },
+    {
+      "id": "gallery:freshness",
+      "detail": "docs/screenshots/gallery/gallery-manifest.json @ 2026-09-16T15:45:06+05:00"
+    },
+    {
       "id": "live:VERSION.json",
       "detail": "https://shamikhahmed.github.io/PrismCap/VERSION.json → 200"
     },
@@ -104,20 +120,12 @@
   ],
   "fail": [
     {
-      "id": "matrix:results",
-      "detail": "missing qa/finish-loop/matrix-results.json (CI must set FINISH_MATRIX=1)"
-    },
-    {
       "id": "lighthouse:files",
       "detail": "empty"
     },
     {
-      "id": "axe:dir",
-      "detail": "missing qa/finish-loop/axe/ (JSON per route×theme)"
-    },
-    {
-      "id": "gallery:freshness",
-      "detail": "gallery 2026-07-20T15:49:17+05:00 before last UI commit 2026-09-16T15:18:08+05:00"
+      "id": "axe:files",
+      "detail": "empty"
     }
   ],
   "warn": [],

@@ -2,7 +2,7 @@
   "app": "PrismCap",
   "version": "4.5.3",
   "swCache": "prismcap-v453",
-  "generatedAt": "2026-09-16T11:04:44.225Z",
+  "generatedAt": "2026-09-16T11:21:15.549Z",
   "status": "FAIL",
   "pass": [
     {
@@ -70,6 +70,10 @@
       "detail": "6 shots (need routes×viewports×themes = 6)"
     },
     {
+      "id": "matrix:freshness",
+      "detail": "2026-09-16T11:14:22.509Z"
+    },
+    {
       "id": "axe:serious-critical",
       "detail": "2 JSON clean"
     },
@@ -115,10 +119,6 @@
     }
   ],
   "fail": [
-    {
-      "id": "matrix:freshness",
-      "detail": "matrix 2026-09-16T10:45:31.417Z before last UI commit 2026-09-16T15:48:58+05:00"
-    },
     {
       "id": "lighthouse:home-demo-desktop.json",
       "detail": "perf 73 a11y 98 bp 96 LCP 910.1892 TBT 466.5 CLS 0.11319326922830272"

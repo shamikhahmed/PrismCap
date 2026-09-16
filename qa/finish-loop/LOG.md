@@ -50,3 +50,12 @@
 - Scores (honest): mobile perf 43 / a11y 100 / bp 96 (LCP~2.2s TBT~11.7s CLS~0.26); desktop perf 73 / a11y 98 / bp 96.
 - Refreshed matrix-results + 6 shots; axe already 0 serious/critical.
 - Not claiming lighthouse:passing or Tier 1 PASS.
+
+## 2026-09-16 — Review 3 product loop (hardened tier1)
+### §15 mini-plan
+- Problem: hardened tier1 fails on kill-list, missing matrix-results, CI-WORKFLOW, axe dir.
+- Root cause: C-29 removed brandOk CSS exemptions; evidence files never committed; CI workflow name unset.
+- Change: hex→`tokens.css`/`brand-palette*`; PulseCap `capricorn-core`; `CI-WORKFLOW.txt`; skip-allowlist; `writeMatrixResults` + FINISH_MATRIX CI job; real axe JSON.
+- Risks: LH/gallery freshness still open; DeePony dark theme toggle flaky under axe.
+- Verification: `npm run tier1` recorded FAIL honestly (no PASS claim).
+

@@ -2,7 +2,7 @@
   "url": "http://127.0.0.1:8767/?demo=1",
   "route": "home-demo",
   "theme": "dark",
-  "timestamp": "2026-09-16T10:45:55.800Z",
+  "timestamp": "2026-09-16T10:48:57.053Z",
   "violations": [
     {
       "id": "region",
@@ -116,7 +116,7 @@
           "all": [],
           "none": [],
           "impact": "moderate",
-          "html": "<span id=\"feat-badge\" class=\"text-caption\" style=\"background: rgba(255, 107, 0, 0.2); border-radius: 100px; padding: 3px 10px; color: rgb(255, 107, 0); border: 1px solid rgba(255, 107, 0, 0.333);\">Multiplayer</span>",
+          "html": "<span id=\"feat-badge\" class=\"text-caption\" style=\"background: rgba(0, 212, 255, 0.2); border-radius: 100px; padding: 3px 10px; color: rgb(0, 212, 255); border: 1px solid rgba(0, 212, 255, 0.333);\">Multiplayer</span>",
           "target": [
             "#feat-badge"
           ],
@@ -326,9 +326,30 @@
           "all": [],
           "none": [],
           "impact": "moderate",
-          "html": "<div class=\"screen\" id=\"library-screen\">",
+          "html": "<div class=\"screen-header\" style=\"padding-bottom:9px\">",
           "target": [
-            "#library-screen"
+            "#library-screen > .screen-header"
+          ],
+          "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+        },
+        {
+          "any": [
+            {
+              "id": "region",
+              "data": {
+                "isIframe": false
+              },
+              "relatedNodes": [],
+              "impact": "moderate",
+              "message": "Some page content is not contained by landmarks"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "moderate",
+          "html": "<div class=\"lgrid\" id=\"lib\">",
+          "target": [
+            "#lib"
           ],
           "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
         },
@@ -1024,54 +1045,6 @@
             "#profile-screen > div:nth-child(4) > div:nth-child(3)"
           ],
           "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
-        }
-      ]
-    },
-    {
-      "id": "scrollable-region-focusable",
-      "impact": "serious",
-      "tags": [
-        "cat.keyboard",
-        "wcag2a",
-        "wcag211",
-        "wcag213",
-        "TTv5",
-        "TT4.a",
-        "EN-301-549",
-        "EN-9.2.1.1",
-        "EN-9.2.1.3",
-        "RGAAv4",
-        "RGAA-7.3.2"
-      ],
-      "description": "Ensure elements that have scrollable content are accessible by keyboard in Safari",
-      "help": "Scrollable region must have keyboard access",
-      "helpUrl": "https://dequeuniversity.com/rules/axe/4.13/scrollable-region-focusable?application=playwright",
-      "nodes": [
-        {
-          "any": [
-            {
-              "id": "focusable-content",
-              "data": null,
-              "relatedNodes": [],
-              "impact": "serious",
-              "message": "Element should have focusable content"
-            },
-            {
-              "id": "focusable-element",
-              "data": null,
-              "relatedNodes": [],
-              "impact": "serious",
-              "message": "Element should be focusable"
-            }
-          ],
-          "all": [],
-          "none": [],
-          "impact": "serious",
-          "html": "<div style=\"display:flex;gap:6px;padding:0 15px 12px;overflow-x:auto;scrollbar-width:none;touch-action:pan-x;-webkit-overflow-scrolling:touch\" class=\"noscroll\" id=\"cats\">",
-          "target": [
-            "#cats"
-          ],
-          "failureSummary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
         }
       ]
     }

@@ -40,3 +40,6 @@
 
 ## 2026-09-16 — residual a11y (cats scroll region)
 - Committed: `tabindex=0` + `role=navigation` on `#cats` (scrollable-region-focusable); honest TIER1 still FAIL (empty LH + remaining axe).
+
+## 2026-09-16 — axe re-capture after #cats focusable
+- Committed: axe JSON now 0 serious/critical; honest TIER1 refresh.

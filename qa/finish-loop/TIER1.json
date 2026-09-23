@@ -2,7 +2,7 @@
   "app": "PrismCap",
   "version": "4.5.3",
   "swCache": "prismcap-v453",
-  "generatedAt": "2026-09-16T11:21:15.549Z",
+  "generatedAt": "2026-09-23T05:59:46.803Z",
   "status": "FAIL",
   "pass": [
     {
@@ -121,11 +121,11 @@
   "fail": [
     {
       "id": "lighthouse:home-demo-desktop.json",
-      "detail": "perf 73 a11y 98 bp 96 LCP 910.1892 TBT 466.5 CLS 0.11319326922830272"
+      "detail": "perf 12 a11y 100 bp 100 LCP 4426.203750000001 TBT 801.5 CLS 0.41945071419844016"
     },
     {
       "id": "lighthouse:home-demo-mobile.json",
-      "detail": "perf 43 a11y 100 bp 96 LCP 2167.365164719534 TBT 11703.817417640232 CLS 0.2599200622699001"
+      "detail": "perf 29 a11y 100 bp 100 LCP 4530.8723352317975 TBT 1200 CLS 0.4191304023051957"
     },
     {
       "id": "lighthouse:passing",

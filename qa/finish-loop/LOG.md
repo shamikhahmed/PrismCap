@@ -63,3 +63,7 @@
 ## 2026-09-23 — local Lighthouse
 - mobile ~P29–43 / desktop ~P12–73 depending on run; committed latest local JSON (below thresholds).
 - Not claiming lighthouse:passing.
+
+## 2026-09-23 — Review 3 evidence loop (finish/prismcap-stepR)
+- Gallery regenerated (10 shots) after prior UI.
+- LH still below thresholds (perf/TBT/CLS). Tier1 FAIL. Not claiming PASS.

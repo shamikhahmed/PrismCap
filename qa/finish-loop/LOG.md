@@ -59,3 +59,7 @@
 - Risks: LH/gallery freshness still open; DeePony dark theme toggle flaky under axe.
 - Verification: `npm run tier1` recorded FAIL honestly (no PASS claim).
 
+
+## 2026-09-23 — local Lighthouse
+- mobile ~P29–43 / desktop ~P12–73 depending on run; committed latest local JSON (below thresholds).
+- Not claiming lighthouse:passing.

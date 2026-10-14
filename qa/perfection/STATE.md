@@ -6,8 +6,8 @@ Branch: `perfection/prismcap-v3`
 App version: 4.5.3 (no release bump — Phase I)
 
 ## Last commits
-- Tip: `c9998ba25d02c3827b71bc1dcb1b0e80c18e33d0`
-- Fix: PRS-V3-1 type floor + PRS-V3-2 tap targets
+- Tip: `e6f4a6f` on `perfection/prismcap-v3`
+- Fix: `c9998ba` PRS-V3-1 type floor + PRS-V3-2 tap targets
 
 ## What's running
 Static tree served at `http://127.0.0.1:8768/PrismCap/` (rsync of repo, no Vite build required for device-qa).

@@ -26,6 +26,18 @@ Auditor: ✅ VERIFIED 2026-10-14T11:30:00Z — auditor-independent 7/7 hard=0 ta
 severity: P2     status: ⏳ OPEN
 Where: FEATURES L · every game setup/play/results × themes — Phase G
 
-### PRS-V3-5 — Lighthouse to §7.11
+### PRS-V3-5 — matrix modals / achievements / empty-offline
+severity: P2     status: ⏳ OPEN
+Where: S-PLAYERS · S-ACH · S-QR · empty/offline/eco — light/dark × devices
+Evidence: MATRIX extended section ⏳
+Auditor: —
+
+### PRS-V3-6 — gallery v3 light/dark × iphone/ipad/mac
+severity: P2     status: ⏳ OPEN
+Where: Phase G — replace legacy desktop/mobile PNGs with schema v2 webp grid
+Evidence: MATRIX dark×* and v3 columns ⏳
+Auditor: —
+
+### PRS-V3-7 — Lighthouse to §7.11
 severity: P2     status: ⏳ OPEN
 Where: home, library, one heavy game — Phase I

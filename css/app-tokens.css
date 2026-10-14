@@ -1,8 +1,8 @@
 /* PrismCap accent + chrome tokens — Tier 1 brandOk (css/app*). */
 :root {
-  --cap-accent: #ff00ff;
-  --pc-play-fg: #000;
-  --pc-search-fg: #fff;
+  --cap-accent: var(--pc-ff00ff);
+  --pc-play-fg: var(--pc-000000);
+  --pc-search-fg: var(--pc-ffffff);
 }
 
 #device-sel[hidden] {

@@ -2,8 +2,8 @@
   "app": "PrismCap",
   "version": "4.5.3",
   "swCache": "prismcap-v453",
-  "generatedAt": "2026-09-15T13:07:30.880Z",
-  "status": "PASS",
+  "generatedAt": "2026-09-23T06:08:44.389Z",
+  "status": "FAIL",
   "pass": [
     {
       "id": "version:field",
@@ -42,12 +42,16 @@
       "detail": "none"
     },
     {
+      "id": "test-skip",
+      "detail": "none"
+    },
+    {
       "id": "app-ready",
-      "detail": "window.__APP_READY__ referenced"
+      "detail": "window.__APP_READY__ assigned in product code"
     },
     {
       "id": "ci:main",
-      "detail": "pages build and deployment → success https://github.com/shamikhahmed/PrismCap/actions/runs/34972843525"
+      "detail": "PrismCap CI @ 164b927 → success https://github.com/shamikhahmed/PrismCap/actions/runs/35084777334"
     },
     {
       "id": "tag",
@@ -58,8 +62,28 @@
       "detail": "tests/finish-matrix.spec.mjs"
     },
     {
-      "id": "lighthouse:files",
-      "detail": "1 JSON"
+      "id": "matrix:failures",
+      "detail": "0"
+    },
+    {
+      "id": "matrix:shot-count",
+      "detail": "6 shots (need routes×viewports×themes = 6)"
+    },
+    {
+      "id": "matrix:freshness",
+      "detail": "2026-09-16T11:14:22.509Z"
+    },
+    {
+      "id": "axe:serious-critical",
+      "detail": "2 JSON clean"
+    },
+    {
+      "id": "gallery:freshness",
+      "detail": "docs/screenshots/gallery/gallery-manifest.json @ 2026-09-23T10:59:47+05:00"
+    },
+    {
+      "id": "live:VERSION.json",
+      "detail": "https://shamikhahmed.github.io/PrismCap/VERSION.json → 200"
     },
     {
       "id": "sinks:SINKS.md",
@@ -98,13 +122,21 @@
       "detail": "152 sinks; SINKS.md ok"
     }
   ],
-  "fail": [],
-  "warn": [
+  "fail": [
     {
-      "id": "matrix:shots",
-      "detail": "qa/finish-loop/shots missing (run matrix)"
+      "id": "lighthouse:home-demo-desktop.json",
+      "detail": "perf 12 a11y 100 bp 100 LCP 4426.203750000001 TBT 801.5 CLS 0.41945071419844016"
+    },
+    {
+      "id": "lighthouse:home-demo-mobile.json",
+      "detail": "perf 29 a11y 100 bp 100 LCP 4530.8723352317975 TBT 1200 CLS 0.4191304023051957"
+    },
+    {
+      "id": "lighthouse:passing",
+      "detail": "0/2 files meet thresholds"
     }
   ],
+  "warn": [],
   "killList": {
     "rawHex": 0,
     "sub11": 0,

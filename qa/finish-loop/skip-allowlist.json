@@ -1,0 +1,8 @@
+{
+  "entries": [
+    {
+      "pattern": "gallery",
+      "reason": "Gallery capture gated behind CAPTURE_GALLERY=1 — only acceptable skip (C-32)"
+    }
+  ]
+}

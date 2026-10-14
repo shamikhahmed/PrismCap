@@ -18,8 +18,52 @@
 
 - CI https://github.com/shamikhahmed/PrismCap/actions/runs/34972484644 success · tag `v4.5.3` · merge `332c79c`
 
+## 2026-09-16 — C-40
+### §15 mini-plan
+- Problem: sub-11px labels; emoji/symbols in nav controls; purple greeting contrast; uppercase caption labels.
+- Root cause: .nil/.sl/.cab tiny rem; unicode nic; gradient text-fill; uppercase .sec.
+- Files: layout.css, components.css, index.html, app.js
+- Change: ≥0.6875rem captions; SVG nav icons; solid greeting color; text-caption tokens; Multiplayer/Solo plain.
+- Risks: game-body emoji elsewhere still present (in-game decoration).
+- Verification: nav SVG; greeting readable; section labels sentence-case ≥11px.
+
 ### 2026-09-16 C-57 Pages allowlist
-- **Problem:** Pages published repo-root internals.
+- **Problem:** Pages published repo-root internals (HANDOVER/CLAUDE/qa/worker/package.json).
 - **Root cause:** deploy copied (nearly) the whole tree.
-- **Change:** allowlisted stage script + SW verify; workflow stages public paths only.
-- **Verification:** local stage dry-run; live curl after deploy.
+- **Change:** `scripts/stage-pages-site.sh` + `verify-pages-artifact.cjs`; workflow stages allowlisted paths only.
+- **Verification:** local stage dry-run + SW precache check; live curl after deploy.
+
+## 2026-09-16 — Finish Review 3 follow-up (finish/prismcap-stepR)
+- Committed: C-29 tokens.css + CSS var migration; C-31 finish-matrix CI job; capture-axe.mjs; gallery regen; CI-WORKFLOW; skip-allowlist; honest TIER1 FAIL (was stale PASS).
+- Left uncommitted: none.
+- Not merging (Tier1 FAIL: matrix-results / empty LH / axe / gallery freshness still open until CI runs).
+
+## 2026-09-16 — residual a11y (cats scroll region)
+- Committed: `tabindex=0` + `role=navigation` on `#cats` (scrollable-region-focusable); honest TIER1 still FAIL (empty LH + remaining axe).
+
+## 2026-09-16 — axe re-capture after #cats focusable
+- Committed: axe JSON now 0 serious/critical; honest TIER1 refresh.
+
+## 2026-09-16 — real Lighthouse + matrix refresh (Step R evidence)
+- Tool: `_workspace` lighthouse 13.4.1 vs local `http.server` `/?demo=1` (mobile + desktop).
+- Wrote `qa/finish-loop/lighthouse/home-demo-{mobile,desktop}.json` (real UA, non-null scores — no stubs).
+- Scores (honest): mobile perf 43 / a11y 100 / bp 96 (LCP~2.2s TBT~11.7s CLS~0.26); desktop perf 73 / a11y 98 / bp 96.
+- Refreshed matrix-results + 6 shots; axe already 0 serious/critical.
+- Not claiming lighthouse:passing or Tier 1 PASS.
+
+## 2026-09-16 — Review 3 product loop (hardened tier1)
+### §15 mini-plan
+- Problem: hardened tier1 fails on kill-list, missing matrix-results, CI-WORKFLOW, axe dir.
+- Root cause: C-29 removed brandOk CSS exemptions; evidence files never committed; CI workflow name unset.
+- Change: hex→`tokens.css`/`brand-palette*`; PulseCap `capricorn-core`; `CI-WORKFLOW.txt`; skip-allowlist; `writeMatrixResults` + FINISH_MATRIX CI job; real axe JSON.
+- Risks: LH/gallery freshness still open; DeePony dark theme toggle flaky under axe.
+- Verification: `npm run tier1` recorded FAIL honestly (no PASS claim).
+
+
+## 2026-09-23 — local Lighthouse
+- mobile ~P29–43 / desktop ~P12–73 depending on run; committed latest local JSON (below thresholds).
+- Not claiming lighthouse:passing.
+
+## 2026-09-23 — Review 3 evidence loop (finish/prismcap-stepR)
+- Gallery regenerated (10 shots) after prior UI.
+- LH still below thresholds (perf/TBT/CLS). Tier1 FAIL. Not claiming PASS.

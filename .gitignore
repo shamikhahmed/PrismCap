@@ -32,3 +32,6 @@ PrismOS*.html
 .env
 .env.*
 test-results/
+
+# v3 evidence screenshots stay local
+qa/perfection/**/*.png

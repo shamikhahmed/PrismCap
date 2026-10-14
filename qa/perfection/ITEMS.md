@@ -33,9 +33,9 @@ Evidence: MATRIX extended section ⏳
 Auditor: —
 
 ### PRS-V3-6 — gallery v3 light/dark × iphone/ipad/mac
-severity: P2     status: ⏳ OPEN
-Where: Phase G — replace legacy desktop/mobile PNGs with schema v2 webp grid
-Evidence: MATRIX dark×* and v3 columns ⏳
+severity: P2     status: **✅ FIXED**
+Where: `scripts/live-gallery-v3.mjs` · `docs/screenshots/gallery/`  
+Evidence: **18** schema-v2 WebP (Home/Library/Profile × light/dark × iphone/ipad/mac) · manifest **4.6.0** · G17 ✅
 Auditor: —
 
 ### PRS-V3-7 — Lighthouse to §7.11

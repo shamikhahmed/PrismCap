@@ -24,9 +24,17 @@ const VIEWPORTS = {
 };
 
 const SCREENS = [
-  { nav: 'home', group: 'Home', screen: 'Home', caption: 'Daily challenge and featured games (demo).' },
-  { nav: 'library', group: 'Games', screen: 'Library', caption: 'Browse and search the game library.' },
-  { nav: 'profile', group: 'Settings', screen: 'Profile', caption: 'Theme, audio, and player settings.' },
+  { nav: 'home', group: 'Home', screen: 'Home', caption: 'Daily challenge, featured games and your level.' },
+  { nav: 'library', group: 'Games', screen: 'Library', caption: 'Every game, searchable — no accounts, no ads.' },
+  { nav: 'arcade', group: 'Games', screen: 'Arcade', caption: 'Solo arcade games for when the room is quiet.' },
+  { nav: 'dashboard', group: 'You', screen: 'Stats', caption: 'XP, achievements and play history — stored locally.' },
+  { nav: 'profile', group: 'You', screen: 'Profile', caption: 'Your player card and settings.' },
+  { game: 'spy', group: 'Party', caption: 'Pass-and-play setup: add players, pick options, hand the phone around.' },
+  { game: 'shadow', group: 'Party', caption: 'Hidden roles, voting and bluffing — one phone for the room.' },
+  { game: 'truthbomb', group: 'Party', caption: 'Truth or take the bomb.' },
+  { game: 'reflex', group: 'Arcade', caption: 'Quick reflex rounds, fully offline.' },
+  { game: 'snake', group: 'Arcade', caption: 'A classic, rebuilt for touch.' },
+  { game: 'chess', group: 'Arcade', caption: 'Chess on one device.' },
 ];
 
 function slug(s) {
@@ -126,7 +134,20 @@ async function main() {
         await setTheme(page, theme);
 
         for (const scr of SCREENS) {
-          await goNav(page, scr.nav);
+          if (scr.game) {
+            await goNav(page, 'library');
+            const title = await page.evaluate((id) => {
+              const g = Reg.get(id);
+              if (!g) return null;
+              GL.launch(id);
+              return g.title;
+            }, scr.game);
+            if (!title) continue;
+            scr.screen = title;
+            await page.waitForTimeout(4200); // cinematic intro → setup sheet or game
+          } else {
+            await goNav(page, scr.nav);
+          }
           await setTheme(page, theme);
           const rel = shotPath(theme, device, scr.group, scr.screen);
           const webpPath = join(GALLERY_DIR, rel);
@@ -142,12 +163,19 @@ async function main() {
             theme,
             device,
             file: rel,
-            route: `#/${scr.nav}`,
+            route: scr.game ? `#/game/${scr.game}` : `#/${scr.nav}`,
             caption: scr.caption,
             w: vp.width * vp.deviceScaleFactor,
             h: vp.height * vp.deviceScaleFactor,
           });
-          process.stdout.write(`✓ ${theme}/${device}/${scr.nav}\n`);
+          process.stdout.write(`✓ ${theme}/${device}/${scr.nav || scr.game}\n`);
+          if (scr.game) {
+            await page.evaluate(() => {
+              try { if (typeof Modal !== 'undefined') Modal.close(); } catch {}
+              try { if (typeof GL !== 'undefined' && GL.exitGame) GL.exitGame(true); } catch {}
+            });
+            await page.waitForTimeout(500);
+          }
         }
         await context.close();
       }

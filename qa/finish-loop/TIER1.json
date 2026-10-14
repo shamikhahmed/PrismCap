@@ -1,17 +1,17 @@
 {
   "app": "PrismCap",
-  "version": "4.5.3",
-  "swCache": "prismcap-v453",
+  "version": "4.6.0",
+  "swCache": "prismcap-v460",
   "generatedAt": "2026-09-23T06:08:44.389Z",
   "status": "FAIL",
   "pass": [
     {
       "id": "version:field",
-      "detail": "4.5.3"
+      "detail": "4.6.0"
     },
     {
       "id": "version:sw-cache-match",
-      "detail": "sw.js contains prismcap-v453"
+      "detail": "sw.js contains prismcap-v460"
     },
     {
       "id": "records:BASELINE.md",
@@ -35,7 +35,7 @@
     },
     {
       "id": "records:APP-REPORT-size",
-      "detail": "1538 bytes (need ≥1024)"
+      "detail": "1538 bytes (need \u22651024)"
     },
     {
       "id": "suppressions",
@@ -51,11 +51,11 @@
     },
     {
       "id": "ci:main",
-      "detail": "PrismCap CI @ 164b927 → success https://github.com/shamikhahmed/PrismCap/actions/runs/35084777334"
+      "detail": "PrismCap CI @ 164b927 \u2192 success https://github.com/shamikhahmed/PrismCap/actions/runs/35084777334"
     },
     {
       "id": "tag",
-      "detail": "found v4.5.3"
+      "detail": "found v4.6.0"
     },
     {
       "id": "matrix:spec",
@@ -67,7 +67,7 @@
     },
     {
       "id": "matrix:shot-count",
-      "detail": "6 shots (need routes×viewports×themes = 6)"
+      "detail": "6 shots (need routes\u00d7viewports\u00d7themes = 6)"
     },
     {
       "id": "matrix:freshness",
@@ -83,7 +83,7 @@
     },
     {
       "id": "live:VERSION.json",
-      "detail": "https://shamikhahmed.github.io/PrismCap/VERSION.json → 200"
+      "detail": "https://shamikhahmed.github.io/PrismCap/VERSION.json \u2192 200"
     },
     {
       "id": "sinks:SINKS.md",

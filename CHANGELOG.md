@@ -1,3 +1,14 @@
+## 4.6.0 — 2026-10-14
+
+Perfection Loop v3 finish release (G-8: VERSION / package / SW `prismcap-v460` / register `?v=460` / About).
+
+- PRS-V3-1 ✅ VERIFIED: type floor ≥12px (no sub-11px captions on home/library/HUD)
+- PRS-V3-2 ✅ VERIFIED: Change / + Add / favourite targets ≥44×44
+- PRS-V3-3 ✅ VERIFIED: `finish/prismcap-stepR` on main (Phase 0)
+- Docs (§11): README §4.1; HANDOVER; privacy network honesty
+- Deploy: own GitHub Pages (PrismCap repo) — hub `PrismCap/` copy is stale (§12.5 → Hub)
+- Open L: PRS-V3-4 gallery game-sessions · PRS-V3-5 Lighthouse
+
 ## 4.5.3 — 2026-09-15
 
 - Fix e2e fixture: literal hist color (PCBrand unavailable in addInitScript)

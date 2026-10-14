@@ -127,7 +127,7 @@ body[data-device="mac"] .screen-header { padding-top: 11px; }
 #lcan { display: block; width: 64px; height: 64px; filter: drop-shadow(0 0 8px rgba(255,0,255,.6)); }
 .loader-title {
   font-family: 'Press Start 2P', monospace;
-  font-size: .72rem; font-weight: 400;
+  font-size: 0.75rem; font-weight: 400;
   letter-spacing: .08em; text-transform: uppercase;
   color: var(--pc-ffffff);
   text-shadow: 0 0 12px rgba(255,0,255,.85), 0 0 24px rgba(0,255,255,.45);
@@ -170,7 +170,7 @@ body[data-device="mac"] .screen-header { padding-top: 11px; }
 }
 .cab-cart-label {
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 0.6875rem; letter-spacing: .06em;
+  font-size: 0.75rem; letter-spacing: .06em;
   color: var(--cyan);
   text-shadow: 0 0 6px rgba(0,255,255,.6);
 }
@@ -231,7 +231,7 @@ body.light .cab-door { background: linear-gradient(180deg, var(--pc-c8bfb4) 0%, 
   content: 'PRISM CAP';
   position: absolute; top: 14px; right: 16px;
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 0.6875rem; letter-spacing: .06em;
+  font-size: 0.75rem; letter-spacing: .06em;
   opacity: .28;
 }
 
@@ -241,11 +241,11 @@ body.light .cab-door { background: linear-gradient(180deg, var(--pc-c8bfb4) 0%, 
 
 .wstep-title {
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: .72rem; font-weight: 400; letter-spacing: .06em;
+  font-size: 0.75rem; font-weight: 400; letter-spacing: .06em;
   margin-bottom: 10px; line-height: 1.65;
   text-shadow: 0 0 12px rgba(255,0,255,.5);
 }
-.wstep-title--sm { font-size: 0.6875rem; }
+.wstep-title--sm { font-size: 0.75rem; }
 .wstep-sub {
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 1.15rem; opacity: .55; line-height: 1.45;
@@ -302,7 +302,7 @@ body.light .cab-door { background: linear-gradient(180deg, var(--pc-c8bfb4) 0%, 
 }
 .home-cart-label {
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 0.6875rem; letter-spacing: .06em;
+  font-size: 0.75rem; letter-spacing: .06em;
   color: var(--cyan);
   text-shadow: 0 0 8px rgba(0,255,255,.6);
 }
@@ -337,7 +337,7 @@ body.light .cab-door { background: linear-gradient(180deg, var(--pc-c8bfb4) 0%, 
 .ni.on .nic { filter: drop-shadow(0 0 6px var(--acc2)) drop-shadow(0 0 10px var(--glow)); transform: scale(1.22) translateY(-2px); }
 .ni.on .nil { color: var(--acc); }
 .ni.on::after { content: ''; position: absolute; bottom: 2px; left: 50%; transform: translateX(-50%); width: 18px; height: 3px; border-radius: 999px; background: linear-gradient(90deg, var(--acc), var(--acc2)); box-shadow: 0 0 14px var(--glow); }
-.nil { font-size: 0.6875rem; font-weight: 600; letter-spacing: .02em; text-transform: none; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+.nil { font-size: 0.75rem; font-weight: 600; letter-spacing: .02em; text-transform: none; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
 
 /* ── PASS ── */
 #pass { position: fixed; inset: 0; z-index: 500; background: var(--pc-000000); display: none; flex-direction: column; align-items: center; justify-content: center; padding: 32px; }
@@ -345,7 +345,7 @@ body.light .cab-door { background: linear-gradient(180deg, var(--pc-c8bfb4) 0%, 
 .pass-priv { position: absolute; top: 0; left: 0; right: 0; height: 40%; background: linear-gradient(to bottom, rgba(0,0,0,.9), transparent); pointer-events: none; }
 
 /* ── TENSION BANNER ── */
-#tension-bar { position: fixed; top: var(--sat); left: 0; right: 0; z-index: 200; display: none; align-items: center; justify-content: center; padding: 5px; font-size: 0.6875rem; font-weight: 700; letter-spacing: .06em; text-transform: none; animation: tbpulse 1.5s ease infinite; }
+#tension-bar { position: fixed; top: var(--sat); left: 0; right: 0; z-index: 200; display: none; align-items: center; justify-content: center; padding: 5px; font-size: 0.75rem; font-weight: 700; letter-spacing: .06em; text-transform: none; animation: tbpulse 1.5s ease infinite; }
 @keyframes tbpulse { 0%,100% { opacity: .8; } 50% { opacity: 1; } }
 
 /* ── ORIENTATION BUTTON ── */
@@ -444,7 +444,7 @@ body[data-device="mac"]  .btn  { font-size: 1rem; }
     padding-top: 6px;
   }
   .ni { flex-direction: column; padding: 6px 0 4px; margin: 0; }
-  .nil { font-size: 0.6875rem; }
+  .nil { font-size: 0.75rem; }
 }
 
 /* ── iPhone SE / small phones ── */

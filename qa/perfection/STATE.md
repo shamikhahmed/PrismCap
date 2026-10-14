@@ -1,41 +1,26 @@
 # PrismCap — Perfection Loop v3 · STATE
 
-Updated: 2026-10-14T11:14:03Z  
-Phase: **F · Verify (hand-off)** — Wave B P1s FIXED; Auditor re-run required.  
-Branch: `perfection/prismcap-v3`  
-App version: 4.5.3 (no release bump — Phase I)
+Updated: 2026-10-14T11:45:00Z  
+Phase: **I · Release** — 4.6.0 G-8 → main / tag `v4.6.0`  
+Branch: `perfection/prismcap-v3` → `main`  
+App version: **4.6.0** / SW `prismcap-v460`
 
 ## Last commits
-- Tip: `7859fdf` on `origin/perfection/prismcap-v3`
+- Release tip on perfection branch (this Phase I bump)
+- Auditor stamp: PRS-V3-1/2/3 ✅ VERIFIED @ `29d9266`
 - Fix: `c9998ba` PRS-V3-1 type floor + PRS-V3-2 tap targets
 
-## What's running
-Static tree served at `http://127.0.0.1:8768/PrismCap/` (rsync of repo, no Vite build required for device-qa).
+## Deploy
+- **Own Pages:** https://shamikhahmed.github.io/PrismCap/ (PrismCap repo `main` workflow) — source of truth
+- **Hub:** `shamikhahmed.github.io/PrismCap/` still holds stale 4.5.3 tree → Hub Engineer remove (§12.5)
 
 ## Baseline / evidence
-`qa/perfection/baseline/device-qa.json` — **7/7 hard-clean** post-fix.  
-`summary: hard=0 tap<32=0 text<11=0 pageErr=0` · soft: chromium-macbook hub `ERR_CONNECTION_RESET` ×3 under parallel load (not app pageerrors).
+`qa/perfection/baseline/device-qa.json` — 7/7 hard-clean  
+`qa/perfection/auditor-independent/` — Auditor VERIFIED 2026-10-14T11:30:00Z  
+`qa/perfection/APP-REPORT-v3.md` — Phase I report
 
-Pre-fix probe (WebKit iPhone SE @ home after Smart Hub mount):
-- **187** visible nodes at exactly **11px** (`0.6875rem`) — ticket “~200 tiny text”
-- **Change** / **+ Add** buttons **25px** tall; favourite stars **32×44**
-
-## Next 3 actions (Auditor)
-1. Clean checkout of `perfection/prismcap-v3`; serve repo under `/PrismCap/`.
-2. Re-run device-qa with `PW_CORE` + `PLAYWRIGHT_BROWSERS_PATH`; confirm `textUnder11=0` `tapUnder32=0` all 7.
-3. Spot-check Change / + Add / favourite buttons ≥ 44×44; captions ≥ 12px on home/library.
-
-## Reproduce
-```bash
-export PW_CORE=/Users/shamikhahmed/Projects/Cap/Cap-Apps/MasteryCap/node_modules/playwright-core
-export PLAYWRIGHT_BROWSERS_PATH=$HOME/Library/Caches/ms-playwright
-cd /Users/shamikhahmed/Projects/Cap/Cap-Apps/PrismCap
-git checkout perfection/prismcap-v3
-rm -rf /tmp/prismcap-qa-serve && mkdir -p /tmp/prismcap-qa-serve/PrismCap
-rsync -a --exclude node_modules --exclude .git --exclude test-results --exclude dist ./ /tmp/prismcap-qa-serve/PrismCap/
-# terminal A:
-cd /tmp/prismcap-qa-serve && python3 -c "from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer; ThreadingHTTPServer(('127.0.0.1',8768), SimpleHTTPRequestHandler).serve_forever()"
-# terminal B:
-cd /Users/shamikhahmed/Projects/Cap/Cap-Apps
-node capricorn-tooling/scripts/device-qa.mjs PrismCap/qa/perfection/auditor --apps=PrismCap --url='PrismCap=http://127.0.0.1:8768/PrismCap/'
-```
+## Next
+1. CI Pages green on main after push
+2. Live device-qa vs https://shamikhahmed.github.io/PrismCap/
+3. Hub Engineer: delete stale hub PrismCap/ copy (keep redirects)
+4. Open L: PRS-V3-4 gallery · PRS-V3-5 Lighthouse

@@ -7,10 +7,10 @@
 Party games for one phone, passed around the room. Offline Pass & Play PWA (never “PrismOS” — G-3).
 
 ## Facts
-**Version:** 4.5.3 / SW `prismcap-v453`  
+**Version:** 4.6.0 / SW `prismcap-v460`  
 **Live:** https://shamikhahmed.github.io/PrismCap  
 **Repo:** https://github.com/shamikhahmed/PrismCap  
-**Branch (active):** `perfection/prismcap-v3`  
+**Branch (active):** `main` (`v4.6.0`)  
 **Stack:** Vanilla JS PWA. Game registry (`js/games/`). Playwright tests.  
 **Data:** localStorage for scores/settings. Fully offline after first load — no Capricorn sync, no third-party APIs.
 
@@ -44,10 +44,8 @@ Perfection state: `qa/perfection/STATE.md`.
 - Perfection items: `qa/perfection/ITEMS.md`
 - Changelog: `CHANGELOG.md`
 
-## Hub deploy
-```bash
-rsync -a --delete \
-  --exclude .git --exclude node_modules --exclude test-results --exclude playwright-report \
-  ./ /Users/shamikhahmed/Projects/Cap/Cap-Apps/shamikhahmed.github.io/PrismCap/
-```
-Commit + push hub repo after Auditor VERIFIED. Bump VERSION.json + SW together (G-8).
+## Deploy
+Own GitHub Pages via `.github/workflows/pages.yml` on `main` → https://shamikhahmed.github.io/PrismCap/  
+Bump VERSION.json + package + SW cache + register query together (G-8).
+
+**Hub note (§12.5):** `shamikhahmed.github.io/PrismCap/` is a **stale copy** — do not rsync. Hub Engineer removes it after confirming own-Pages serves live (keep redirects).

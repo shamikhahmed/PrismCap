@@ -1,8 +1,8 @@
+Party games for one phone, passed around the room.
+
 # PrismCap
 
-**Version:** 4.5.0
-
-Party games for one phone, passed around the room.
+**Version:** 4.5.3 · **Branch:** `perfection/prismcap-v3`
 
 🔗 **Live:** https://shamikhahmed.github.io/PrismCap
 📱 **Optimized for iPhone** — install as PWA for best experience

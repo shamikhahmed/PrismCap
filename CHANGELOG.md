@@ -1,3 +1,10 @@
+## Unreleased — perfection/prismcap-v3
+
+- PRS-V3-1: type floor ≥12px (no sub-11px captions on home/library/HUD)
+- PRS-V3-2: Change / + Add / favourite targets ≥44×44
+- Docs (§11): README §4.1 first line; HANDOVER branch; privacy network honesty
+- Perfection Wave B: `qa/perfection/{STATE,ITEMS,INVENTORY,MATRIX}` + device-qa evidence
+
 ## 4.5.3 — 2026-09-15
 
 - Fix e2e fixture: literal hist color (PCBrand unavailable in addInitScript)

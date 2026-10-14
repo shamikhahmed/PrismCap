@@ -1,53 +1,48 @@
 # PrismCap — Handover
 
-> Read this + `ROADMAP.md` + `~/Capricorn-Brain/01 Projects/PrismCap.md` before working here.
-> Last updated: 2026-09-14 · Fleet-wide standard: `capricorn-tooling/shared/CAP-STANDARD.md`
+> Read this + `ROADMAP.md` + `~/Capricorn-Brain/01 Projects/PrismCap.md` before working here.  
+> Last updated: 2026-10-14 · Fleet: `capricorn-tooling/docs/perfection-2026-10/CURSOR-PERFECTION-LOOP.md`
 
 ## What this is
-39 offline Pass & Play games PWA (former PrismCap / Prism branding merged in).
+Party games for one phone, passed around the room. Offline Pass & Play PWA (never “PrismOS” — G-3).
 
 ## Facts
-**Version:** 4.5.2 / SW `prismcap-v452`
-**Live:** https://shamikhahmed.github.io/PrismCap
-**Repo:** https://github.com/shamikhahmed/PrismCap
-**Stack:** Vanilla JS PWA. Game registry pattern (`js/games/`). Playwright tests.
-**Data:** Local storage for scores/settings. Fully offline.
+**Version:** 4.5.3 / SW `prismcap-v453`  
+**Live:** https://shamikhahmed.github.io/PrismCap  
+**Repo:** https://github.com/shamikhahmed/PrismCap  
+**Branch (active):** `perfection/prismcap-v3`  
+**Stack:** Vanilla JS PWA. Game registry (`js/games/`). Playwright tests.  
+**Data:** localStorage for scores/settings. Fully offline after first load — no Capricorn sync, no third-party APIs.
 
 ## Run & verify
 ```bash
 python3 -m http.server 8767   # or npm run serve
 npm run verify                # Playwright smoke
 npm run gallery               # shell screens (CAPTURE_GALLERY=1)
+# Device QA (fleet):
+# PW_CORE=…/MasteryCap/node_modules/playwright-core \
+# PLAYWRIGHT_BROWSERS_PATH=$HOME/Library/Caches/ms-playwright \
+# node ../capricorn-tooling/scripts/device-qa.mjs qa/perfection/check \
+#   --apps=PrismCap --url=PrismCap=http://127.0.0.1:8768/PrismCap/
 ```
 
+Perfection state: `qa/perfection/STATE.md`.
+
 ## Architecture
-- `js/app.js` — shell, toasts, settings, keyboard tab cycling, SW register `?v=438`
-- `js/games/` — one module per game (example-game.js is the template)
-- `js/cap-demo-mode.js`, `js/cap-desktop-nav.js` — added 2026-07-11
-- `public/` — Capricorn OS brand icons (also mirrored to root for PWA)
-- `css/capricorn-core.css` — shared design system
+- `js/app.js` — shell, toasts, settings, keyboard tab cycling, SW register
+- `js/games/` — one module per game
+- `css/` — CRT / arcade identity; type floor ≥12px on perfection branch (PRS-V3-1)
+- `privacy.html` — network honesty (same-origin / GitHub Pages only)
 
-## Cap Standard status (2026-07-19)
-| Cap Standard item | Status |
-|---|---|
-| Docs pack | ✅ |
-| Screen gallery | ✅ (shell; game-session deferred) |
-| Version discipline | ✅ |
-| QA / e2e | ✅ |
-| CI gate | ✅ |
-| PWA polish | ✅ |
-| Demo mode | ✅ |
-
-Gaps are tracked as tasks in `ROADMAP.md`.
-
-## Gotchas — read before coding
+## Gotchas
 - Toast recursion bug fixed in bf23028 — don't call toast from within toast dismiss handlers.
 - Keyboard tab cycling is deliberate a11y work — regression-test when touching nav.
+- Game-session gallery shots still OPEN (PRS-V3-4).
 
 ## Where decisions live
-- Dated decisions: Capricorn-Brain project note (path above)
-- Release history: `CHANGELOG.md`
-- Fleet-level events: `Cap-Apps/docs/CHANGELOG.md` (master)
+- Binding: `capricorn-tooling/docs/audit-2026-09-14/DECISIONS.md` (§4.1)
+- Perfection items: `qa/perfection/ITEMS.md`
+- Changelog: `CHANGELOG.md`
 
 ## Hub deploy
 ```bash
@@ -55,4 +50,4 @@ rsync -a --delete \
   --exclude .git --exclude node_modules --exclude test-results --exclude playwright-report \
   ./ /Users/shamikhahmed/Projects/Cap/Cap-Apps/shamikhahmed.github.io/PrismCap/
 ```
-Commit + push hub repo. Bump VERSION.json + SW together.
+Commit + push hub repo after Auditor VERIFIED. Bump VERSION.json + SW together (G-8).

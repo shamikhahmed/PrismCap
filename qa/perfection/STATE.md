@@ -6,7 +6,7 @@ Branch: `perfection/prismcap-v3`
 App version: 4.5.3 (no release bump — Phase I)
 
 ## Last commits
-- Tip: _(filled after commit)_
+- Tip: `c9998ba25d02c3827b71bc1dcb1b0e80c18e33d0`
 - Fix: PRS-V3-1 type floor + PRS-V3-2 tap targets
 
 ## What's running

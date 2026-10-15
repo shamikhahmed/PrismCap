@@ -395,8 +395,8 @@ export class PrismApp {
     mount.innerHTML = `
       <p>Repeat sequence to progress levels.</p>
       <div class="memory-grid" id="memory-grid">
-        <button data-i="0"></button><button data-i="1"></button>
-        <button data-i="2"></button><button data-i="3"></button>
+        <button type="button" data-i="0" aria-label="Pad 1"></button><button type="button" data-i="1" aria-label="Pad 2"></button>
+        <button type="button" data-i="2" aria-label="Pad 3"></button><button type="button" data-i="3" aria-label="Pad 4"></button>
       </div>
       <p id="memory-status">Watch the pattern...</p>
     `;
@@ -453,7 +453,7 @@ export class PrismApp {
       [2, 4, 6],
     ];
     let ended = false;
-    mount.innerHTML = `<p>You are X. Beat ARIA (O).</p><div class="ttt-grid">${Array.from({ length: 9 }).map((_, i) => `<button data-i="${i}"></button>`).join('')}</div>`;
+    mount.innerHTML = `<p>You are X. Beat ARIA (O).</p><div class="ttt-grid">${Array.from({ length: 9 }).map((_, i) => `<button type="button" data-i="${i}" aria-label="Cell ${i + 1}"></button>`).join('')}</div>`;
     const cells = Array.from(mount.querySelectorAll<HTMLButtonElement>('.ttt-grid button'));
     const winner = () => {
       for (const [a, b, c] of wins) {

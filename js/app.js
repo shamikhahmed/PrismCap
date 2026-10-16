@@ -4083,17 +4083,8 @@ setTimeout(function() {
   });
 }, 2500);
 
-// ── 8. GAME CARDS: Color-coded per type ──────────────────────────
-var _origBuildLib = GL._buildLib.bind(GL);
-GL._buildLib = function(filter) {
-  _origBuildLib(filter);
-  // After build, ensure cards pop
-  setTimeout(function() {
-    document.querySelectorAll('.lcard').forEach(function(card) {
-      card.style.boxShadow = '0 4px 20px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.1)';
-    });
-  }, 50);
-};
+// ── 8. GAME CARDS: shadow owned by css/components.css (.lcard) ────
+// (removed post-build inline boxShadow that overrode the designed cascade)
 
 // ── 9. MINI CELEBRATIONS on win ──────────────────────────────────
 function celebrate() {
@@ -5775,7 +5766,7 @@ OrientMgr.init();
     },
     registerSW: function(){
       if (!('serviceWorker' in navigator)) return;
-      navigator.serviceWorker.register('./sw.js?v=460').catch(function(){});
+      navigator.serviceWorker.register('./sw.js?v=461').catch(function(){});
     }
   };
 

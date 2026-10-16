@@ -7,10 +7,10 @@
 Party games for one phone, passed around the room. Offline Pass & Play PWA (never “PrismOS” — G-3).
 
 ## Facts
-**Version:** 4.6.0 / SW `prismcap-v460`  
+**Version:** 4.6.1 / SW `prismcap-v461`  
 **Live:** https://shamikhahmed.github.io/PrismCap  
 **Repo:** https://github.com/shamikhahmed/PrismCap  
-**Branch (active):** `main` (`v4.6.0`)  
+**Branch (active):** `main` (`v4.6.1`)  
 **Stack:** Vanilla JS PWA. Game registry (`js/games/`). Playwright tests.  
 **Data:** localStorage for scores/settings. Fully offline after first load — no Capricorn sync, no third-party APIs.
 

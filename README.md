@@ -2,7 +2,7 @@ Party games for one phone, passed around the room.
 
 # PrismCap
 
-**Version:** 4.6.0 · **Branch:** `main` (tag `v4.6.0`)
+**Version:** 4.6.1 · **Branch:** `main` (tag `v4.6.1`)
 
 🔗 **Live:** https://shamikhahmed.github.io/PrismCap
 📱 **Optimized for iPhone** — install as PWA for best experience

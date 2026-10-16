@@ -1,3 +1,7 @@
+## 4.6.1 — 2026-10-16
+
+V5-4 cascade restore (specificity, no `!important`): `.lcard` designed shadow (removed post-build inline override); desktop `#app` `max-width: min(520px,100vw)` beats `data-device=mac` 560px; `.sec` `letter-spacing: .04em` (keep 0.75rem / 12px floor).
+
 ## 4.6.0 — 2026-10-14
 
 Perfection Loop v3 finish release (G-8: VERSION / package / SW `prismcap-v460` / register `?v=460` / About).

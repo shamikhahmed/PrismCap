@@ -413,7 +413,9 @@ body[data-device="mac"]  .btn  { font-size: 1rem; }
       radial-gradient(ellipse at 70% 70%, rgba(0,255,255,.1), transparent 60%);
     pointer-events: none; z-index: -1;
   }
-  #app {
+  /* Beat body[data-device="mac"] #app { max-width: 560px } without !important */
+  #app,
+  body[data-device="mac"] #app {
     max-width: min(520px, 100vw);
     left: 0;
     right: 0;

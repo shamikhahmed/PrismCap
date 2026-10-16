@@ -54,6 +54,7 @@
 
 /* ── LIBRARY ── */
 .lgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 0 15px; }
+.lgrid .lcard,
 .lcard { border-radius: var(--radius-md); padding: 15px 13px; cursor: pointer; transition: transform .2s cubic-bezier(.34,1.56,.64,1); min-height: 125px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 10px 24px rgba(16,7,38,.45), inset 0 1px 0 rgba(255,255,255,.12); border: 1px solid rgba(218,176,255,.22); background: linear-gradient(135deg, rgba(255,255,255,.13), rgba(255,255,255,.04)); -webkit-user-select: none; user-select: none; }
 .lcard:active { transform: scale(.93); opacity: .85; }
 .pill { padding: 6px 14px; border-radius: 100px; font-size: .73rem; font-weight: 700; border: 1px solid var(--border); cursor: pointer; transition: all .18s cubic-bezier(.34,1.56,.64,1); white-space: nowrap; flex-shrink: 0; }
@@ -149,7 +150,7 @@
 .board-cell:active { transform: scale(.92); }
 
 /* ── UTILS ── */
-.sec  { font-size: 0.75rem; font-weight: 600; letter-spacing: .02em; text-transform: none; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif; color: rgba(255,255,255,.88); }
+.sec  { font-size: 0.75rem; font-weight: 600; letter-spacing: .04em; text-transform: none; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif; color: rgba(255,255,255,.88); }
 .shdr { padding: 15px 15px 8px; display: flex; align-items: center; justify-content: space-between; }
 .noscroll { scrollbar-width: none; }
 .noscroll::-webkit-scrollbar { display: none; }

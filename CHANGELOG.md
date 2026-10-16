@@ -1,3 +1,8 @@
+## 4.6.6 — 2026-10-16
+
+- Split games-core out of sync boot; load packs on Games/Arcade/launch only (TBT).
+- SW → `prismcap-v466`
+
 ## 4.6.5 — 2026-10-16
 
 Perfection Loop v5 §3d Performance:

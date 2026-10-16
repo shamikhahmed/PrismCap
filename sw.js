@@ -1,4 +1,4 @@
-const CACHE = 'prismcap-v465';
+const CACHE = 'prismcap-v466';
 const ASSETS = [
   './css/capricorn-core.css',
   './',
@@ -11,7 +11,7 @@ const ASSETS = [
   './js/dialogs.js',
   './js/brand/colors.js',
   './js/app.js',
-  './js/games-deferred.js',
+  /* games-core/deferred fetched on demand */
   './css/base.css',
   './css/layout.css',
   './css/components.css',

@@ -1,3 +1,10 @@
+## 4.6.2 — 2026-10-16
+
+Perfection Loop v5 §3 Performance:
+
+- CLS: reserve min-height for `#feat`, `#mp-row`/`#solo-row`, `.home-cab-rail` / `.home-recent-wrap` before JS fills data
+- SW → `prismcap-v462`
+
 ## 4.6.1 — 2026-10-16
 
 V5-4 cascade restore (specificity, no `!important`): `.lcard` designed shadow (removed post-build inline override); desktop `#app` `max-width: min(520px,100vw)` beats `data-device=mac` 560px; `.sec` `letter-spacing: .04em` (keep 0.75rem / 12px floor).

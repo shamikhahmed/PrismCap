@@ -78,12 +78,12 @@ test.describe('PrismCap Tier 1 (PRSM-P0/P1)', () => {
     await expect(page.locator('#home-screen.active')).toBeVisible({ timeout: 5000 });
   });
 
-  test('version + SW cache aligned to 4.6.1 / prismcap-v461', async ({ page }) => {
+  test('version + SW cache aligned to 4.6.2 / prismcap-v462', async ({ page }) => {
     await page.goto('/?e2e=1');
     const ver = await page.evaluate(() => window.APP_VERSION);
-    expect(ver).toBe('4.6.1');
+    expect(ver).toBe('4.6.2');
     const sw = await page.request.get('/sw.js');
     const body = await sw.text();
-    expect(body).toMatch(/prismcap-v461/);
+    expect(body).toMatch(/prismcap-v462/);
   });
 });

@@ -30,7 +30,7 @@
 .holo  { background: linear-gradient(130deg, rgba(176,88,232,.2), rgba(232,72,176,.14), rgba(61,212,232,.08)); border: 1px solid rgba(255,255,255,.18); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: var(--shadow-neon); }
 
 /* ── FEATURED CARD ── */
-.feat { height: 200px; border-radius: var(--radius-lg); overflow: hidden; position: relative; cursor: pointer; transition: transform .3s cubic-bezier(.34,1.56,.64,1), box-shadow .3s; box-shadow: var(--shadow-neon), inset 0 1px 0 rgba(255,255,255,.18); -webkit-user-select: none; user-select: none; }
+.feat { height: 200px; min-height: 200px; border-radius: var(--radius-lg); overflow: hidden; position: relative; cursor: pointer; transition: transform .3s cubic-bezier(.34,1.56,.64,1), box-shadow .3s; box-shadow: var(--shadow-neon), inset 0 1px 0 rgba(255,255,255,.18); -webkit-user-select: none; user-select: none; contain: layout; }
 .feat::before {
   content: '';
   position: absolute; inset: 0; z-index: 4; pointer-events: none;
@@ -45,7 +45,7 @@
 .feat:active { transform: scale(.96); }
 
 /* ── HSCROLL ── */
-.hscroll { display: flex; gap: 10px; padding: 0 15px; overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+.hscroll { display: flex; gap: 10px; padding: 0 15px; overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch; scrollbar-width: none; min-height: 108px; }
 .hscroll::-webkit-scrollbar { display: none; }
 
 /* ── MINI CARDS ── */

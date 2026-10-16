@@ -1,3 +1,8 @@
+## 4.6.9 — 2026-10-16
+
+- No Home idle ensureV4Systems; example-game off sync boot; no Home scrolls build.
+- SW → `prismcap-v469`
+
 ## 4.6.8 — 2026-10-16
 
 - Defer DevSel/Tutorial/Hints/Difficulty + GL v4 patches to `js/v4-systems.js` (idle / games-pack).

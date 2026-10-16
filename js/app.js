@@ -134,13 +134,19 @@ window.ensureGamesPack = function (cb) {
     document.head.appendChild(s);
   }
   function startGames() {
-    loadScript('js/games/example-game.js?v=468', function () {
-      loadScript('js/games-core.js?v=468', function () {
-        loadScript('js/games-deferred.js?v=468', done);
+    /* v4 systems only with games pack — never on Home idle (v5 §3d TBT). */
+    loadScript('js/v4-systems.js?v=469', function () {
+      loadScript('js/games/example-game.js?v=469', function () {
+        loadScript('js/games-core.js?v=469', function () {
+          loadScript('js/games-deferred.js?v=469', done);
+        });
       });
     });
   }
-  window.ensureV4Systems(startGames);
+  startGames();
+};
+window.ensureV4Systems = function (cb) {
+  window.ensureGamesPack(cb);
 };
 
 
@@ -1188,19 +1194,12 @@ document.addEventListener('DOMContentLoaded', function() {
   /* Home shell sync — no setTimeout delay (v5 §3c). */
   try { GL._buildFeat(); } catch (e) {}
   try { UI.home(); } catch (e) {}
-  /* scrolls after paint */
-  setTimeout(function(){ try { GL._buildScrolls(); } catch(e){} }, 0);
+  /* scrolls: on first library visit / games pack — not Home TBT (v5 §3d). */
   var lc = document.getElementById('lib-count');
   if (lc) lc.textContent = Reg.list.length + ' games · Fully offline';
   try { window.__APP_READY__ = true; document.documentElement.dataset.appReady = 'true'; } catch (e) {}
 
-  if ('requestIdleCallback' in window) {
-    requestIdleCallback(function () { window.ensureV4Systems(); }, { timeout: 4500 });
-  } else {
-    setTimeout(function () { window.ensureV4Systems(); }, 2500);
-  }
-
-  /* dash/prof built on first Nav to those tabs — not on Home idle (v5 §3d). */
+  /* v4 systems + games packs: only via ensureGamesPack (nav/launch) — no Home idle (v5 §3d TBT). */
 
   window.addEventListener('beforeinstallprompt', function(e) {
     e.preventDefault();

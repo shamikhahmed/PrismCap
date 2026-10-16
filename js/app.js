@@ -1705,68 +1705,36 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  animLogo('lcan');
-
-  // Arcade boot ritual (~2s)
-  var scanMsgs=['▶ INSERT COIN','Cartridge detected · PRISM','39 games loaded','CREDIT OK · PLAY'];
-  var i=0, scan=document.getElementById('lscan');
-  var biv=setInterval(function(){if(scan)scan.textContent=scanMsgs[i]||'';i++;if(i>=scanMsgs.length)clearInterval(biv);},480);
-
-  /* Home shell ASAP — library build deferred (v5 §3b TBT). */
-  var _homeMs = (new URLSearchParams(location.search).get('demo') === '1') ? 80 : 280;
-  setTimeout(function() {
-    GL._buildFeat(); GL._buildScrolls();
-    UI.home(); UI.dash(); UI.prof();
-    Meta.check(S.prof);
-    var lc = document.getElementById('lib-count');
-    if (lc) lc.textContent = Reg.list.length + ' games · Fully offline';
-    DevSel.init();
-    var _lib = function() {
-      try { GL._buildLib('all'); } catch (e) {}
-      document.documentElement.classList.add('pc-anim');
-    };
-    if ('requestIdleCallback' in window) requestIdleCallback(_lib, { timeout: 2200 });
-    else setTimeout(_lib, 900);
-
-    if (Suspend.has()) {
-      setTimeout(function() {
-        var snap = Suspend.load();
-        if (snap) toast('💾 ' + snap.title + ' suspended — tap Resume on Home', 4000);
-      }, 2200);
-    }
-
-    Bus.on('drama:tick', function(state) {
-      if (state.tension > 72 && Math.random() < 0.11) Announcer.tension();
-    });
-
-    window.addEventListener('beforeinstallprompt', function(e) {
-      e.preventDefault();
-      window._installEvt = e;
-    });
-
-    if (screen.orientation && screen.orientation.lock) {
-      screen.orientation.lock('portrait').catch(function(){});
-    }
-  }, _homeMs);
-
-  // Cabinet ritual — short path for demo / returning (po5s)
-  var _bootMs = (localStorage.getItem('po5s') || new URLSearchParams(location.search).get('demo') === '1') ? 120 : 600;
-  setTimeout(function() {
-    var seen = localStorage.getItem('po5s');
+  /* Kill cabinet ritual on cold path — hide loader/welcome immediately (v5 §3c TBT/CLS). */
+  (function () {
     var loader = document.getElementById('loader');
-    if (loader) {
-      loader.classList.add('out');
-      setTimeout(function(){loader.style.display='none';}, 280);
-    }
+    if (loader) { loader.style.display = 'none'; loader.classList.add('out'); }
+    var w = document.getElementById('welcome');
+    if (w) { w.classList.add('out'); w.classList.remove('ready'); w.style.display = 'none'; }
+    try { localStorage.setItem('po5s', '1'); } catch (e) {}
+  })();
 
-    if (!seen) {
-      animLogo('wcan'); W.init();
-    } else {
-      var w = document.getElementById('welcome');
-      if (w) { w.classList.add('out'); w.classList.remove('ready'); }
-    }
-    try { window.__APP_READY__ = true; document.documentElement.dataset.appReady = 'true'; } catch (e) {}
-  }, _bootMs);
+  /* Home shell sync — no setTimeout delay (v5 §3c). */
+  try { GL._buildFeat(); GL._buildScrolls(); } catch (e) {}
+  try { UI.home(); } catch (e) {}
+  var lc = document.getElementById('lib-count');
+  if (lc) lc.textContent = Reg.list.length + ' games · Fully offline';
+  try { window.__APP_READY__ = true; document.documentElement.dataset.appReady = 'true'; } catch (e) {}
+
+  var _idleShell = function() {
+    try { UI.dash(); UI.prof(); } catch (e) {}
+    try { Meta.check(S.prof); } catch (e) {}
+    try { DevSel.init(); } catch (e) {}
+    try { GL._buildLib('all'); } catch (e) {}
+    /* Never enable slideUpFresh on first session paint — CLS. */
+  };
+  if ('requestIdleCallback' in window) requestIdleCallback(_idleShell, { timeout: 1800 });
+  else setTimeout(_idleShell, 400);
+
+  window.addEventListener('beforeinstallprompt', function(e) {
+    e.preventDefault();
+    window._installEvt = e;
+  });
 });
 
 
@@ -5780,7 +5748,7 @@ OrientMgr.init();
     },
     registerSW: function(){
       if (!('serviceWorker' in navigator)) return;
-      navigator.serviceWorker.register('./sw.js?v=463').catch(function(){});
+      navigator.serviceWorker.register('./sw.js?v=464').catch(function(){});
     }
   };
 

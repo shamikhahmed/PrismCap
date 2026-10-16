@@ -115,14 +115,16 @@ body, .wstep-sub, .cart-input, .wscan-msg, .lscan, .sl, .ttile .ttile-name, .btn
 }
 .home-cab-side { display: none; }
 .home-cab-layout { display: block; }
-.home-feat-wrap { padding: 4px 15px 11px; min-height: 211px; contain: layout; }
-/* Reserve space before JS fills featured + rails — CLS guard (v5 §3b). */
-#feat { min-height: 200px; height: 200px; contain: strict; }
-#hw-area { min-height: 52px; contain: layout; }
-#mp-row, #solo-row { min-height: 108px; contain: layout size; }
-.home-stats-block { padding: 15px 15px 5px; min-height: 96px; }
-.home-recent-wrap { padding: 0 15px 8px; min-height: 120px; contain: layout; }
-.home-cab-rail { min-height: 280px; contain: layout; }
+.home-feat-wrap { padding: 4px 15px 11px; min-height: 211px; height: 211px; overflow: hidden; contain: strict; }
+/* Fixed slots — no reflow when JS replaces skeletons (v5 §3c CLS). */
+#feat { min-height: 200px; height: 200px; overflow: hidden; contain: strict; }
+#hw-area { min-height: 52px; height: 52px; overflow: hidden; contain: strict; }
+#mp-row, #solo-row { min-height: 108px; height: 108px; overflow: hidden; contain: strict; }
+.home-stats-block { padding: 15px 15px 5px; min-height: 96px; height: 96px; overflow: hidden; contain: strict; }
+.home-recent-wrap { padding: 0 15px 8px; min-height: 120px; height: 120px; overflow: hidden; contain: strict; }
+.home-cab-rail { min-height: 280px; height: 280px; overflow: hidden; contain: strict; }
+#loader, #welcome { display: none !important; }
+.mcard { min-width: 132px; width: 132px; min-height: 96px; height: 96px; box-sizing: border-box; }
 .home-cab-rail__label {
   display: none;
   font-family: var(--font-ui);

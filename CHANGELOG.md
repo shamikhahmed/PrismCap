@@ -1,3 +1,8 @@
+## 4.6.4 — 2026-10-16
+
+- Kill loader/welcome ritual; sync Home build; fixed-height home slots (CLS); never enable slideUpFresh on boot
+- SW → `prismcap-v464`
+
 ## 4.6.3 — 2026-10-16
 
 Perfection Loop v5 §3b Performance:

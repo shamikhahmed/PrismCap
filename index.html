@@ -42,7 +42,7 @@
 <link rel="stylesheet" href="css/app-runtime.css">
 </head>
 <body data-cap-app="1">
-<script>window.APP_VERSION='4.6.4';</script>
+<script>window.APP_VERSION='4.6.5';</script>
 <a href="#app" class="cap-skip-link">Skip to content</a>
 <div class="cap-scroll-progress" aria-hidden="true"></div>
 <div class="cap-ambient" aria-hidden="true"></div>
@@ -382,5 +382,32 @@
 <script src="js/dialogs.js"></script>
 <script src="js/games/example-game.js"></script>
 <script src="js/app.js"></script>
+<script>
+/* Idle-load V5+ game packs after Home paints (v5 §3d TBT). */
+(function () {
+  function load() {
+    var s = document.createElement('script');
+    s.src = 'js/games-deferred.js?v=465';
+    s.onload = function () {
+      try {
+        if (window.GL) {
+          if (GL._buildFeat) GL._buildFeat();
+          if (GL._buildScrolls) GL._buildScrolls();
+          if (GL._buildLib) GL._buildLib('all');
+        }
+        var lc = document.getElementById('lib-count');
+        if (lc && window.Reg) lc.textContent = Reg.list.length + ' games · Fully offline';
+      } catch (e) {}
+    };
+    document.head.appendChild(s);
+  }
+  function kick() {
+    if ('requestIdleCallback' in window) requestIdleCallback(load, { timeout: 2000 });
+    else setTimeout(load, 500);
+  }
+  if (document.readyState === 'complete') kick();
+  else window.addEventListener('load', kick);
+})();
+</script>
 </body>
 </html>

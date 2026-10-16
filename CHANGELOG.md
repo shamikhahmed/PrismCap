@@ -1,3 +1,10 @@
+## 4.6.5 — 2026-10-16
+
+Perfection Loop v5 §3d Performance:
+
+- Split V5+ game packs into `js/games-deferred.js` idle-loaded after Home (~197KB off cold parse)
+- SW → `prismcap-v465`
+
 ## 4.6.4 — 2026-10-16
 
 - Kill loader/welcome ritual; sync Home build; fixed-height home slots (CLS); never enable slideUpFresh on boot

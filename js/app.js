@@ -133,8 +133,10 @@ window.ensureGamesPack = function (cb) {
     s.onerror = next;
     document.head.appendChild(s);
   }
-  loadScript('js/games-core.js?v=466', function () {
-    loadScript('js/games-deferred.js?v=466', done);
+  loadScript('js/games/example-game.js?v=467', function () {
+    loadScript('js/games-core.js?v=467', function () {
+      loadScript('js/games-deferred.js?v=467', done);
+    });
   });
 };
 
@@ -1126,21 +1128,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Demo AFTER Reg is full — games count + Smart Hub need real list
   if (new URLSearchParams(location.search).get('demo') === '1' && window.GL && GL.loadDemoSeed) {
-    GL.loadDemoSeed({ silent: true });
+    setTimeout(function(){ try { GL.loadDemoSeed({ silent: true }); } catch(e){} }, 0);
   }
 
   Theme.apply(S.cfg.theme||'');
   if (typeof PrismPerf !== 'undefined') PrismPerf.apply();
   /* Defer audio + canvas BG — main-thread TBT (v5 §3b). */
+  var _fxReady=false;
   var _deferFx = function() {
+    if (_fxReady) return; _fxReady=true;
     try { Snd.init(); } catch (e) {}
     try { BG.init(); } catch (e) {}
   };
-  if ('requestIdleCallback' in window) requestIdleCallback(_deferFx, { timeout: 8000 });
-  else setTimeout(_deferFx, 800);
-
-  document.addEventListener('touchstart', function(){Snd.wake();}, {once:true,passive:true});
-  document.addEventListener('click', function(){Snd.wake();}, {once:true,passive:true});
+  /* No idle timeout — pointer wakes audio/BG (v5 §3d TBT). */
+  document.addEventListener('touchstart', function(){_deferFx();Snd.wake();}, {once:true,passive:true});
+  document.addEventListener('click', function(){_deferFx();Snd.wake();}, {once:true,passive:true});
 
   // Keyboard: Escape = back from game
   document.addEventListener('keydown', function(e) {
@@ -1181,21 +1183,15 @@ document.addEventListener('DOMContentLoaded', function() {
   })();
 
   /* Home shell sync — no setTimeout delay (v5 §3c). */
-  try { GL._buildFeat(); GL._buildScrolls(); } catch (e) {}
+  try { GL._buildFeat(); } catch (e) {}
   try { UI.home(); } catch (e) {}
+  /* scrolls after paint */
+  setTimeout(function(){ try { GL._buildScrolls(); } catch(e){} }, 0);
   var lc = document.getElementById('lib-count');
   if (lc) lc.textContent = Reg.list.length + ' games · Fully offline';
   try { window.__APP_READY__ = true; document.documentElement.dataset.appReady = 'true'; } catch (e) {}
 
-  var _idleShell = function() {
-    try { UI.dash(); UI.prof(); } catch (e) {}
-    try { Meta.check(S.prof); } catch (e) {}
-    try { DevSel.init(); } catch (e) {}
-    /* lib grid built after ensureGamesPack */
-    /* Never enable slideUpFresh on first session paint — CLS. */
-  };
-  if ('requestIdleCallback' in window) requestIdleCallback(_idleShell, { timeout: 8000 });
-  else setTimeout(_idleShell, 400);
+  /* dash/prof built on first Nav to those tabs — not on Home idle (v5 §3d). */
 
   window.addEventListener('beforeinstallprompt', function(e) {
     e.preventDefault();

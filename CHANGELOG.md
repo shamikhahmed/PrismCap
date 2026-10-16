@@ -1,7 +1,7 @@
-## 4.6.6 — 2026-10-16
+## 4.6.7 — 2026-10-16
 
 - Split games-core out of sync boot; load packs on Games/Arcade/launch only (TBT).
-- SW → `prismcap-v466`
+- SW → `prismcap-v467`
 
 ## 4.6.5 — 2026-10-16
 

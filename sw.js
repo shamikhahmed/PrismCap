@@ -1,4 +1,4 @@
-const CACHE = 'prismcap-v466';
+const CACHE = 'prismcap-v467';
 const ASSETS = [
   './css/capricorn-core.css',
   './',

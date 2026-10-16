@@ -133,11 +133,14 @@ window.ensureGamesPack = function (cb) {
     s.onerror = next;
     document.head.appendChild(s);
   }
-  loadScript('js/games/example-game.js?v=467', function () {
-    loadScript('js/games-core.js?v=467', function () {
-      loadScript('js/games-deferred.js?v=467', done);
+  function startGames() {
+    loadScript('js/games/example-game.js?v=468', function () {
+      loadScript('js/games-core.js?v=468', function () {
+        loadScript('js/games-deferred.js?v=468', done);
+      });
     });
-  });
+  }
+  window.ensureV4Systems(startGames);
 };
 
 
@@ -1117,7 +1120,7 @@ GL._start = function(game, players) {
 // Single DOMContentLoaded — replaces previous boot
 document.addEventListener('DOMContentLoaded', function() {
   Save.load(); Memory.load(); Meta.load();
-  Mutators.loadPresets(); Tutorial._load();
+  Mutators.loadPresets();
 
   // Modular games (js/games/*.js) register via PRISM_GAME_FACTORIES
   (window.PRISM_GAME_FACTORIES || []).forEach(function(factory) {
@@ -1190,6 +1193,12 @@ document.addEventListener('DOMContentLoaded', function() {
   var lc = document.getElementById('lib-count');
   if (lc) lc.textContent = Reg.list.length + ' games · Fully offline';
   try { window.__APP_READY__ = true; document.documentElement.dataset.appReady = 'true'; } catch (e) {}
+
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(function () { window.ensureV4Systems(); }, { timeout: 4500 });
+  } else {
+    setTimeout(function () { window.ensureV4Systems(); }, 2500);
+  }
 
   /* dash/prof built on first Nav to those tabs — not on Home idle (v5 §3d). */
 

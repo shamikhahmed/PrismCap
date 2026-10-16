@@ -1,3 +1,8 @@
+## 4.6.8 — 2026-10-16
+
+- Defer DevSel/Tutorial/Hints/Difficulty + GL v4 patches to `js/v4-systems.js` (idle / games-pack).
+- SW → `prismcap-v468`
+
 ## 4.6.7 — 2026-10-16
 
 - Split games-core out of sync boot; load packs on Games/Arcade/launch only (TBT).

@@ -42,7 +42,7 @@
 <link rel="stylesheet" href="css/app-runtime.css">
 </head>
 <body data-cap-app="1">
-<script>window.APP_VERSION='4.6.2';</script>
+<script>window.APP_VERSION='4.6.3';</script>
 <a href="#app" class="cap-skip-link">Skip to content</a>
 <div class="cap-scroll-progress" aria-hidden="true"></div>
 <div class="cap-ambient" aria-hidden="true"></div>
@@ -194,9 +194,17 @@
           </div>
         </div>
         <div class="shdr"><div class="sec">Multiplayer</div><div style="font-size:0.75rem;opacity:.55;cursor:pointer" onclick="Nav.go('library')">See all</div></div>
-        <div class="hscroll noscroll" id="mp-row"></div>
+        <div class="hscroll noscroll" id="mp-row" aria-busy="true">
+          <div class="mcard" style="opacity:.35" aria-hidden="true"></div>
+          <div class="mcard" style="opacity:.28" aria-hidden="true"></div>
+          <div class="mcard" style="opacity:.22" aria-hidden="true"></div>
+        </div>
         <div class="shdr" style="margin-top:6px"><div class="sec">Solo</div><div style="font-size:0.75rem;opacity:.55;cursor:pointer" onclick="Nav.go('library')">See all</div></div>
-        <div class="hscroll noscroll" id="solo-row"></div>
+        <div class="hscroll noscroll" id="solo-row" aria-busy="true">
+          <div class="mcard" style="opacity:.35" aria-hidden="true"></div>
+          <div class="mcard" style="opacity:.28" aria-hidden="true"></div>
+          <div class="mcard" style="opacity:.22" aria-hidden="true"></div>
+        </div>
       </div>
       <aside class="home-cab-rail" aria-label="Scoreboard">
         <div class="home-cab-rail__label">Scoreboard</div>

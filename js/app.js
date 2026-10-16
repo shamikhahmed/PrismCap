@@ -1663,8 +1663,15 @@ document.addEventListener('DOMContentLoaded', function() {
     GL.loadDemoSeed({ silent: true });
   }
 
-  Snd.init(); BG.init(); Theme.apply(S.cfg.theme||'');
+  Theme.apply(S.cfg.theme||'');
   if (typeof PrismPerf !== 'undefined') PrismPerf.apply();
+  /* Defer audio + canvas BG — main-thread TBT (v5 §3b). */
+  var _deferFx = function() {
+    try { Snd.init(); } catch (e) {}
+    try { BG.init(); } catch (e) {}
+  };
+  if ('requestIdleCallback' in window) requestIdleCallback(_deferFx, { timeout: 2500 });
+  else setTimeout(_deferFx, 800);
 
   document.addEventListener('touchstart', function(){Snd.wake();}, {once:true,passive:true});
   document.addEventListener('click', function(){Snd.wake();}, {once:true,passive:true});
@@ -1705,10 +1712,21 @@ document.addEventListener('DOMContentLoaded', function() {
   var i=0, scan=document.getElementById('lscan');
   var biv=setInterval(function(){if(scan)scan.textContent=scanMsgs[i]||'';i++;if(i>=scanMsgs.length)clearInterval(biv);},480);
 
+  /* Home shell ASAP — library build deferred (v5 §3b TBT). */
+  var _homeMs = (new URLSearchParams(location.search).get('demo') === '1') ? 80 : 280;
   setTimeout(function() {
-    GL._buildFeat(); GL._buildScrolls(); GL._buildLib('all');
+    GL._buildFeat(); GL._buildScrolls();
     UI.home(); UI.dash(); UI.prof();
     Meta.check(S.prof);
+    var lc = document.getElementById('lib-count');
+    if (lc) lc.textContent = Reg.list.length + ' games · Fully offline';
+    DevSel.init();
+    var _lib = function() {
+      try { GL._buildLib('all'); } catch (e) {}
+      document.documentElement.classList.add('pc-anim');
+    };
+    if ('requestIdleCallback' in window) requestIdleCallback(_lib, { timeout: 2200 });
+    else setTimeout(_lib, 900);
 
     if (Suspend.has()) {
       setTimeout(function() {
@@ -1729,20 +1747,16 @@ document.addEventListener('DOMContentLoaded', function() {
     if (screen.orientation && screen.orientation.lock) {
       screen.orientation.lock('portrait').catch(function(){});
     }
+  }, _homeMs);
 
-    var lc = document.getElementById('lib-count');
-    if (lc) lc.textContent = Reg.list.length + ' games · Fully offline';
-
-    DevSel.init();
-  }, 1600);
-
-  // ~2s cabinet ritual before revealing shell
+  // Cabinet ritual — short path for demo / returning (po5s)
+  var _bootMs = (localStorage.getItem('po5s') || new URLSearchParams(location.search).get('demo') === '1') ? 120 : 600;
   setTimeout(function() {
     var seen = localStorage.getItem('po5s');
     var loader = document.getElementById('loader');
     if (loader) {
       loader.classList.add('out');
-      setTimeout(function(){loader.style.display='none';}, 600);
+      setTimeout(function(){loader.style.display='none';}, 280);
     }
 
     if (!seen) {
@@ -1752,7 +1766,7 @@ document.addEventListener('DOMContentLoaded', function() {
       if (w) { w.classList.add('out'); w.classList.remove('ready'); }
     }
     try { window.__APP_READY__ = true; document.documentElement.dataset.appReady = 'true'; } catch (e) {}
-  }, 2000);
+  }, _bootMs);
 });
 
 
@@ -5766,7 +5780,7 @@ OrientMgr.init();
     },
     registerSW: function(){
       if (!('serviceWorker' in navigator)) return;
-      navigator.serviceWorker.register('./sw.js?v=462').catch(function(){});
+      navigator.serviceWorker.register('./sw.js?v=463').catch(function(){});
     }
   };
 

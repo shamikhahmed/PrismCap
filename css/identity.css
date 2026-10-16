@@ -115,13 +115,14 @@ body, .wstep-sub, .cart-input, .wscan-msg, .lscan, .sl, .ttile .ttile-name, .btn
 }
 .home-cab-side { display: none; }
 .home-cab-layout { display: block; }
-.home-feat-wrap { padding: 4px 15px 11px; min-height: 211px; }
-/* Reserve space before JS fills featured + rails — CLS guard (v5 §3). */
-#feat { min-height: 200px; contain: layout; }
-#mp-row, #solo-row { min-height: 108px; }
-.home-stats-block { padding: 15px 15px 5px; }
-.home-recent-wrap { padding: 0 15px 8px; min-height: 96px; }
-.home-cab-rail { min-height: 220px; }
+.home-feat-wrap { padding: 4px 15px 11px; min-height: 211px; contain: layout; }
+/* Reserve space before JS fills featured + rails — CLS guard (v5 §3b). */
+#feat { min-height: 200px; height: 200px; contain: strict; }
+#hw-area { min-height: 52px; contain: layout; }
+#mp-row, #solo-row { min-height: 108px; contain: layout size; }
+.home-stats-block { padding: 15px 15px 5px; min-height: 96px; }
+.home-recent-wrap { padding: 0 15px 8px; min-height: 120px; contain: layout; }
+.home-cab-rail { min-height: 280px; contain: layout; }
 .home-cab-rail__label {
   display: none;
   font-family: var(--font-ui);

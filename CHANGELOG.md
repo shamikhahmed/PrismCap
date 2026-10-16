@@ -1,3 +1,11 @@
+## 4.6.3 — 2026-10-16
+
+Perfection Loop v5 §3b Performance:
+
+- CLS: skeleton mcards in HTML; disable home slideUpFresh until idle; stricter contain/min-heights
+- TBT: faster cabinet boot; defer Snd/BG + library build; Home feats ASAP
+- SW → `prismcap-v463`
+
 ## 4.6.2 — 2026-10-16
 
 Perfection Loop v5 §3 Performance:

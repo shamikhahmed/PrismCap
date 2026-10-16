@@ -320,11 +320,12 @@ body.light .cab-door { background: linear-gradient(180deg, var(--pc-c8bfb4) 0%, 
 .screen-header { padding: calc(11px + var(--sat)) 15px 6px; position: sticky; top: 0; z-index: 12; background: linear-gradient(180deg, rgba(5,5,8,.96) 0%, rgba(5,5,8,.88) 72%, transparent 100%); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
 .screen > .screen-header:first-child { margin-top: 0; }
 .screen.active { opacity: 1; pointer-events: auto; transform: translateY(0); overflow-y: auto; }
-.screen.active > *                { animation: slideUpFresh .3s ease backwards; }
-.screen.active > *:nth-child(1)  { animation-delay: 0s; }
-.screen.active > *:nth-child(2)  { animation-delay: .04s; }
-.screen.active > *:nth-child(3)  { animation-delay: .08s; }
-.screen.active > *:nth-child(4)  { animation-delay: .12s; }
+/* No child slide-up on first paint — CLS (v5 §3b). Later nav can re-enable via .pc-anim. */
+html.pc-anim .screen.active > *                { animation: slideUpFresh .3s ease backwards; }
+html.pc-anim .screen.active > *:nth-child(1)  { animation-delay: 0s; }
+html.pc-anim .screen.active > *:nth-child(2)  { animation-delay: .04s; }
+html.pc-anim .screen.active > *:nth-child(3)  { animation-delay: .08s; }
+html.pc-anim .screen.active > *:nth-child(4)  { animation-delay: .12s; }
 #game-screen { padding-bottom: 0; display: flex; flex-direction: column; }
 
 /* ── NAV ── */

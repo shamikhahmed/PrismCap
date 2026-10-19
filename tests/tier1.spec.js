@@ -24,7 +24,9 @@ test.describe('PrismCap Tier 1 (PRSM-P0/P1)', () => {
 
   test('PRSM-P0-01: D-06 game titles + hist migration', async ({ page }) => {
     await page.goto('/?e2e=1');
-    await page.waitForFunction(() => window.Reg && window.Reg.list && window.Reg.list.length >= 35);
+    await page.waitForFunction(() => typeof window.ensureGamesPack === 'function' && window.Reg);
+    await page.evaluate(() => new Promise((r) => window.ensureGamesPack(r)));
+    await page.waitForFunction(() => window.Reg && window.Reg.get('word') && window.Reg.get('c4'));
     const titles = await page.evaluate(() => {
       const byId = (id) => (window.Reg.get(id) || {}).title;
       return {
@@ -78,12 +80,12 @@ test.describe('PrismCap Tier 1 (PRSM-P0/P1)', () => {
     await expect(page.locator('#home-screen.active')).toBeVisible({ timeout: 5000 });
   });
 
-  test('version + SW cache aligned to 4.6.9 / prismcap-v469', async ({ page }) => {
+  test('version + SW cache aligned to 4.6.10 / prismcap-v470', async ({ page }) => {
     await page.goto('/?e2e=1');
     const ver = await page.evaluate(() => window.APP_VERSION);
-    expect(ver).toBe('4.6.9');
+    expect(ver).toBe('4.6.10');
     const sw = await page.request.get('/sw.js');
     const body = await sw.text();
-    expect(body).toMatch(/prismcap-v469/);
+    expect(body).toMatch(/prismcap-v470/);
   });
 });

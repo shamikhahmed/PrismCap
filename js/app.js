@@ -114,6 +114,15 @@ window.ensureGamesPack = function (cb) {
     window.__PRISM_GAMES_PACK__ = true;
     window.__PRISM_GAMES_LOADING__ = false;
     try {
+      /* games-deferred registers v5/board games on window "load" — already fired when pack is lazy. */
+      if (typeof registerV5Games === 'function') registerV5Games();
+      else if (typeof _v5Games !== 'undefined' && window.Reg) {
+        _v5Games.forEach(function (g) { if (g && g.id && !Reg.get(g.id)) Reg.add(g); });
+      }
+      if (window.Reg) {
+        if (typeof Ludo !== 'undefined' && Ludo.id && !Reg.get(Ludo.id)) Reg.add(Ludo);
+        if (typeof SnakesLadders !== 'undefined' && SnakesLadders.id && !Reg.get(SnakesLadders.id)) Reg.add(SnakesLadders);
+      }
       if (window.GL) {
         if (GL._buildFeat) GL._buildFeat();
         if (GL._buildScrolls) GL._buildScrolls();
@@ -135,10 +144,10 @@ window.ensureGamesPack = function (cb) {
   }
   function startGames() {
     /* v4 systems only with games pack — never on Home idle (v5 §3d TBT). */
-    loadScript('js/v4-systems.js?v=469', function () {
-      loadScript('js/games/example-game.js?v=469', function () {
-        loadScript('js/games-core.js?v=469', function () {
-          loadScript('js/games-deferred.js?v=469', done);
+    loadScript('js/v4-systems.js?v=470', function () {
+      loadScript('js/games/example-game.js?v=470', function () {
+        loadScript('js/games-core.js?v=470', function () {
+          loadScript('js/games-deferred.js?v=470', done);
         });
       });
     });
@@ -493,8 +502,27 @@ var GL={
 launch:function(id){var game=Reg.get(id);if(!game){toast('Game not found');return;}if(typeof PlayTracker!=='undefined')PlayTracker.record(id);Snd.click();Hap.m();if(game.mp)this._setup(game);else{var players=[{id:'p1',name:S.prof.name||'Player',av:S.prof.av||'🎮',col:PCBrand.h_64d2ff,local:true}];Cinematic.show(game,players,function(){GL._start(game,players);});}},
 launchFeat:function(){if(S.feat)this.launch(S.feat.id);},
 _setup:function(game){var avs=['😎','🦊','🐺','🦁','🐯','🦅','🐲','👾','🤖','💀','🎭','🔥'],cols=[PCBrand.h_ff2d55,PCBrand.h_ff6b00,PCBrand.h_bf5af2,PCBrand.h_00d4ff,PCBrand.h_30d158,PCBrand.h_ffd60a,PCBrand.h_64d2ff,PCBrand.h_ff375f],self=this;var pc=Math.max(game.min,2);var players=Array.from({length:pc},function(_,i){return{id:'p'+(i+1),name:'Player '+(i+1),av:avs[i%avs.length],col:cols[i%cols.length],local:i===0};});var render=function(){Modal.open('<div><div style="font-size:1.05rem;font-weight:800;margin-bottom:2px">'+game.icon+' '+game.title+'</div><div style="font-size:.76rem;opacity:.38;margin-bottom:13px">'+game.desc+'</div><div style="font-size: 0.75rem;opacity:.32;letter-spacing:.09em;text-transform:uppercase;margin-bottom:7px">Players ('+pc+'/'+game.max+')</div><div id="_pl">'+players.map(function(p,i){return'<div class="pchip"><div style="width:30px;height:30px;border-radius:50%;background:'+p.col+'1c;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0">'+p.av+'</div><input class="pinp" placeholder="Player '+(i+1)+'" value="'+p.name+'" onchange="window._pn('+i+',this.value)" oninput="window._pn('+i+',this.value)">'+(i>0?'<div onclick="window._rp('+i+')" style="opacity:.22;cursor:pointer;padding:4px">✕</div>':'')+'</div>';}).join('')+'</div>'+(pc<game.max?'<button type="button" class="btn bg bf" style="margin-bottom:9px;margin-top:5px" onclick="window._ap()">+ Add Player</button>':'')+( Mutators.active.length?'<div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:9px">'+Mutators.active.map(function(m){return'<div style="background:'+m.col+'22;border:1px solid '+m.col+'44;border-radius:100px;padding:2px 8px;font-size: 0.75rem;font-weight:700">'+m.icon+' '+m.name+'</div>';}).join('')+'</div>':'')+'\x3cdiv style="display:flex;gap:7px">\x3cbutton class="btn bg" style="flex:0 0 auto;padding:11px 14px" onclick="window._smut()">⚙️\x3c/button>\x3cbutton class="btn bw" style="flex:1" onclick="window._sg()">▶ Start Game\x3c/button>\x3c/div>\x3c/div>');window._pn=function(i,v){players[i].name=v||'Player '+(i+1);};window._ap=function(){if(pc>=game.max)return;pc++;players.push({id:'p'+pc,name:'Player '+pc,av:avs[(pc-1)%avs.length],col:cols[(pc-1)%cols.length]});render();};window._rp=function(i){if(pc<=game.min){toast('Min '+game.min+' players');return;}players.splice(i,1);pc--;players.forEach(function(p,j){p.id='p'+(j+1);});render();};window._sg=function(){Modal.close();setTimeout(function(){Cinematic.show(game,players,function(){self._start(game,players);});},270);};window._smut=function(){Modal.close();setTimeout(function(){Mutators.showPicker(function(){render();});},270);};};render();},
-_start:function(game,players){S.game=game;game.setup(players);Mutators.apply();Nav.go('game');document.getElementById('gtitle').textContent=game.title;document.getElementById('gbody').style.setProperty('--acc',game.col);document.getElementById('gbody').style.setProperty('--glow',game.col+'3a');game.render();Snd.reveal();// Auto-checkpoint after 3s (not immediately)
-clearTimeout(this._ck);this._ck=setTimeout(function(){if(S.game&&S.game.gs&&Object.keys(S.game.gs).length>2)Suspend.save(S.game,S.game.gs,{});},3000);},
+_start:function(game,players){
+  var self=this;
+  function run(g){
+    S.game=g;g.setup(players);Mutators.apply();Nav.go('game');
+    document.getElementById('gtitle').textContent=g.title;
+    document.getElementById('gbody').style.setProperty('--acc',g.col);
+    document.getElementById('gbody').style.setProperty('--glow',g.col+'3a');
+    g.render();Snd.reveal();
+    clearTimeout(self._ck);self._ck=setTimeout(function(){if(S.game&&S.game.gs&&Object.keys(S.game.gs).length>2)Suspend.save(S.game,S.game.gs,{});},3000);
+  }
+  /* Stubs lack setup — load games pack then resolve real Reg entry (v5 §3d CI). */
+  if(!game||game._stub||typeof game.setup!=='function'){
+    window.ensureGamesPack(function(){
+      var g=(game&&game.id&&window.Reg)?Reg.get(game.id):game;
+      if(!g||typeof g.setup!=='function'){toast('Game still loading…');return;}
+      run(g);
+    });
+    return;
+  }
+  run(game);
+},
 exitGame:function(){if(S.game){['_ft','_rt2','_dt','_qi','_rl','_si','_pti','_snki','_ifi','_ck','_wt'].forEach(function(k){clearInterval(S.game[k]);clearTimeout(S.game[k]);});S.game=null;}Drama.state.tension=0;Drama._updateBanner();Mutators.active=[];Nav.go('home');},
 requestLeave:function(){
   var self=this;
@@ -1141,6 +1169,12 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   Theme.apply(S.cfg.theme||'');
+  /* P-PRSM-1: no device gate — DevSel is in deferred pack; set data-device from viewport now. */
+  (function () {
+    var w = window.innerWidth;
+    var d = w >= 1024 ? 'mac' : w >= 768 ? 'ipad' : 'iphone';
+    document.body.setAttribute('data-device', d);
+  })();
   if (typeof PrismPerf !== 'undefined') PrismPerf.apply();
   /* Defer audio + canvas BG — main-thread TBT (v5 §3b). */
   var _fxReady=false;

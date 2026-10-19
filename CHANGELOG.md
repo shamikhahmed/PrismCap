@@ -1,3 +1,7 @@
+## 4.6.10 — 2026-10-19
+- CI: `ensureGamesPack` before game suites; `GL._start` loads pack when stub/`setup` missing
+- SW → `prismcap-v470`
+
 ## 4.6.9 — 2026-10-16
 
 - No Home idle ensureV4Systems; example-game off sync boot; no Home scrolls build.

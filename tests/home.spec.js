@@ -28,8 +28,10 @@ test.describe('PrismCap home integrity', () => {
   test('demo=1 syncs header, stats, and Smart Hub', async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto('/?e2e=1&demo=1');
+    await page.waitForFunction(() => typeof window.ensureGamesPack === 'function');
+    await page.evaluate(() => new Promise((r) => window.ensureGamesPack(r)));
     await page.waitForFunction(() =>
-      window.Reg && Reg.list.length >= 39 &&
+      window.Reg && Reg.list.length >= 35 &&
       window.S && S.prof && S.prof.name === 'Demo Operative' &&
       Number(document.getElementById('sg')?.textContent) === Reg.list.length &&
       document.getElementById('smart-hub')

@@ -804,26 +804,26 @@ GL.exitGame = function() {
 var _v5Games = [WordAssassin, DeadDrop, BlitzDuel, PixelPainter, SurvivalArena, MindMeld];
 
 // ── V5 BOOT (runs after main boot) ───────────────────────────────
-// Wait for Reg to be populated, then add v5 games
-window.addEventListener('load', function() {
-  setTimeout(function() {
-    // Add v5 games if not already registered
+function _prismRegisterV5Now() {
+  try {
     _v5Games.forEach(function(g) {
-      if (!Reg.get(g.id)) {
-        Reg.add(g);
-      }
+      if (g && g.id && typeof Reg !== 'undefined' && !Reg.get(g.id)) Reg.add(g);
     });
-    // Refresh library
-    GL._buildLib('all');
-    GL._buildScrolls();
-    updateGameCountBadge();
-    // Init orientation
-    OrientMgr.init();
-    // Update lib count
+    if (typeof GL !== 'undefined') {
+      if (GL._buildLib) GL._buildLib('all');
+      if (GL._buildScrolls) GL._buildScrolls();
+    }
+    if (typeof updateGameCountBadge === 'function') updateGameCountBadge();
+    if (typeof OrientMgr !== 'undefined' && OrientMgr.init) OrientMgr.init();
     var lc = document.getElementById('lib-count');
-    if (lc) lc.textContent = Reg.list.length + ' games · Fully offline';
-  }, 2000);
-});
+    if (lc && typeof Reg !== 'undefined') lc.textContent = Reg.list.length + ' games · Fully offline';
+  } catch (e) {}
+}
+if (document.readyState === 'complete') {
+  setTimeout(_prismRegisterV5Now, 0);
+} else {
+  window.addEventListener('load', function() { setTimeout(_prismRegisterV5Now, 200); });
+}
 
 // ── BACK BUTTON / ESCAPE IMPROVEMENTS ────────────────────────────
 // Override browser back button

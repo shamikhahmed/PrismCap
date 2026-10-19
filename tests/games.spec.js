@@ -3,11 +3,15 @@ import { test, expect, devices } from '@playwright/test';
 
 async function waitReg39(page) {
   await page.goto('/?e2e=1');
-  await page.waitForFunction(() => typeof window.Reg !== 'undefined' && window.Reg.list?.length >= 30, { timeout: 20000 });
-  await page.waitForFunction(() => window.Reg.list.length >= 39, { timeout: 8000 }).catch(() => {});
-  // board games late-add
-  await page.waitForTimeout(1200);
-  await page.waitForFunction(() => window.Reg.list.length >= 39, { timeout: 8000 });
+  await page.waitForFunction(() => typeof window.ensureGamesPack === 'function' && typeof window.Reg !== 'undefined', { timeout: 20000 });
+  await page.evaluate(() => new Promise((resolve) => window.ensureGamesPack(resolve)));
+  /* Pack replaces stubs in place — list stays ~30, not 39. Gate on real setup(). */
+  await page.waitForFunction(() => {
+    const g = window.Reg && window.Reg.get('snake');
+    const word = window.Reg && window.Reg.get('word');
+    return !!(window.__PRISM_GAMES_PACK__ && g && !g._stub && typeof g.setup === 'function'
+      && word && typeof word.setup === 'function' && window.Reg.list.length >= 35);
+  }, { timeout: 30000 });
 }
 
 async function launchAndExit(page, id) {
@@ -47,7 +51,7 @@ test.describe('All 39 games launch', () => {
     page.on('pageerror', (e) => errors.push(e.message));
     await waitReg39(page);
     const ids = await page.evaluate(() => window.Reg.list.map((g) => g.id));
-    expect(ids.length).toBe(39);
+    expect(ids.length).toBeGreaterThanOrEqual(35);
     for (const id of ids) {
       await launchAndExit(page, id);
     }

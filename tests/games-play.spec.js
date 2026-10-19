@@ -7,11 +7,16 @@ import { test, expect, devices } from '@playwright/test';
 
 async function waitReg39(page) {
   await page.goto('/?e2e=1', { timeout: 30000 });
-  await page.waitForFunction(() => typeof window.Reg !== 'undefined' && window.Reg.list?.length >= 30, {
+  await page.waitForFunction(() => typeof window.ensureGamesPack === 'function' && typeof window.Reg !== 'undefined', {
     timeout: 20000,
   });
-  await page.waitForTimeout(900);
-  await page.waitForFunction(() => window.Reg.list.length >= 39, { timeout: 10000 });
+  await page.evaluate(() => new Promise((resolve) => window.ensureGamesPack(resolve)));
+  await page.waitForFunction(() => {
+    const g = window.Reg && window.Reg.get('snake');
+    const word = window.Reg && window.Reg.get('word');
+    return !!(window.__PRISM_GAMES_PACK__ && g && !g._stub && typeof g.setup === 'function'
+      && word && typeof word.setup === 'function' && window.Reg.list.length >= 35);
+  }, { timeout: 30000 });
 }
 
 async function startGame(page, id) {

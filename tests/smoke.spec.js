@@ -51,6 +51,8 @@ test.describe('PrismCap smoke', () => {
 
   test('suggestGames returns style-matched picks', async ({ page }) => {
     await page.goto('/?e2e=1');
+    await page.waitForFunction(() => typeof window.ensureGamesPack === 'function');
+    await page.evaluate(() => new Promise((r) => window.ensureGamesPack(r)));
     await page.waitForFunction(() => typeof window.W !== 'undefined' && typeof window.W.suggestGames === 'function');
     const result = await page.evaluate(() => {
       window.S.prof.style = 'reflex';
@@ -63,6 +65,8 @@ test.describe('PrismCap smoke', () => {
 
   test('home shows browse CTA when history is empty', async ({ page }) => {
     await page.goto('/?e2e=1');
+    await page.waitForFunction(() => typeof window.ensureGamesPack === 'function');
+    await page.evaluate(() => new Promise((r) => window.ensureGamesPack(r)));
     await page.waitForFunction(() => typeof window.UI !== 'undefined' && typeof window.UI.home === 'function');
     await page.evaluate(() => {
       window.S.prof.hist = [];

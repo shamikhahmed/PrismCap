@@ -114,7 +114,13 @@ window.ensureGamesPack = function (cb) {
     window.__PRISM_GAMES_PACK__ = true;
     window.__PRISM_GAMES_LOADING__ = false;
     try {
-      /* games-deferred registers v5/board games on window "load" — already fired when pack is lazy. */
+      /* factories + v5/board register on load — already fired when pack is lazy. */
+      (window.PRISM_GAME_FACTORIES || []).forEach(function (factory) {
+        try {
+          var fg = factory();
+          if (fg && fg.id && window.Reg && !Reg.get(fg.id)) Reg.add(fg);
+        } catch (e) {}
+      });
       if (typeof registerV5Games === 'function') registerV5Games();
       else if (typeof _v5Games !== 'undefined' && window.Reg) {
         _v5Games.forEach(function (g) { if (g && g.id && !Reg.get(g.id)) Reg.add(g); });

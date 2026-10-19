@@ -5,8 +5,10 @@ test.describe('PrismCap home integrity', () => {
   test('Mac landscape is block layout, not iPad grid', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto('/?e2e=1');
-    await page.waitForFunction(() => window.Reg && Reg.list.length >= 30);
-    await page.waitForTimeout(1800);
+    await page.waitForFunction(() => typeof window.ensureGamesPack === 'function' && window.Reg);
+    await page.evaluate(() => new Promise((r) => window.ensureGamesPack(r)));
+    await page.waitForFunction(() => window.__PRISM_GAMES_PACK__ && window.Reg.list.length >= 35);
+    await page.waitForTimeout(400);
     const d = await page.evaluate(() => {
       const home = document.getElementById('home-screen');
       const cs = getComputedStyle(home);

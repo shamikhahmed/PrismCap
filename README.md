@@ -1,3 +1,9 @@
+# RETIRED 2026-10-21
+
+This Cap is retired. See RETIRED.md.
+
+---
+
 Party games for one phone, passed around the room.
 
 # PrismCap

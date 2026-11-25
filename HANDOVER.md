@@ -49,3 +49,9 @@ Own GitHub Pages via `.github/workflows/pages.yml` on `main` → https://shamikh
 Bump VERSION.json + package + SW cache + register query together (G-8).
 
 **Hub note (§12.5):** `shamikhahmed.github.io/PrismCap/` is a **stale copy** — do not rsync. Hub Engineer removes it after confirming own-Pages serves live (keep redirects).
+
+## Motion contract (2026-11-26)
+
+- Motion contract: re-synced `capricorn-core.css` + `capricorn-motion.js` from `capricorn-tooling/shared/design-system` (tokens `--cap-dur-*`, splash, view transitions). App shells keep `data-cap-app="1"` instant reveals (no marketing scrub). See `docs/MOTION.md`.
+
+Source: `../capricorn-tooling/shared/design-system/` via `node scripts/sync-design-system.mjs`.

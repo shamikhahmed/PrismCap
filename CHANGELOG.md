@@ -1,3 +1,7 @@
+## Gallery regen — 2026-11-26
+
+- Real Playwright screen gallery after motion craft: `npm run gallery` → **10** PNGs (5 shell screens × mobile/desktop) in `docs/screenshots/gallery/`; manifest stamped v4.6.10.
+
 ## Motion craft — 2026-11-26
 
 - Motion contract: re-synced `capricorn-core.css` + `capricorn-motion.js` from `capricorn-tooling/shared/design-system` (tokens `--cap-dur-*`, splash, view transitions). App shells keep `data-cap-app="1"` instant reveals (no marketing scrub). See `docs/MOTION.md`.

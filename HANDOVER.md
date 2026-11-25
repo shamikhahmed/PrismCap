@@ -1,7 +1,7 @@
 # PrismCap — Handover
 
 > Read this + `ROADMAP.md` + `~/Capricorn-Brain/01 Projects/PrismCap.md` before working here.  
-> Last updated: 2026-10-14 · Fleet: `capricorn-tooling/docs/perfection-2026-10/CURSOR-PERFECTION-LOOP.md`
+> Last updated: 2026-11-26 · Fleet: Wave 2 gallery regen (post-motion)
 
 ## What this is
 Party games for one phone, passed around the room. Offline Pass & Play PWA (never “PrismOS” — G-3).
@@ -49,6 +49,11 @@ Own GitHub Pages via `.github/workflows/pages.yml` on `main` → https://shamikh
 Bump VERSION.json + package + SW cache + register query together (G-8).
 
 **Hub note (§12.5):** `shamikhahmed.github.io/PrismCap/` is a **stale copy** — do not rsync. Hub Engineer removes it after confirming own-Pages serves live (keep redirects).
+
+## Screen gallery (2026-11-26)
+
+- Real Playwright regen: `npm run gallery` → **10** PNGs (5 shell screens × mobile/desktop) under `docs/screenshots/gallery/`.
+- Manifest `generated` `2026-11-25T20:04:51.989Z` (UTC) / v4.6.10; viewer `screen-gallery.html`.
 
 ## Motion contract (2026-11-26)
 
